@@ -37,17 +37,19 @@
             </StackPanel>
         </Border>
         <StackPanel HorizontalAlignment="Left" Margin="10,105,0,0" VerticalAlignment="Top">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0" Width="608">
                 <Label Content="Preset:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
-                <WrapPanel Orientation="Horizontal" Margin="0,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <WrapPanel Orientation="Horizontal" Margin="0,3,0,0" VerticalAlignment="Center" Width="339">
                     <RadioButton x:Name="rdioPotatoPreset" Content="Potato" Margin="0,0,10,0" Checked="rdioPotatoPreset_Checked"/>
                     <RadioButton x:Name="rdioVeryLowPreset" Content="Very Low"  Checked="rdioVeryLowPreset_Checked"/>
                     <RadioButton x:Name="rdioLowPreset" Content="Low" Margin="10,0,0,0" IsEnabled="True" Checked="rdioLowPreset_Checked"/>
-                    <RadioButton Content="Medium" Margin="10,0,0,0" IsEnabled="False"/>
-                    <RadioButton Content="High" Margin="10,0,0,0" IsEnabled="False"/>
-                    <RadioButton Content="Very High" Margin="10,0,0,0" IsEnabled="False"/>
-                    <RadioButton Content="Epic" Margin="10,0,0,0" IsEnabled="True"/>
-                    <RadioButton Content="Custom" Margin="10,0,0,0" IsChecked="False"/>
+                    <RadioButton Content="Medium" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
+                    <RadioButton Content="High" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
+                    <RadioButton Content="Very High" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
+                    <RadioButton x:Name="rdioEpicPreset" Content="Epic" Margin="10,0,0,0" IsEnabled="True" IsChecked="True" Checked="rdioEpicPreset_Checked"/>
+                    <RadioButton Content="Ultra" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
+                    <RadioButton Content="Insane" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
+                    <RadioButton Content="Custom" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
                 </WrapPanel>
             </StackPanel>
             <Button x:Name="btnGenerate" Content="Generate Engine.ini" HorizontalAlignment="Left" Margin="10" Padding="10" Click="btnGenerate_Click"/>
@@ -738,7 +740,7 @@
                                     <ComboBoxItem Content="Very High"/>
                                 </ComboBox>
                             </StackPanel>
-                            <CheckBox x:Name="chkHalfResScene" Content="Half res Screen Space Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                            <CheckBox x:Name="chkHalfResScene" Content="Half res Screen Space Reflections" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
                             <CheckBox x:Name="chkLumenReflections" Content="Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                             <CheckBox x:Name="chkTraceMeshReflections" Content="Detailed Mesh Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                             <StackPanel Orientation="Horizontal" Margin="0">
