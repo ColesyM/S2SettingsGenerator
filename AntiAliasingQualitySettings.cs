@@ -18,7 +18,7 @@ namespace S2SettingsGenerator
         }
         public void appendLines(StringBuilder sb)
         {
-            sb.AppendLine($"r.FXAA.r_FXAA_Quality={r_FXAA_Quality}");
+            sb.AppendLine($"r.FXAA.Quality={r_FXAA_Quality}");
             sb.AppendLine($"r.TemporalAA.Quality={r_TemporalAA_Quality}");
 
             sb.AppendLine($"r.TSR.RejectionAntiAliasingQuality={r_TSR_RejectionAntiAliasingQuality}");

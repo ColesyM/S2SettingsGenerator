@@ -55,7 +55,7 @@ namespace S2SettingsGenerator
         public void appendLines(StringBuilder sb)
         {
             sb.AppendLine($"r.LightFunctionQuality={r_LightFunctionQuality}");
-            sb.AppendLine($"r.ShadowQuality.={r_ShadowQuality}");
+            sb.AppendLine($"r.ShadowQuality={r_ShadowQuality}");
             sb.AppendLine($"r.Shadow.CSM.MaxCascades={r_Shadow_CSM_MaxCascades}");
             sb.AppendLine($"r.Shadow.MaxCSMResolution={r_Shadow_MaxCSMResolution}");
             sb.AppendLine($"r.Shadow.RadiusThreshold={r_Shadow_RadiusThreshold}");
@@ -67,9 +67,9 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.Shadow.Virtual.MaxPhysicalPages={r_Shadow_Virtual_MaxPhysicalPages}");
             sb.AppendLine($"r.Shadow.Virtual.Clipmap.FirstLevel={r_Shadow_Virtual_Clipmap_FirstLevel}");
             sb.AppendLine($"r.Shadow.Virtual.ResolutionLodBiasDirectional={r_Shadow_Virtual_ResolutionLodBiasDirectional}");
-            sb.AppendLine($"r.Shadow.Virtual.ViewBias_Directional.={r_Shadow_Virtual_ViewBias_Directional}");
+            sb.AppendLine($"r.Shadow.Virtual.ViewBias.Directional={r_Shadow_Virtual_ViewBias_Directional}");
             sb.AppendLine($"r.Shadow.Virtual.OptimalSlopeBiasMultiplier.Directional={r_Shadow_Virtual_OptimalSlopeBiasMultiplier_Directional}");
-            sb.AppendLine($"r.Shadow.Virtual.SMRTTexelDitherScaleDirectional.={r_Shadow_Virtual_SMRT_TexelDitherScaleDirectional}");
+            sb.AppendLine($"r.Shadow.Virtual.SMRTTexelDitherScaleDirectional={r_Shadow_Virtual_SMRT_TexelDitherScaleDirectional}");
             sb.AppendLine($"r.Shadow.Virtual.SMRT.RayCountDirectional={r_Shadow_Virtual_SMRT_RayCountDirectional}");
             sb.AppendLine($"r.Shadow.Virtual.SMRT.SamplesPerRayDirectional={r_Shadow_Virtual_SMRT_SamplesPerRayDirectional}");
             sb.AppendLine($"r.Shadow.Virtual.SMRT.RayLengthScaleDirectional={r_Shadow_Virtual_SMRT_RayLengthScaleDirectional}");
@@ -80,7 +80,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.ContactShadows={r_ContactShadows}");
             sb.AppendLine($"r.ContactShadows.EnableForLocalLights={r_ContactShadows_EnableForLocalLights}");
             sb.AppendLine($"r.SkeletalMesh.ShadowProxy.Use={r_SkeletalMesh_ShadowProxy_Use}");
-            sb.AppendLine($"r.Shadow.Virtual.Cache.StaticSeparat={r_Shadow_Virtual_Cache_StaticSeparate}");
+            sb.AppendLine($"r.Shadow.Virtual.Cache.StaticSeparate={r_Shadow_Virtual_Cache_StaticSeparate}");
         }
     }
 }

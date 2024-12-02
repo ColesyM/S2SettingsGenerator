@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -123,7 +124,7 @@ namespace S2SettingsGenerator
                 r_HairStrands_Voxelization = (bool)chkHairLightingAndShadows.IsChecked ? 0 : 1,
                 mg_HairQuality = (int)sldrHairQuality.Value
             };
-            textures.appendLines(sb);
+            hair.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Objects--");
             ObjectDetailQualitySettings objectDetail = new ObjectDetailQualitySettings()
@@ -164,7 +165,7 @@ namespace S2SettingsGenerator
                     _ => -1
                 }
             };
-            textures.appendLines(sb);
+            objectDetail.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Effects--");
             EffectsQualitySettings effects = new EffectsQualitySettings()
@@ -196,7 +197,7 @@ namespace S2SettingsGenerator
                 fx_Niagara_MaxAdvanceTicks = (int)sldrParticleSimulation.Value,
                 r_Refraction_Blur_TemporalAA = (bool)chkParticleRefractionAA.IsChecked ? 1 : 0
             };
-            textures.appendLines(sb);
+            effects.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Materials--");
             MaterialQualitySettings materials = new MaterialQualitySettings()
@@ -211,7 +212,7 @@ namespace S2SettingsGenerator
                   },
                   r_AnisotropicMaterials = (bool)chkMaterialAniso.IsChecked ? 1 : 0
             };
-            textures.appendLines(sb);
+            materials.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--PostProcessing--");
             PostProcessQualitySettings postProcessing = new PostProcessQualitySettings()
@@ -279,7 +280,7 @@ namespace S2SettingsGenerator
                     _ => 5
                 }
             };
-            textures.appendLines(sb);
+            postProcessing.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--DOF--");
             DOFQualitySettings dof = new DOFQualitySettings()
@@ -337,7 +338,7 @@ namespace S2SettingsGenerator
                r_DOF_Kernel_MaxForegroundRadius = (float)sldrDOFForegroundBlurLimit.Value,
                r_DOF_Kernel_MaxBackgroundRadius = (float)sldrDOBackgroundBlurLimit.Value
             };
-            textures.appendLines(sb);
+            dof.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--AA--");
             AntiAliasingQualitySettings aa = new AntiAliasingQualitySettings()
@@ -369,7 +370,7 @@ namespace S2SettingsGenerator
                 },
                 r_TSR_History_GrandReprojection = 0
             };
-            textures.appendLines(sb);
+            aa.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Shading--");
             ShadingQualitySettings shading = new ShadingQualitySettings()
@@ -420,7 +421,7 @@ namespace S2SettingsGenerator
                 r_AmbientOcclusionRadiusScale = (float)sldrAORadius.Value,
                 r_TranslucencyLightingVolume_UseShadowFiltering = (bool)chkTranslucentShadowFilter.IsChecked ? 1 : 0
             };
-            textures.appendLines(sb);
+            shading.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Shadows--");
             ShadowQualitySettings shadows = new ShadowQualitySettings()
@@ -557,7 +558,7 @@ namespace S2SettingsGenerator
                 r_Shadow_Virtual_Cache_StaticSeparate = (bool)chkShadowStaticSeperate.IsChecked ? 1 : 0,
 
             };
-            textures.appendLines(sb);
+            shadows.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Clouds--");
             VolumetricCloudsQualitySettings clouds = new VolumetricCloudsQualitySettings()
@@ -576,7 +577,7 @@ namespace S2SettingsGenerator
                 r_VolumetricCloud_ReflectionRaySampleMaxCount = (int)sldrCloudReflectionRayCount.Value,
                 r_VolumetricCloud_Shadow_ViewRaySampleMaxCount = (int)sldrCloudShadowRayCount.Value
             };
-            textures.appendLines(sb);
+            clouds.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Fog--");
             VolumetricFogQualitySettings fog = new VolumetricFogQualitySettings()
@@ -620,7 +621,7 @@ namespace S2SettingsGenerator
                     _ => 0.35f,
                 },
             };
-            textures.appendLines(sb);
+            fog.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Sky--");
             SkyQualitySettings sky = new SkyQualitySettings()
@@ -655,7 +656,7 @@ namespace S2SettingsGenerator
                     _ => 6
                 },
             };
-            textures.appendLines(sb);
+            sky.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--Foliage--");
             FoliageQualitySettings foliage = new FoliageQualitySettings()
@@ -673,7 +674,7 @@ namespace S2SettingsGenerator
                 fg_CullDistanceScale_Trees = (float)sldrFoliageTreeDist.Value,
                 fg_DensityScale_Grass = (float)sldrFoliageGrassDensity.Value
             };
-            textures.appendLines(sb);
+            foliage.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--ViewDistance--");
             ViewDistanceQualitySettings viewDistance = new ViewDistanceQualitySettings()
@@ -684,7 +685,7 @@ namespace S2SettingsGenerator
                 wp_Runtime_HLOD = 1,
                 r_LightMaxDrawDistanceScale = (float)sldrLightViewDistance.Value
             };
-            textures.appendLines(sb);
+            viewDistance.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--GlobalIllumination--");
             GlobalIlluminationQualitySettings globalIllumination = new GlobalIlluminationQualitySettings()
@@ -777,10 +778,30 @@ namespace S2SettingsGenerator
 
                 r_LumenScene_Radiosity_ProbeSpacing = (bool)chkTigherProbes.IsChecked ? 4 : 8
             };
-            textures.appendLines(sb);
+            globalIllumination.appendLines(sb);
 
             string iniLines = sb.ToString();
             Debug.Write(iniLines);
+
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "Engine"; // Default file name
+            dlg.DefaultExt = ".ini"; // Default file extension
+            dlg.Filter = "Configuration settings (.ini)|*.ini"; // Filter files by extension
+
+            var gamePath = System.IO.Path.Combine(System.IO.Path.Combine(System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Stalker2"), "Saved"), "Config");
+            var steamPath = System.IO.Path.Combine(gamePath, "Windows");
+            var gamePassPath = System.IO.Path.Combine(gamePath, "WinGDK");
+
+            var useSteam = Directory.Exists(steamPath);
+            var useGamePass = Directory.Exists(gamePassPath);
+            dlg.DefaultDirectory = (useGamePass ? gamePassPath : (useSteam ? steamPath : Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)));
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                File.WriteAllText(dlg.FileName, iniLines);
+            }
         }
     }
 }

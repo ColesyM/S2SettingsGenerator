@@ -42,7 +42,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.SSS.HalfRes={r_SSS_HalfRes}");
             sb.AppendLine($"r.AmbientOcclusionMipLevelFactor={r_AmbientOcclusionMipLevelFactor}");
             sb.AppendLine($"r.AmbientOcclusionMaxQuality={r_AmbientOcclusionMaxQuality}");
-            sb.AppendLine($"rmbientOcclusionLevels.={r_AmbientOcclusionLevels}");
+            sb.AppendLine($"r.AmbientOcclusionLevels={r_AmbientOcclusionLevels}");
             sb.AppendLine($"r.AmbientOcclusionRadiusScal={r_AmbientOcclusionRadiusScale}");
             sb.AppendLine($"r.TranslucencyLightingVolume.UseShadowFiltering={r_TranslucencyLightingVolume_UseShadowFiltering}");
         }

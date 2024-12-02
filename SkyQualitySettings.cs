@@ -35,7 +35,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.SkyAtmosphere.FastSkyLUT={r_SkyAtmosphere_FastSkyLUT}");
             sb.AppendLine($"r.SkyAtmosphere.FastSkyLUT.SampleCountMin={r_SkyAtmosphere_FastSkyLUT_SampleCountMin}");
             sb.AppendLine($"r.SkyAtmosphere.FastSkyLUT.ampleCountMax={r_SkyAtmosphere_FastSkyLUT_SampleCountMax}");
-            sb.AppendLine($"r.SkyAtmosphereSampleCountMin.={r_SkyAtmosphere_SampleCountMin}");
+            sb.AppendLine($"r.SkyAtmosphereSampleCountMin={r_SkyAtmosphere_SampleCountMin}");
             sb.AppendLine($"r.SkyAtmosphere.SampleCountMax={r_SkyAtmosphere_SampleCountMax}");
             sb.AppendLine($"r.SkyAtmosphere.TransmittanceLUT.UseSmallFormat={r_SkyAtmosphere_TransmittanceLUT_UseSmallFormat}");
             sb.AppendLine($"r.SkyAtmosphere.TransmittanceLUT.SampleCount={r_SkyAtmosphere_TransmittanceLUT_SampleCount}");

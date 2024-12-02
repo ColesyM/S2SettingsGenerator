@@ -27,7 +27,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.Nanite.ViewMeshLODBias.Min={r_Nanite_ViewMeshLODBias_Min}");
             sb.AppendLine($"r.SkeletalMeshLODBias={r_SkeletalMeshLODBias}");
             sb.AppendLine($"r.DetailMode={r_DetailMode}");
-            sb.AppendLine($"mg_CharacterQuality={mg_CharacterQuality}");
+            sb.AppendLine($"mg.CharacterQuality={mg_CharacterQuality}");
             sb.AppendLine($"mg.MaxActorWithSimulation={mg_MaxActorWithSimulation}");
             sb.AppendLine($"mg.MaxAttaches={mg_MaxAttaches}");
         }

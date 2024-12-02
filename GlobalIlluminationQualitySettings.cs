@@ -53,7 +53,7 @@ namespace S2SettingsGenerator
         public void appendLines(StringBuilder sb)
         {
 
-            sb.AppendLine($"r.DynamicGlobalIlluminationMethod_Override={r_DynamicGlobalIlluminationMethod_Override}");
+            sb.AppendLine($"r.DynamicGlobalIlluminationMethod.Override={r_DynamicGlobalIlluminationMethod_Override}");
             sb.AppendLine($"r.Lumen.DiffuseIndirect.Allow={r_Lumen_DiffuseIndirect_Allow}");
             sb.AppendLine($"r.Lumen.TraceMeshSDFs.Allow={r_Lumen_TraceMeshSDFs_Allow}");
             sb.AppendLine($"r.Lumen.TraceMeshSDFs.TraceDistance={r_Lumen_TraceMeshSDFs_TraceDistance}");
@@ -74,7 +74,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.Lumen.ScreenProbeGather.RadianceCache.ProbeAtlasResolutionInProbes={r_Lumen_ScreenProbeGather_RadianceCache_ProbeAtlasResolutionInProbes}");
             sb.AppendLine($"r.Lumen.RadianceCache.NumFramesToKeepCachedProbes={r_Lumen_RadianceCache_NumFramesToKeepCachedProbes}");
             sb.AppendLine($"r.LumenScene.GlobalSDF.Resolution={r_LumenScene_GlobalSDF_Resolution}");
-            sb.AppendLine($"r.Lumen.TranslucencyVolumeEnable.={r_Lumen_TranslucencyVolume_Enable}");
+            sb.AppendLine($"r.Lumen.TranslucencyVolumeEnable={r_Lumen_TranslucencyVolume_Enable}");
             sb.AppendLine($"r.Lumen.TranslucencyVolume.TraceFromVolume={r_Lumen_TranslucencyVolume_TraceFromVolume}");
             sb.AppendLine($"r.Lumen.TranslucencyVolume.TracingOctahedronResolution={r_Lumen_TranslucencyVolume_TracingOctahedronResolution}");
             sb.AppendLine($"r.Lumen.TranslucencyVolume.GridPixelSize={r_Lumen_TranslucencyVolume_GridPixelSize}");

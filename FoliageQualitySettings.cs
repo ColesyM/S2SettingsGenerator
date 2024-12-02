@@ -21,7 +21,7 @@ namespace S2SettingsGenerator
 
         public void appendLines(StringBuilder sb)
         {
-            sb.AppendLine($"foliage.MinimumScreenSize={foliage_MinimumScreenSize}");
+            sb.AppendLine($"foliage.MinimumScreenSize={foliage_MinimumScreenSize.ToString("n7")}");
             sb.AppendLine($"foliage.LODDistanceScale={foliage_LODDistanceScale}");
 
             sb.AppendLine($"fg.CullDistanceScale.Grass={fg_CullDistanceScale_Grass}");

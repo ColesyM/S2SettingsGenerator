@@ -23,7 +23,7 @@ namespace S2SettingsGenerator
         public void appendLines(StringBuilder sb)
         {
             sb.AppendLine($"r.VolumetricFog={r_VolumetricFog}");
-            sb.AppendLine($"r.VolumetricFog.GridPixelSizen={r_VolumetricFog_GridPixelSize}");
+            sb.AppendLine($"r.VolumetricFog.GridPixelSize={r_VolumetricFog_GridPixelSize}");
             sb.AppendLine($"r.VolumetricFog.GridSizeZ={r_VolumetricFog_GridSizeZ}");
             sb.AppendLine($"r.VolumetricFog.HistoryMissSupersampleCount={r_VolumetricFog_HistoryMissSupersampleCount}");
             sb.AppendLine($"r.VolumetricFog.ShadowWorldBias={r_VolumetricFog_ShadowWorldBias}");

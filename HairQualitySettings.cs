@@ -23,7 +23,7 @@ namespace S2SettingsGenerator
         public void appendLines(StringBuilder sb)
         {
             sb.AppendLine($"r.HairStrands.SkyAO={r_HairStrands_SkyAO}");
-            sb.AppendLine($"r.HairStrands.SkyAO._SampleCount={r_HairStrands_SkyAO_SampleCount}");
+            sb.AppendLine($"r.HairStrands.SkyAO.SampleCount={r_HairStrands_SkyAO_SampleCount}");
 
             sb.AppendLine($"r.HairStrands.Visibility.MSAA.SamplePerPixel={r_HairStrands_Visibility_MSAA_SamplePerPixel}");
             sb.AppendLine($"r.HairStrands.Interpolation.UseSingleGuide={r_HairStrands_Interpolation_UseSingleGuide}");
