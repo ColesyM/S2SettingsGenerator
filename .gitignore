@@ -1,0 +1,7 @@
+obj/
+obj/Release
+.vs/
+bin/Debug/
+bin/Release/
+bin/x86/Debug/
+bin/x86/Release/

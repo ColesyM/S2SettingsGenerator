@@ -40,8 +40,9 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Top">
                 <Label Content="Preset:" HorizontalAlignment="Left" VerticalAlignment="Center" FontWeight="Bold"/>
                 <WrapPanel Orientation="Horizontal" Margin="0,3,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
-                    <RadioButton Content="Very Low" IsEnabled="False"/>
-                    <RadioButton Content="Low" Margin="10,0,0,0" IsEnabled="False"/>
+                    <RadioButton x:Name="rdioPotatoPreset" Content="Potato" Checked="rdioPotatoPreset_Checked"/>
+                    <RadioButton x:Name="rdioVeryLowPreset" Content="Very Low"  Checked="rdioVeryLowPreset_Checked"/>
+                    <RadioButton x:Name="rdioLowPreset" Content="Low" Margin="10,0,0,0" IsEnabled="True" Checked="rdioLowPreset_Checked"/>
                     <RadioButton Content="Medium" Margin="10,0,0,0" IsEnabled="False"/>
                     <RadioButton Content="High" Margin="10,0,0,0" IsEnabled="False"/>
                     <RadioButton Content="Very High" Margin="10,0,0,0" IsEnabled="False"/>
