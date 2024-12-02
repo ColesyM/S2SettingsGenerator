@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace S2SettingsGenerator
 {
-    internal class ReflectionQualitySettings
+    internal struct ReflectionQualitySettings
     {
         public int r_ReflectionMethod_Override = 1;
 

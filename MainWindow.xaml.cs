@@ -781,6 +781,50 @@ namespace S2SettingsGenerator
                 r_LumenScene_Radiosity_ProbeSpacing = (bool)chkTigherProbes.IsChecked ? 4 : 8
             };
             globalIllumination.appendLines(sb);
+            sb.AppendLine();
+            sb.AppendLine(";--GlobalIllumination--");
+            ReflectionQualitySettings reflection = new ReflectionQualitySettings()
+            {
+                r_ReflectionMethod_Override = 1,
+                r_SSR_Quality = cmbSSR.SelectedIndex switch
+                {
+                    0 => 0,
+                    1 => 1,
+                    2 => 2,
+                    3 => 3,
+                    4 => 4,
+                    _ => 3
+                },
+                r_SSR_HalfResSceneColor = (bool)chkHalfResScene.IsChecked ? 1 : 0,
+                r_Lumen_Reflections_Allow = (bool)chkLumenReflections.IsChecked ? 1 : 0,
+                r_Lumen_Reflections_TraceMeshSDFs = (bool)chkTraceMeshReflections.IsChecked ? 1 : 0,
+                r_Lumen_Reflections_DownsampleFactor = cmbReflectionDownSample.SelectedIndex switch
+                {
+                    0 => 0,
+                    1 => 8,
+                    2 => 4,
+                    3 => 2,
+                    4 => 1,
+                    _ => 3
+                },
+                r_Lumen_Reflections_MaxRoughnessToTrace = (float)sldrMaxRoughness.Value,
+                r_Lumen_Reflections_BilateralFilter_SpatialKernelRadius = 0.001f,
+                r_Lumen_Reflections_BilateralFilter_NumSamples = cmbReflectionFilterSampleCount.SelectedIndex switch
+                {
+                    0 => 0,
+                    1 => 1,
+                    2 => 2,
+                    3 => 3,
+                    _ => 2
+                },
+                r_Lumen_Reflections_SkipEmissive_Opaque = (bool)chkReflectionSkipEmissiveOpaque.IsChecked ? 1 : 0,
+                r_Lumen_Reflections_SkipEmissive_SLW = 1,
+                r_Lumen_Reflections_SkipEmissive_FrontLayer = (bool)chkReflectionSkipEmissiveFront.IsChecked ? 1 : 0,
+                r_Lumen_TranslucencyReflections_FrontLayer_Allow = (bool)chkReflectionLumenTransparency.IsChecked ? 1 : 0,
+                r_Lumen_TranslucencyReflections_FrontLayer_Enable = (bool)chkReflectionLumenTransparency.IsChecked ? 1 : 0,
+                r_Lumen_Reflections_SampleSceneColorAtHit = (bool)chkReflectionSceneColor.IsChecked ? 1 : 0
+            };
+            reflection.appendLines(sb);
 
             string iniLines = sb.ToString();
             Debug.Write(iniLines);
@@ -971,6 +1015,19 @@ namespace S2SettingsGenerator
             chkLumenTranslucencyTrace.IsChecked = true;
             sldrLumenFarFieldDistance.Value = 20000;
             chkTigherProbes.IsChecked = false;
+
+            //reflections
+            cmbSSR.SelectedIndex = 3;
+            chkHalfResScene.IsChecked = false;
+            chkLumenReflections.IsChecked = true;
+            chkTraceMeshReflections.IsChecked = false;
+            cmbReflectionDownSample.SelectedIndex = 3;
+            sldrMaxRoughness.Value = 0.2;
+            cmbReflectionFilterSampleCount.SelectedIndex = 2;
+            chkReflectionSkipEmissiveOpaque.IsChecked = false;
+            chkReflectionSkipEmissiveFront.IsChecked = false;
+            chkReflectionLumenTransparency.IsChecked = false;
+            chkReflectionSceneColor.IsChecked = false;
         }
 
         private void rdioVeryLowPreset_Checked(object sender, RoutedEventArgs e)
@@ -1063,11 +1120,11 @@ namespace S2SettingsGenerator
             //shadows
             cmbShadowQuality.SelectedIndex = 3;
             sldrShadowCascades.Value = 2;
-            cmbShadowResolution.SelectedIndex = 3;
-            sldrShadowRadiusThresh.Value = 0.06;
-            sldrShadowDist.Value = 0.85;
+            cmbShadowResolution.SelectedIndex = 2;
+            sldrShadowRadiusThresh.Value = 0.07;
+            sldrShadowDist.Value = 0.765;
             cmbShadowTransitionScale.SelectedIndex = 0;
-            sldrPreshadowRes.Value = 0.5;
+            sldrPreshadowRes.Value = 0.45;
             chkDistanceFieldShadowing.IsChecked = false;
             sldrDistanceFieldShadowQuality.Value = 0;
             cmbShadowPageSize.SelectedIndex = 1;
@@ -1136,11 +1193,23 @@ namespace S2SettingsGenerator
             chkLumenTranslucencyTrace.IsChecked = true;
             sldrLumenFarFieldDistance.Value = 18000;
             chkTigherProbes.IsChecked = false;
+
+            //reflections
+            cmbSSR.SelectedIndex = 2;
+            chkHalfResScene.IsChecked = true;
+            chkLumenReflections.IsChecked = true;
+            chkTraceMeshReflections.IsChecked = false;
+            cmbReflectionDownSample.SelectedIndex = 2;
+            sldrMaxRoughness.Value = 0.1;
+            cmbReflectionFilterSampleCount.SelectedIndex = 1;
+            chkReflectionSkipEmissiveOpaque.IsChecked = false;
+            chkReflectionSkipEmissiveFront.IsChecked = false;
+            chkReflectionLumenTransparency.IsChecked = false;
+            chkReflectionSceneColor.IsChecked = false;
         }
 
         private void rdioPotatoPreset_Checked(object sender, RoutedEventArgs e)
         {
-
         }
     }
 }
