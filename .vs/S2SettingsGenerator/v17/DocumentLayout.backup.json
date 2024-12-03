@@ -3,16 +3,52 @@
   "WorkspaceRootPath": "D:\\Dev\\S2SettingsGenerator\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\presets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:presets.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\foliagequalitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:foliagequalitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\volumetricfogqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:volumetricfogqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\shadingqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:shadingqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\skyqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:skyqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\shadowqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:shadowqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\globalilluminationqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:globalilluminationqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\antialiasingqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:antialiasingqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\objectdetailqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:objectdetailqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|d:\\dev\\s2settingsgenerator\\hairqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{457CB15F-4D08-455E-922A-F6850E5A172E}|S2SettingsGenerator.csproj|solutionrelative:hairqualitysettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -21,52 +57,164 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 248,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
+              "Title": "Presets.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\Presets.cs",
+              "RelativeDocumentMoniker": "Presets.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\Presets.cs",
+              "RelativeToolTip": "Presets.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-03T18:35:42.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
               "ToolTip": "D:\\Dev\\S2SettingsGenerator\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-12-01T11:34:42.603Z",
+              "WhenOpened": "2024-12-02T20:12:39.838Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 152,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GlobalIlluminationQualitySettings.cs",
-              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\GlobalIlluminationQualitySettings.cs",
-              "RelativeDocumentMoniker": "GlobalIlluminationQualitySettings.cs",
-              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\GlobalIlluminationQualitySettings.cs",
-              "RelativeToolTip": "GlobalIlluminationQualitySettings.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAgwDYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-01T22:49:28.503Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
+              "Title": "ShadingQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\ShadingQualitySettings.cs",
+              "RelativeDocumentMoniker": "ShadingQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\ShadingQualitySettings.cs",
+              "RelativeToolTip": "ShadingQualitySettings.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAWwCYAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:37:25.726Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
               "ToolTip": "D:\\Dev\\S2SettingsGenerator\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAsDAAAAAAAAAAAgwA4DAAAMAAAAAAAAAA==",
+              "ViewState": "AgIAAFADAAAAAAAAAAAUwGkDAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-01T11:34:39.494Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "SkyQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\SkyQualitySettings.cs",
+              "RelativeDocumentMoniker": "SkyQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\SkyQualitySettings.cs",
+              "RelativeToolTip": "SkyQualitySettings.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAADgvyUAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:38:17.16Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "FoliageQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\FoliageQualitySettings.cs",
+              "RelativeDocumentMoniker": "FoliageQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\FoliageQualitySettings.cs",
+              "RelativeToolTip": "FoliageQualitySettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:41:16.497Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ShadowQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\ShadowQualitySettings.cs",
+              "RelativeDocumentMoniker": "ShadowQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\ShadowQualitySettings.cs",
+              "RelativeToolTip": "ShadowQualitySettings.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAjwFIAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:36:42.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VolumetricFogQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\VolumetricFogQualitySettings.cs",
+              "RelativeDocumentMoniker": "VolumetricFogQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\VolumetricFogQualitySettings.cs",
+              "RelativeToolTip": "VolumetricFogQualitySettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:40:29.828Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AntiAliasingQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\AntiAliasingQualitySettings.cs",
+              "RelativeDocumentMoniker": "AntiAliasingQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\AntiAliasingQualitySettings.cs",
+              "RelativeToolTip": "AntiAliasingQualitySettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:36:11.473Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ObjectDetailQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\ObjectDetailQualitySettings.cs",
+              "RelativeDocumentMoniker": "ObjectDetailQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\ObjectDetailQualitySettings.cs",
+              "RelativeToolTip": "ObjectDetailQualitySettings.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAADgvx0AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:35:55.922Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HairQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\HairQualitySettings.cs",
+              "RelativeDocumentMoniker": "HairQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\HairQualitySettings.cs",
+              "RelativeToolTip": "HairQualitySettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAWwBkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-02T18:35:40.191Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GlobalIlluminationQualitySettings.cs",
+              "DocumentMoniker": "D:\\Dev\\S2SettingsGenerator\\GlobalIlluminationQualitySettings.cs",
+              "RelativeDocumentMoniker": "GlobalIlluminationQualitySettings.cs",
+              "ToolTip": "D:\\Dev\\S2SettingsGenerator\\GlobalIlluminationQualitySettings.cs",
+              "RelativeToolTip": "GlobalIlluminationQualitySettings.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAArwEwAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-01T22:49:28.503Z"
             }
           ]
         }
