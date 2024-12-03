@@ -1894,24 +1894,24 @@ namespace S2SettingsGenerator
                 case Presets.ULTRA:
                     chkIndirectDiffuse.IsChecked = true;
                     chkDetailedMeshTracing.IsChecked = true;
-                    sldrDetailedMeshTracingDist.Value = 40;
+                    sldrDetailedMeshTracingDist.Value = 25;
                     chkRadiosity.IsChecked = true;
                     chkOffscreenTraceMeshes.IsChecked = true;
 
-                    sldrLumenMeshCardSize.Value = 35;
+                    sldrLumenMeshCardSize.Value = 45;
                     cmbLumenAtlasSize.SelectedIndex = 4;
 
                     cmbProbeDownsample.SelectedIndex = 3;
-                    cmbLumenTraceOctaRes.SelectedIndex = 2;
+                    cmbLumenTraceOctaRes.SelectedIndex = 1;
                     chkStochasticInterpolation.IsChecked = true;
                     chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
-                    cmbProbeRes.SelectedIndex = 2;
-                    cmbProbeTraceBudget.SelectedIndex = 4;
-                    cmbProbeAtlasResolution.SelectedIndex = 3;
-                    cmbProbeCacheFrameKeep.SelectedIndex = 2;
+                    cmbProbeRes.SelectedIndex = 1;
+                    cmbProbeTraceBudget.SelectedIndex = 5;
+                    cmbProbeAtlasResolution.SelectedIndex = 2;
+                    cmbProbeCacheFrameKeep.SelectedIndex = 1;
                     chkLumenTranslucencyVolume.IsChecked = true;
                     chkLumenTranslucencyTrace.IsChecked = true;
-                    sldrLumenFarFieldDistance.Value = 45000;
+                    sldrLumenFarFieldDistance.Value = 50000;
                     chkTigherProbes.IsChecked = true;
                     break;
                 case Presets.INSANE:
