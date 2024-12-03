@@ -18,7 +18,29 @@ namespace S2SettingsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
+        internal Presets CurrentPreset { get; set; }
+
+
+        private Nullable<Presets> TexturesPreset { get; set; }
+        private Nullable<Presets> HairPreset { get; set; }
+        private Nullable<Presets> ObjectDetailPreset { get; set; }
+        private Nullable<Presets> EffectsPreset { get; set; }
+        private Nullable<Presets> MaterialQualityPreset { get; set; }
+        private Nullable<Presets> PostProcessingPreset { get; set; }
+        private Nullable<Presets> DOFPreset { get; set; }
+        private Nullable<Presets> AAPreset { get; set; }
+        private Nullable<Presets> ShadingPreset { get; set; }
+        private Nullable<Presets> GlobalIlluminationPreset { get; set; }
+        private Nullable<Presets> ReflectionsPreset { get; set; }
+        private Nullable<Presets> ShadowsPreset { get; set; }
+        private Nullable<Presets> CloudsPreset { get; set; }
+        private Nullable<Presets> FogPreset { get; set; }
+        private Nullable<Presets> SkyPreset { get; set; }
+        private Nullable<Presets> FoliagePreset { get; set; }
+        private Nullable<Presets> ViewDistancePreset { get; set; }
+
         const string RENDER_SETTINGS_HEADER = "[/Script/Engine.RendererSettings]";
+
 
         public MainWindow()
         {
@@ -852,1175 +874,1248 @@ namespace S2SettingsGenerator
             btnGenerate.IsEnabled = true;
         }
 
-        private void ApplyPreset(Presets preset)
+        private void ApplyPreset()
         {
+            var preset = CurrentPreset;
+
             //Textures
-            switch (preset)
+            if (TexturesPreset == null)
             {
-                case Presets.POTATO:
-                    sldrTextures.Value = 2.0;
-                    cmbAnisotropic.SelectedIndex = 0;
-                    chkAmortizeCPUToGPUCopy.IsChecked = true;
-                    cmbStreamLimitPerFrame.SelectedIndex = 4;
-                    cmbMipPreference.SelectedIndex = 0;
-                    cmbStreamingPool.SelectedIndex = 0;
-                    cmbTextureCopySpeed.SelectedIndex = 0;
-                    cmbTextureGenerationSpeed.SelectedIndex = 0;
-                    break;
-                case Presets.VERY_LOW:
-                    sldrTextures.Value = 1.75;
-                    cmbAnisotropic.SelectedIndex = 0;
-                    chkAmortizeCPUToGPUCopy.IsChecked = true;
-                    cmbStreamLimitPerFrame.SelectedIndex = 3;
-                    cmbMipPreference.SelectedIndex = 1;
-                    cmbStreamingPool.SelectedIndex = 0;
-                    cmbTextureCopySpeed.SelectedIndex = 0;
-                    cmbTextureGenerationSpeed.SelectedIndex = 0;
-                    break;
-                case Presets.LOW:
-                    sldrTextures.Value = 1.5;
-                    cmbAnisotropic.SelectedIndex = 0;
-                    chkAmortizeCPUToGPUCopy.IsChecked = true;
-                    cmbStreamLimitPerFrame.SelectedIndex = 2;
-                    cmbMipPreference.SelectedIndex = 1;
-                    cmbStreamingPool.SelectedIndex = 1;
-                    cmbTextureCopySpeed.SelectedIndex = 1;
-                    cmbTextureGenerationSpeed.SelectedIndex = 1;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    sldrTextures.Value = 0;
-                    cmbAnisotropic.SelectedIndex = 3;
-                    chkAmortizeCPUToGPUCopy.IsChecked = false;
-                    cmbStreamLimitPerFrame.SelectedIndex = 0;
-                    cmbMipPreference.SelectedIndex = 1;
-                    cmbStreamingPool.SelectedIndex = 4;
-                    cmbTextureCopySpeed.SelectedIndex = 3;
-                    cmbTextureGenerationSpeed.SelectedIndex = 3;
-                    break;
-                case Presets.ULTRA:
-                    sldrTextures.Value = 0;
-                    cmbAnisotropic.SelectedIndex = 3;
-                    chkAmortizeCPUToGPUCopy.IsChecked = false;
-                    cmbStreamLimitPerFrame.SelectedIndex = 0;
-                    cmbMipPreference.SelectedIndex = 2;
-                    cmbStreamingPool.SelectedIndex = 4;
-                    cmbTextureCopySpeed.SelectedIndex = 3;
-                    cmbTextureGenerationSpeed.SelectedIndex = 3;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblTexturesPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        sldrTextures.Value = 2.0;
+                        cmbAnisotropic.SelectedIndex = 0;
+                        chkAmortizeCPUToGPUCopy.IsChecked = true;
+                        cmbStreamLimitPerFrame.SelectedIndex = 4;
+                        cmbMipPreference.SelectedIndex = 0;
+                        cmbStreamingPool.SelectedIndex = 0;
+                        cmbTextureCopySpeed.SelectedIndex = 0;
+                        cmbTextureGenerationSpeed.SelectedIndex = 0;
+                        break;
+                    case Presets.VERY_LOW:
+                        sldrTextures.Value = 1.75;
+                        cmbAnisotropic.SelectedIndex = 0;
+                        chkAmortizeCPUToGPUCopy.IsChecked = true;
+                        cmbStreamLimitPerFrame.SelectedIndex = 3;
+                        cmbMipPreference.SelectedIndex = 1;
+                        cmbStreamingPool.SelectedIndex = 0;
+                        cmbTextureCopySpeed.SelectedIndex = 0;
+                        cmbTextureGenerationSpeed.SelectedIndex = 0;
+                        break;
+                    case Presets.LOW:
+                        sldrTextures.Value = 1.5;
+                        cmbAnisotropic.SelectedIndex = 0;
+                        chkAmortizeCPUToGPUCopy.IsChecked = true;
+                        cmbStreamLimitPerFrame.SelectedIndex = 2;
+                        cmbMipPreference.SelectedIndex = 1;
+                        cmbStreamingPool.SelectedIndex = 1;
+                        cmbTextureCopySpeed.SelectedIndex = 1;
+                        cmbTextureGenerationSpeed.SelectedIndex = 1;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        sldrTextures.Value = 0;
+                        cmbAnisotropic.SelectedIndex = 3;
+                        chkAmortizeCPUToGPUCopy.IsChecked = false;
+                        cmbStreamLimitPerFrame.SelectedIndex = 0;
+                        cmbMipPreference.SelectedIndex = 1;
+                        cmbStreamingPool.SelectedIndex = 4;
+                        cmbTextureCopySpeed.SelectedIndex = 3;
+                        cmbTextureGenerationSpeed.SelectedIndex = 3;
+                        break;
+                    case Presets.ULTRA:
+                        sldrTextures.Value = 0;
+                        cmbAnisotropic.SelectedIndex = 3;
+                        chkAmortizeCPUToGPUCopy.IsChecked = false;
+                        cmbStreamLimitPerFrame.SelectedIndex = 0;
+                        cmbMipPreference.SelectedIndex = 2;
+                        cmbStreamingPool.SelectedIndex = 4;
+                        cmbTextureCopySpeed.SelectedIndex = 3;
+                        cmbTextureGenerationSpeed.SelectedIndex = 3;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //Hair
-            switch (preset)
+            if (HairPreset == null)
             {
-                case Presets.POTATO:
-                    chkHairAO.IsChecked = false;
-                    sldrHairAOSamples.Value = 0;
-                    sldrHairStrandVisibility.Value = 1;
-                    chkHairLightingAndShadows.IsChecked = false;
-                    sldrHairQuality.Value = 0;
-                    break;
-                case Presets.VERY_LOW:
-                    chkHairAO.IsChecked = false;
-                    sldrHairAOSamples.Value = 0;
-                    sldrHairStrandVisibility.Value = 1;
-                    chkHairLightingAndShadows.IsChecked = false;
-                    sldrHairQuality.Value = 0;
-                    break;
-                case Presets.LOW:
-                    chkHairAO.IsChecked = false;
-                    sldrHairAOSamples.Value = 0;
-                    sldrHairStrandVisibility.Value = 1;
-                    chkHairLightingAndShadows.IsChecked = false;
-                    sldrHairQuality.Value = 0;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    chkHairAO.IsChecked = true;
-                    sldrHairAOSamples.Value = 4;
-                    sldrHairStrandVisibility.Value = 4;
-                    chkHairLightingAndShadows.IsChecked = true;
-                    sldrHairQuality.Value = 3;
-                    break;
-                case Presets.ULTRA:
-                    chkHairAO.IsChecked = true;
-                    sldrHairAOSamples.Value = 5;
-                    sldrHairStrandVisibility.Value = 5;
-                    chkHairLightingAndShadows.IsChecked = true;
-                    sldrHairQuality.Value = 3;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblHairPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        chkHairAO.IsChecked = false;
+                        sldrHairAOSamples.Value = 0;
+                        sldrHairStrandVisibility.Value = 1;
+                        chkHairLightingAndShadows.IsChecked = false;
+                        sldrHairQuality.Value = 0;
+                        break;
+                    case Presets.VERY_LOW:
+                        chkHairAO.IsChecked = false;
+                        sldrHairAOSamples.Value = 0;
+                        sldrHairStrandVisibility.Value = 1;
+                        chkHairLightingAndShadows.IsChecked = false;
+                        sldrHairQuality.Value = 0;
+                        break;
+                    case Presets.LOW:
+                        chkHairAO.IsChecked = false;
+                        sldrHairAOSamples.Value = 0;
+                        sldrHairStrandVisibility.Value = 1;
+                        chkHairLightingAndShadows.IsChecked = false;
+                        sldrHairQuality.Value = 0;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        chkHairAO.IsChecked = true;
+                        sldrHairAOSamples.Value = 4;
+                        sldrHairStrandVisibility.Value = 4;
+                        chkHairLightingAndShadows.IsChecked = true;
+                        sldrHairQuality.Value = 3;
+                        break;
+                    case Presets.ULTRA:
+                        chkHairAO.IsChecked = true;
+                        sldrHairAOSamples.Value = 5;
+                        sldrHairStrandVisibility.Value = 5;
+                        chkHairLightingAndShadows.IsChecked = true;
+                        sldrHairQuality.Value = 3;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //object detail
-            switch (preset)
+            if (ObjectDetailPreset == null)
             {
-                case Presets.POTATO:
-                    sldrPreferredObjectDetail.Value = 0.8434;
-                    sldrRequiredObjectDetail.Value = -0.2736; ;
-                    cmbOverallDetail.SelectedIndex = 0;
-                    cmbMaxAttaches.SelectedIndex = 0;
-                    break;
-                case Presets.VERY_LOW:
-                    sldrPreferredObjectDetail.Value = 0.6434;
-                    sldrRequiredObjectDetail.Value = -0.3736; ;
-                    cmbOverallDetail.SelectedIndex = 0;
-                    cmbMaxAttaches.SelectedIndex = 0;
-                    break;
-                case Presets.LOW:
-                    sldrPreferredObjectDetail.Value = 0.5849;
-                    sldrRequiredObjectDetail.Value = -0.4151; ;
-                    cmbOverallDetail.SelectedIndex = 0;
-                    cmbMaxAttaches.SelectedIndex = 1;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    sldrPreferredObjectDetail.Value = 0;
-                    sldrRequiredObjectDetail.Value = -2;
-                    cmbOverallDetail.SelectedIndex = 2;
-                    cmbMaxAttaches.SelectedIndex = 3;
-                    break;
-                case Presets.ULTRA:
-                    sldrPreferredObjectDetail.Value = 0;
-                    sldrRequiredObjectDetail.Value = -2;
-                    cmbOverallDetail.SelectedIndex = 3;
-                    cmbMaxAttaches.SelectedIndex = 3;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblObjectDetailsPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        sldrPreferredObjectDetail.Value = 0.8434;
+                        sldrRequiredObjectDetail.Value = -0.2736; ;
+                        cmbOverallDetail.SelectedIndex = 0;
+                        cmbMaxAttaches.SelectedIndex = 0;
+                        break;
+                    case Presets.VERY_LOW:
+                        sldrPreferredObjectDetail.Value = 0.6434;
+                        sldrRequiredObjectDetail.Value = -0.3736; ;
+                        cmbOverallDetail.SelectedIndex = 0;
+                        cmbMaxAttaches.SelectedIndex = 0;
+                        break;
+                    case Presets.LOW:
+                        sldrPreferredObjectDetail.Value = 0.5849;
+                        sldrRequiredObjectDetail.Value = -0.4151; ;
+                        cmbOverallDetail.SelectedIndex = 0;
+                        cmbMaxAttaches.SelectedIndex = 1;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        sldrPreferredObjectDetail.Value = 0;
+                        sldrRequiredObjectDetail.Value = -2;
+                        cmbOverallDetail.SelectedIndex = 2;
+                        cmbMaxAttaches.SelectedIndex = 3;
+                        break;
+                    case Presets.ULTRA:
+                        sldrPreferredObjectDetail.Value = 0;
+                        sldrRequiredObjectDetail.Value = -2;
+                        cmbOverallDetail.SelectedIndex = 3;
+                        cmbMaxAttaches.SelectedIndex = 3;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //effects
-            switch (preset)
+            if (EffectsPreset == null)
             {
-                case Presets.POTATO:
-                    cmbRefractionQuality.SelectedIndex = 0;
-                    sldrEmitterSpawnRate.Value = 0.1125;
-                    cmbParticleLighting.SelectedIndex = 0;
-                    cmbParticleQuality.SelectedIndex = 0;
-                    sldrParticleSimulation.Value = 0;
-                    chkParticleRefractionAA.IsChecked = false;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbRefractionQuality.SelectedIndex = 0;
-                    sldrEmitterSpawnRate.Value = 0.1125;
-                    cmbParticleLighting.SelectedIndex = 0;
-                    cmbParticleQuality.SelectedIndex = 0;
-                    sldrParticleSimulation.Value = 1;
-                    chkParticleRefractionAA.IsChecked = false;
-                    break;
-                case Presets.LOW:
-                    cmbRefractionQuality.SelectedIndex = 1;
-                    sldrEmitterSpawnRate.Value = 0.125;
-                    cmbParticleLighting.SelectedIndex = 0;
-                    cmbParticleQuality.SelectedIndex = 0;
-                    sldrParticleSimulation.Value = 2;
-                    chkParticleRefractionAA.IsChecked = true;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbRefractionQuality.SelectedIndex = 2;
-                    sldrEmitterSpawnRate.Value = 1.0;
-                    cmbParticleLighting.SelectedIndex = 2;
-                    cmbParticleQuality.SelectedIndex = 3;
-                    sldrParticleSimulation.Value = 20;
-                    chkParticleRefractionAA.IsChecked = true;
-                    break;
-                case Presets.ULTRA:
-                    cmbRefractionQuality.SelectedIndex = 3;
-                    sldrEmitterSpawnRate.Value = 1.0;
-                    cmbParticleLighting.SelectedIndex = 2;
-                    cmbParticleQuality.SelectedIndex = 3;
-                    sldrParticleSimulation.Value = 20;
-                    chkParticleRefractionAA.IsChecked = true;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblEffectsPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbRefractionQuality.SelectedIndex = 0;
+                        sldrEmitterSpawnRate.Value = 0.1125;
+                        cmbParticleLighting.SelectedIndex = 0;
+                        cmbParticleQuality.SelectedIndex = 0;
+                        sldrParticleSimulation.Value = 0;
+                        chkParticleRefractionAA.IsChecked = false;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbRefractionQuality.SelectedIndex = 0;
+                        sldrEmitterSpawnRate.Value = 0.1125;
+                        cmbParticleLighting.SelectedIndex = 0;
+                        cmbParticleQuality.SelectedIndex = 0;
+                        sldrParticleSimulation.Value = 1;
+                        chkParticleRefractionAA.IsChecked = false;
+                        break;
+                    case Presets.LOW:
+                        cmbRefractionQuality.SelectedIndex = 1;
+                        sldrEmitterSpawnRate.Value = 0.125;
+                        cmbParticleLighting.SelectedIndex = 0;
+                        cmbParticleQuality.SelectedIndex = 0;
+                        sldrParticleSimulation.Value = 2;
+                        chkParticleRefractionAA.IsChecked = true;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbRefractionQuality.SelectedIndex = 2;
+                        sldrEmitterSpawnRate.Value = 1.0;
+                        cmbParticleLighting.SelectedIndex = 2;
+                        cmbParticleQuality.SelectedIndex = 3;
+                        sldrParticleSimulation.Value = 20;
+                        chkParticleRefractionAA.IsChecked = true;
+                        break;
+                    case Presets.ULTRA:
+                        cmbRefractionQuality.SelectedIndex = 3;
+                        sldrEmitterSpawnRate.Value = 1.0;
+                        cmbParticleLighting.SelectedIndex = 2;
+                        cmbParticleQuality.SelectedIndex = 3;
+                        sldrParticleSimulation.Value = 20;
+                        chkParticleRefractionAA.IsChecked = true;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //materials
-            switch (preset)
+            if (MaterialQualityPreset == null)
             {
-                case Presets.POTATO:
-                    cmbMaterialQuality.SelectedIndex = 0;
-                    chkMaterialAniso.IsChecked = false;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbMaterialQuality.SelectedIndex = 0;
-                    chkMaterialAniso.IsChecked = false;
-                    break;
-                case Presets.LOW:
-                    cmbMaterialQuality.SelectedIndex = 0;
-                    chkMaterialAniso.IsChecked = false;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbMaterialQuality.SelectedIndex = 3;
-                    chkMaterialAniso.IsChecked = true;
-                    break;
-                case Presets.ULTRA:
-                    cmbMaterialQuality.SelectedIndex = 3;
-                    chkMaterialAniso.IsChecked = true;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblMaterialQualityPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbMaterialQuality.SelectedIndex = 0;
+                        chkMaterialAniso.IsChecked = false;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbMaterialQuality.SelectedIndex = 0;
+                        chkMaterialAniso.IsChecked = false;
+                        break;
+                    case Presets.LOW:
+                        cmbMaterialQuality.SelectedIndex = 0;
+                        chkMaterialAniso.IsChecked = false;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbMaterialQuality.SelectedIndex = 3;
+                        chkMaterialAniso.IsChecked = true;
+                        break;
+                    case Presets.ULTRA:
+                        cmbMaterialQuality.SelectedIndex = 3;
+                        chkMaterialAniso.IsChecked = true;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //post processing
-            switch (preset)
+            if (PostProcessingPreset == null)
             {
-                case Presets.POTATO:
-                    sldrPPRenderTargetPool.Value = 200;
-                    cmbLensFlareQuality.SelectedIndex = 0;
-                    chkFringeQual.IsChecked = false;
-                    chkEyeAdapatation.IsChecked = true;
-                    cmbBloomQuality.SelectedIndex = 0;
-                    cmbBlurOptmization.SelectedIndex = 0;
-                    cmbUpscaleQuality.SelectedIndex = 0;
-                    chkGrainQuant.IsChecked = false;
-                    chkLightShafts.IsChecked = false;
-                    cmbLightShaftQuality.SelectedIndex = 0;
-                    cmbPPFilteringQuality.SelectedIndex = 0;
-                    cmbToneMapper.SelectedIndex = 0;
-                    break;
-                case Presets.VERY_LOW:
-                    sldrPPRenderTargetPool.Value = 270;
-                    cmbLensFlareQuality.SelectedIndex = 0;
-                    chkFringeQual.IsChecked = false;
-                    chkEyeAdapatation.IsChecked = true;
-                    cmbBloomQuality.SelectedIndex = 1;
-                    cmbBlurOptmization.SelectedIndex = 0;
-                    cmbUpscaleQuality.SelectedIndex = 1;
-                    chkGrainQuant.IsChecked = false;
-                    chkLightShafts.IsChecked = false;
-                    cmbLightShaftQuality.SelectedIndex = 0;
-                    cmbPPFilteringQuality.SelectedIndex = 0;
-                    cmbToneMapper.SelectedIndex = 0;
-                    break;
-                case Presets.LOW:
-                    sldrPPRenderTargetPool.Value = 300;
-                    cmbLensFlareQuality.SelectedIndex = 0;
-                    chkFringeQual.IsChecked = false;
-                    chkEyeAdapatation.IsChecked = true;
-                    cmbBloomQuality.SelectedIndex = 4;
-                    cmbBlurOptmization.SelectedIndex = 0;
-                    cmbUpscaleQuality.SelectedIndex = 1;
-                    chkGrainQuant.IsChecked = false;
-                    chkLightShafts.IsChecked = true;
-                    cmbLightShaftQuality.SelectedIndex = 1;
-                    cmbPPFilteringQuality.SelectedIndex = 0;
-                    cmbToneMapper.SelectedIndex = 0;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    sldrPPRenderTargetPool.Value = 400;
-                    cmbLensFlareQuality.SelectedIndex = 2;
-                    chkFringeQual.IsChecked = true;
-                    chkEyeAdapatation.IsChecked = true;
-                    cmbBloomQuality.SelectedIndex = 5;
-                    cmbBlurOptmization.SelectedIndex = 3;
-                    cmbUpscaleQuality.SelectedIndex = 3;
-                    chkGrainQuant.IsChecked = true;
-                    chkLightShafts.IsChecked = true;
-                    cmbLightShaftQuality.SelectedIndex = 2;
-                    cmbPPFilteringQuality.SelectedIndex = 2;
-                    cmbToneMapper.SelectedIndex = 3;
-                    break;
-                case Presets.ULTRA:
-                    sldrPPRenderTargetPool.Value = 500;
-                    cmbLensFlareQuality.SelectedIndex = 2;
-                    chkFringeQual.IsChecked = true;
-                    chkEyeAdapatation.IsChecked = true;
-                    cmbBloomQuality.SelectedIndex = 5;
-                    cmbBlurOptmization.SelectedIndex = 3;
-                    cmbUpscaleQuality.SelectedIndex = 4;
-                    chkGrainQuant.IsChecked = true;
-                    chkLightShafts.IsChecked = true;
-                    cmbLightShaftQuality.SelectedIndex = 3;
-                    cmbPPFilteringQuality.SelectedIndex = 2;
-                    cmbToneMapper.SelectedIndex = 3;
-                    break;
-                case Presets.INSANE:
-                    sldrPPRenderTargetPool.Value = 600;
-                    cmbUpscaleQuality.SelectedIndex = 5;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblPostProcessingPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        sldrPPRenderTargetPool.Value = 200;
+                        cmbLensFlareQuality.SelectedIndex = 0;
+                        chkFringeQual.IsChecked = false;
+                        chkEyeAdapatation.IsChecked = true;
+                        cmbBloomQuality.SelectedIndex = 0;
+                        cmbBlurOptmization.SelectedIndex = 0;
+                        cmbUpscaleQuality.SelectedIndex = 0;
+                        chkGrainQuant.IsChecked = false;
+                        chkLightShafts.IsChecked = false;
+                        cmbLightShaftQuality.SelectedIndex = 0;
+                        cmbPPFilteringQuality.SelectedIndex = 0;
+                        cmbToneMapper.SelectedIndex = 0;
+                        break;
+                    case Presets.VERY_LOW:
+                        sldrPPRenderTargetPool.Value = 270;
+                        cmbLensFlareQuality.SelectedIndex = 0;
+                        chkFringeQual.IsChecked = false;
+                        chkEyeAdapatation.IsChecked = true;
+                        cmbBloomQuality.SelectedIndex = 1;
+                        cmbBlurOptmization.SelectedIndex = 0;
+                        cmbUpscaleQuality.SelectedIndex = 1;
+                        chkGrainQuant.IsChecked = false;
+                        chkLightShafts.IsChecked = false;
+                        cmbLightShaftQuality.SelectedIndex = 0;
+                        cmbPPFilteringQuality.SelectedIndex = 0;
+                        cmbToneMapper.SelectedIndex = 0;
+                        break;
+                    case Presets.LOW:
+                        sldrPPRenderTargetPool.Value = 300;
+                        cmbLensFlareQuality.SelectedIndex = 0;
+                        chkFringeQual.IsChecked = false;
+                        chkEyeAdapatation.IsChecked = true;
+                        cmbBloomQuality.SelectedIndex = 4;
+                        cmbBlurOptmization.SelectedIndex = 0;
+                        cmbUpscaleQuality.SelectedIndex = 1;
+                        chkGrainQuant.IsChecked = false;
+                        chkLightShafts.IsChecked = true;
+                        cmbLightShaftQuality.SelectedIndex = 1;
+                        cmbPPFilteringQuality.SelectedIndex = 0;
+                        cmbToneMapper.SelectedIndex = 0;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        sldrPPRenderTargetPool.Value = 400;
+                        cmbLensFlareQuality.SelectedIndex = 2;
+                        chkFringeQual.IsChecked = true;
+                        chkEyeAdapatation.IsChecked = true;
+                        cmbBloomQuality.SelectedIndex = 5;
+                        cmbBlurOptmization.SelectedIndex = 3;
+                        cmbUpscaleQuality.SelectedIndex = 3;
+                        chkGrainQuant.IsChecked = true;
+                        chkLightShafts.IsChecked = true;
+                        cmbLightShaftQuality.SelectedIndex = 2;
+                        cmbPPFilteringQuality.SelectedIndex = 2;
+                        cmbToneMapper.SelectedIndex = 3;
+                        break;
+                    case Presets.ULTRA:
+                        sldrPPRenderTargetPool.Value = 500;
+                        cmbLensFlareQuality.SelectedIndex = 2;
+                        chkFringeQual.IsChecked = true;
+                        chkEyeAdapatation.IsChecked = true;
+                        cmbBloomQuality.SelectedIndex = 5;
+                        cmbBlurOptmization.SelectedIndex = 3;
+                        cmbUpscaleQuality.SelectedIndex = 4;
+                        chkGrainQuant.IsChecked = true;
+                        chkLightShafts.IsChecked = true;
+                        cmbLightShaftQuality.SelectedIndex = 3;
+                        cmbPPFilteringQuality.SelectedIndex = 2;
+                        cmbToneMapper.SelectedIndex = 3;
+                        break;
+                    case Presets.INSANE:
+                        sldrPPRenderTargetPool.Value = 600;
+                        cmbUpscaleQuality.SelectedIndex = 5;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //dof
-            switch (preset)
+            if (DOFPreset == null)
             {
-                case Presets.POTATO:
-                    cmbDOFQuality.SelectedIndex = 0;
-                    cmbDOFFiltering.SelectedIndex = 0;
-                    chkDOFBokeh.IsChecked = false;
-                    cmbGatherRings.SelectedIndex = 0;
-                    chkForegroundComposoting.IsChecked = false;
-                    cmbBackgroundComposoting.SelectedIndex = 0;
-                    chkScatterBokeh.IsChecked = false;
-                    slderMaxSpriteRatio.Value = 0.036;
-                    cmbRecombineQuality.SelectedIndex = 0;
-                    chkFastDOFAA.IsChecked = true;
-                    sldrDOFForegroundBlurLimit.Value = 0.0;
-                    sldrDOBackgroundBlurLimit.Value = 0.0;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbDOFQuality.SelectedIndex = 0;
-                    cmbDOFFiltering.SelectedIndex = 1;
-                    chkDOFBokeh.IsChecked = false;
-                    cmbGatherRings.SelectedIndex = 0;
-                    chkForegroundComposoting.IsChecked = false;
-                    cmbBackgroundComposoting.SelectedIndex = 0;
-                    chkScatterBokeh.IsChecked = false;
-                    slderMaxSpriteRatio.Value = 0.036;
-                    cmbRecombineQuality.SelectedIndex = 0;
-                    chkFastDOFAA.IsChecked = true;
-                    sldrDOFForegroundBlurLimit.Value = 0.0054;
-                    sldrDOBackgroundBlurLimit.Value = 0.0054;
-                    break;
-                case Presets.LOW:
-                    cmbDOFQuality.SelectedIndex = 0;
-                    cmbDOFFiltering.SelectedIndex = 2;
-                    chkDOFBokeh.IsChecked = false;
-                    cmbGatherRings.SelectedIndex = 0;
-                    chkForegroundComposoting.IsChecked = false;
-                    cmbBackgroundComposoting.SelectedIndex = 0;
-                    chkScatterBokeh.IsChecked = false;
-                    slderMaxSpriteRatio.Value = 0.04;
-                    cmbRecombineQuality.SelectedIndex = 0;
-                    chkFastDOFAA.IsChecked = true;
-                    sldrDOFForegroundBlurLimit.Value = 0.006;
-                    sldrDOBackgroundBlurLimit.Value = 0.006;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbDOFQuality.SelectedIndex = 3;
-                    cmbDOFFiltering.SelectedIndex = 1;
-                    chkDOFBokeh.IsChecked = false;
-                    cmbGatherRings.SelectedIndex = 1;
-                    chkForegroundComposoting.IsChecked = false;
-                    cmbBackgroundComposoting.SelectedIndex = 2;
-                    chkScatterBokeh.IsChecked = false;
-                    slderMaxSpriteRatio.Value = 0.1;
-                    cmbRecombineQuality.SelectedIndex = 1;
-                    chkFastDOFAA.IsChecked = false;
-                    sldrDOFForegroundBlurLimit.Value = 0.025;
-                    sldrDOBackgroundBlurLimit.Value = 0.025;
-                    break;
-                case Presets.ULTRA:
-                    cmbDOFQuality.SelectedIndex = 3;
-                    cmbDOFFiltering.SelectedIndex = 1;
-                    chkDOFBokeh.IsChecked = true;
-                    cmbGatherRings.SelectedIndex = 2;
-                    chkForegroundComposoting.IsChecked = true;
-                    cmbBackgroundComposoting.SelectedIndex = 1;
-                    chkScatterBokeh.IsChecked = true;
-                    slderMaxSpriteRatio.Value = 0.05;
-                    cmbRecombineQuality.SelectedIndex = 2;
-                    chkFastDOFAA.IsChecked = false;
-                    sldrDOFForegroundBlurLimit.Value = 0.05;
-                    sldrDOBackgroundBlurLimit.Value = 0.05;
-                    break;
-                case Presets.INSANE:
-                    cmbBackgroundComposoting.SelectedIndex = 2;
-                    slderMaxSpriteRatio.Value = 0.025;
-                    sldrDOFForegroundBlurLimit.Value = 0.1;
-                    sldrDOBackgroundBlurLimit.Value = 0.1;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblDepthOfFieldPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbDOFQuality.SelectedIndex = 0;
+                        cmbDOFFiltering.SelectedIndex = 0;
+                        chkDOFBokeh.IsChecked = false;
+                        cmbGatherRings.SelectedIndex = 0;
+                        chkForegroundComposoting.IsChecked = false;
+                        cmbBackgroundComposoting.SelectedIndex = 0;
+                        chkScatterBokeh.IsChecked = false;
+                        slderMaxSpriteRatio.Value = 0.036;
+                        cmbRecombineQuality.SelectedIndex = 0;
+                        chkFastDOFAA.IsChecked = true;
+                        sldrDOFForegroundBlurLimit.Value = 0.0;
+                        sldrDOBackgroundBlurLimit.Value = 0.0;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbDOFQuality.SelectedIndex = 0;
+                        cmbDOFFiltering.SelectedIndex = 1;
+                        chkDOFBokeh.IsChecked = false;
+                        cmbGatherRings.SelectedIndex = 0;
+                        chkForegroundComposoting.IsChecked = false;
+                        cmbBackgroundComposoting.SelectedIndex = 0;
+                        chkScatterBokeh.IsChecked = false;
+                        slderMaxSpriteRatio.Value = 0.036;
+                        cmbRecombineQuality.SelectedIndex = 0;
+                        chkFastDOFAA.IsChecked = true;
+                        sldrDOFForegroundBlurLimit.Value = 0.0054;
+                        sldrDOBackgroundBlurLimit.Value = 0.0054;
+                        break;
+                    case Presets.LOW:
+                        cmbDOFQuality.SelectedIndex = 0;
+                        cmbDOFFiltering.SelectedIndex = 2;
+                        chkDOFBokeh.IsChecked = false;
+                        cmbGatherRings.SelectedIndex = 0;
+                        chkForegroundComposoting.IsChecked = false;
+                        cmbBackgroundComposoting.SelectedIndex = 0;
+                        chkScatterBokeh.IsChecked = false;
+                        slderMaxSpriteRatio.Value = 0.04;
+                        cmbRecombineQuality.SelectedIndex = 0;
+                        chkFastDOFAA.IsChecked = true;
+                        sldrDOFForegroundBlurLimit.Value = 0.006;
+                        sldrDOBackgroundBlurLimit.Value = 0.006;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbDOFQuality.SelectedIndex = 3;
+                        cmbDOFFiltering.SelectedIndex = 1;
+                        chkDOFBokeh.IsChecked = false;
+                        cmbGatherRings.SelectedIndex = 1;
+                        chkForegroundComposoting.IsChecked = false;
+                        cmbBackgroundComposoting.SelectedIndex = 2;
+                        chkScatterBokeh.IsChecked = false;
+                        slderMaxSpriteRatio.Value = 0.1;
+                        cmbRecombineQuality.SelectedIndex = 1;
+                        chkFastDOFAA.IsChecked = false;
+                        sldrDOFForegroundBlurLimit.Value = 0.025;
+                        sldrDOBackgroundBlurLimit.Value = 0.025;
+                        break;
+                    case Presets.ULTRA:
+                        cmbDOFQuality.SelectedIndex = 3;
+                        cmbDOFFiltering.SelectedIndex = 1;
+                        chkDOFBokeh.IsChecked = true;
+                        cmbGatherRings.SelectedIndex = 2;
+                        chkForegroundComposoting.IsChecked = true;
+                        cmbBackgroundComposoting.SelectedIndex = 1;
+                        chkScatterBokeh.IsChecked = true;
+                        slderMaxSpriteRatio.Value = 0.05;
+                        cmbRecombineQuality.SelectedIndex = 2;
+                        chkFastDOFAA.IsChecked = false;
+                        sldrDOFForegroundBlurLimit.Value = 0.05;
+                        sldrDOBackgroundBlurLimit.Value = 0.05;
+                        break;
+                    case Presets.INSANE:
+                        cmbBackgroundComposoting.SelectedIndex = 2;
+                        slderMaxSpriteRatio.Value = 0.025;
+                        sldrDOFForegroundBlurLimit.Value = 0.1;
+                        sldrDOBackgroundBlurLimit.Value = 0.1;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //aa
-            switch (preset)
+            if (AAPreset == null)
             {
-                case Presets.POTATO:
-                    cmbFXAA.SelectedIndex = 0;
-                    cmbTemporalAA.SelectedIndex = 0;
-                    cmbTSRAA.SelectedIndex = 0;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbFXAA.SelectedIndex = 0;
-                    cmbTemporalAA.SelectedIndex = 0;
-                    cmbTSRAA.SelectedIndex = 0;
-                    break;
-                case Presets.LOW:
-                    cmbFXAA.SelectedIndex = 0;
-                    cmbTemporalAA.SelectedIndex = 0;
-                    cmbTSRAA.SelectedIndex = 0;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbFXAA.SelectedIndex = 4;
-                    cmbTemporalAA.SelectedIndex = 2;
-                    cmbTSRAA.SelectedIndex = 1;
-                    break;
-                case Presets.ULTRA:
-                    cmbFXAA.SelectedIndex = 5;
-                    cmbTemporalAA.SelectedIndex = 3;
-                    cmbTSRAA.SelectedIndex = 2;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblAntiAliasingPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbFXAA.SelectedIndex = 0;
+                        cmbTemporalAA.SelectedIndex = 0;
+                        cmbTSRAA.SelectedIndex = 0;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbFXAA.SelectedIndex = 0;
+                        cmbTemporalAA.SelectedIndex = 0;
+                        cmbTSRAA.SelectedIndex = 0;
+                        break;
+                    case Presets.LOW:
+                        cmbFXAA.SelectedIndex = 0;
+                        cmbTemporalAA.SelectedIndex = 0;
+                        cmbTSRAA.SelectedIndex = 0;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbFXAA.SelectedIndex = 4;
+                        cmbTemporalAA.SelectedIndex = 2;
+                        cmbTSRAA.SelectedIndex = 1;
+                        break;
+                    case Presets.ULTRA:
+                        cmbFXAA.SelectedIndex = 5;
+                        cmbTemporalAA.SelectedIndex = 3;
+                        cmbTSRAA.SelectedIndex = 2;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //shading
-            switch (preset)
+            if (ShadingPreset == null)
             {
-                case Presets.POTATO:
-                    cmbSceneFormat.SelectedIndex = 0;
-                    chkTranslucentLighting.IsChecked = true;
-                    cmbTranslucentLightingDim.SelectedIndex = 0;
-                    chkBlurTranslucent.IsChecked = false;
-                    chkSubsurfaceScattering.IsChecked = false;
-                    chkSSSubsurfaceScattering.IsChecked = false;
-                    cmbSSSSamples.SelectedIndex = 0;
-                    chkHQSSS.IsChecked = false;
-                    chkLQSSS.IsChecked = true;
-                    cmbAOFactor.SelectedIndex = 0;
-                    chkAlwaysRequestMaxAOQ.IsChecked = false;
-                    sldrAOQuality.Value = 60;
-                    cmbAOQuality.SelectedIndex = 0;
-                    sldrAORadius.Value = 0.75;
-                    chkTranslucentShadowFilter.IsChecked = false;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbSceneFormat.SelectedIndex = 0;
-                    chkTranslucentLighting.IsChecked = true;
-                    cmbTranslucentLightingDim.SelectedIndex = 1;
-                    chkBlurTranslucent.IsChecked = false;
-                    chkSubsurfaceScattering.IsChecked = false;
-                    chkSSSubsurfaceScattering.IsChecked = false;
-                    cmbSSSSamples.SelectedIndex = 0;
-                    chkHQSSS.IsChecked = false;
-                    chkLQSSS.IsChecked = true;
-                    cmbAOFactor.SelectedIndex = 0;
-                    chkAlwaysRequestMaxAOQ.IsChecked = false;
-                    sldrAOQuality.Value = 81;
-                    cmbAOQuality.SelectedIndex = 1;
-                    sldrAORadius.Value = 1;
-                    chkTranslucentShadowFilter.IsChecked = false;
-                    break;
-                case Presets.LOW:
-                    cmbSceneFormat.SelectedIndex = 0;
-                    chkTranslucentLighting.IsChecked = true;
-                    cmbTranslucentLightingDim.SelectedIndex = 1;
-                    chkBlurTranslucent.IsChecked = false;
-                    chkSubsurfaceScattering.IsChecked = false;
-                    chkSSSubsurfaceScattering.IsChecked = false;
-                    cmbSSSSamples.SelectedIndex = 0;
-                    chkHQSSS.IsChecked = false;
-                    chkLQSSS.IsChecked = true;
-                    cmbAOFactor.SelectedIndex = 0;
-                    chkAlwaysRequestMaxAOQ.IsChecked = false;
-                    sldrAOQuality.Value = 90;
-                    cmbAOQuality.SelectedIndex = 1;
-                    sldrAORadius.Value = 1;
-                    chkTranslucentShadowFilter.IsChecked = false;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbSceneFormat.SelectedIndex = 1;
-                    chkTranslucentLighting.IsChecked = true;
-                    cmbTranslucentLightingDim.SelectedIndex = 1;
-                    chkBlurTranslucent.IsChecked = true;
-                    chkSubsurfaceScattering.IsChecked = true;
-                    chkSSSubsurfaceScattering.IsChecked = true;
-                    cmbSSSSamples.SelectedIndex = 0;
-                    chkHQSSS.IsChecked = true;
-                    chkLQSSS.IsChecked = false;
-                    cmbAOFactor.SelectedIndex = 2;
-                    chkAlwaysRequestMaxAOQ.IsChecked = false;
-                    sldrAOQuality.Value = 100;
-                    cmbAOQuality.SelectedIndex = 0;
-                    sldrAORadius.Value = 1;
-                    chkTranslucentShadowFilter.IsChecked = true;
-                    break;
-                case Presets.ULTRA:
-                    cmbSceneFormat.SelectedIndex = 1;
-                    chkTranslucentLighting.IsChecked = true;
-                    cmbTranslucentLightingDim.SelectedIndex = 2;
-                    chkBlurTranslucent.IsChecked = true;
-                    chkSubsurfaceScattering.IsChecked = true;
-                    chkSSSubsurfaceScattering.IsChecked = true;
-                    cmbSSSSamples.SelectedIndex = 1;
-                    chkHQSSS.IsChecked = true;
-                    chkLQSSS.IsChecked = false;
-                    cmbAOFactor.SelectedIndex = 0;
-                    chkAlwaysRequestMaxAOQ.IsChecked = false;
-                    sldrAOQuality.Value = 100;
-                    cmbAOQuality.SelectedIndex = 3;
-                    sldrAORadius.Value = 1;
-                    chkTranslucentShadowFilter.IsChecked = true;
-                    break;
-                case Presets.INSANE:
-                    cmbSSSSamples.SelectedIndex = 2;
-                    chkAlwaysRequestMaxAOQ.IsChecked = true;
-                    cmbAOQuality.SelectedIndex = 4;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
-            }
-
-            //shadows
-            switch (preset)
-            {
-                case Presets.POTATO:
-                    cmbShadowQuality.SelectedIndex = 1;
-                    sldrShadowCascades.Value = 2;
-                    cmbShadowResolution.SelectedIndex = 1;
-                    sldrShadowRadiusThresh.Value = 0.08;
-                    sldrShadowDist.Value = 0.665;
-                    cmbShadowTransitionScale.SelectedIndex = 0;
-                    sldrPreshadowRes.Value = 0.35;
-                    chkDistanceFieldShadowing.IsChecked = false;
-                    sldrDistanceFieldShadowQuality.Value = 0;
-                    cmbShadowPageSize.SelectedIndex = 1;
-                    sldrFirstClipmapLevel.Value = 6;
-                    cmbDirectionalLightQualityPreference.SelectedIndex = 0;
-                    sldrViewBiasDirectional.Value = 5;
-                    cmbShadowRaytraceQuality.SelectedIndex = 1;
-                    chkContactShadows.IsChecked = false;
-                    chkContactShadowsLocal.IsChecked = false;
-                    chkShadowSkeletelProxy.IsChecked = true;
-                    chkShadowStaticSeperate.IsChecked = true;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbShadowQuality.SelectedIndex = 2;
-                    sldrShadowCascades.Value = 2;
-                    cmbShadowResolution.SelectedIndex = 2;
-                    sldrShadowRadiusThresh.Value = 0.07;
-                    sldrShadowDist.Value = 0.765;
-                    cmbShadowTransitionScale.SelectedIndex = 0;
-                    sldrPreshadowRes.Value = 0.45;
-                    chkDistanceFieldShadowing.IsChecked = false;
-                    sldrDistanceFieldShadowQuality.Value = 0;
-                    cmbShadowPageSize.SelectedIndex = 1;
-                    sldrFirstClipmapLevel.Value = 6;
-                    cmbDirectionalLightQualityPreference.SelectedIndex = 0;
-                    sldrViewBiasDirectional.Value = 5;
-                    cmbShadowRaytraceQuality.SelectedIndex = 1;
-                    chkContactShadows.IsChecked = true;
-                    chkContactShadowsLocal.IsChecked = false;
-                    chkShadowSkeletelProxy.IsChecked = true;
-                    chkShadowStaticSeperate.IsChecked = true;
-                    break;
-                case Presets.LOW:
-                    cmbShadowQuality.SelectedIndex = 3;
-                    sldrShadowCascades.Value = 2;
-                    cmbShadowResolution.SelectedIndex = 3;
-                    sldrShadowRadiusThresh.Value = 0.06;
-                    sldrShadowDist.Value = 0.85;
-                    cmbShadowTransitionScale.SelectedIndex = 0;
-                    sldrPreshadowRes.Value = 0.5;
-                    chkDistanceFieldShadowing.IsChecked = false;
-                    sldrDistanceFieldShadowQuality.Value = 0;
-                    cmbShadowPageSize.SelectedIndex = 1;
-                    sldrFirstClipmapLevel.Value = 6;
-                    cmbDirectionalLightQualityPreference.SelectedIndex = 0;
-                    sldrViewBiasDirectional.Value = 5;
-                    cmbShadowRaytraceQuality.SelectedIndex = 1;
-                    chkContactShadows.IsChecked = true;
-                    chkContactShadowsLocal.IsChecked = false;
-                    chkShadowSkeletelProxy.IsChecked = true;
-                    chkShadowStaticSeperate.IsChecked = true;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbShadowQuality.SelectedIndex = 5;
-                    sldrShadowCascades.Value = 10;
-                    cmbShadowResolution.SelectedIndex = 4;
-                    sldrShadowRadiusThresh.Value = 0.01;
-                    sldrShadowDist.Value = 1.0;
-                    cmbShadowTransitionScale.SelectedIndex = 1;
-                    sldrPreshadowRes.Value = 1.0;
-                    chkDistanceFieldShadowing.IsChecked = true;
-                    sldrDistanceFieldShadowQuality.Value = 1.0;
-                    cmbShadowPageSize.SelectedIndex = 3;
-                    sldrFirstClipmapLevel.Value = 6;
-                    cmbDirectionalLightQualityPreference.SelectedIndex = 2;
-                    sldrViewBiasDirectional.Value = 0;
-                    cmbShadowRaytraceQuality.SelectedIndex = 4;
-                    chkContactShadows.IsChecked = true;
-                    chkContactShadowsLocal.IsChecked = true;
-                    chkShadowSkeletelProxy.IsChecked = false;
-                    chkShadowStaticSeperate.IsChecked = true;
-                    break;
-                case Presets.ULTRA:
-                    cmbShadowQuality.SelectedIndex = 5;
-                    sldrShadowCascades.Value = 12;
-                    cmbShadowResolution.SelectedIndex = 4;
-                    sldrShadowRadiusThresh.Value = 0.01;
-                    sldrShadowDist.Value = 1.0;
-                    cmbShadowTransitionScale.SelectedIndex = 2;
-                    sldrPreshadowRes.Value = 1.0;
-                    chkDistanceFieldShadowing.IsChecked = true;
-                    sldrDistanceFieldShadowQuality.Value = 1.0;
-                    cmbShadowPageSize.SelectedIndex = 3;
-                    sldrFirstClipmapLevel.Value = 6;
-                    cmbDirectionalLightQualityPreference.SelectedIndex = 3;
-                    sldrViewBiasDirectional.Value = 0;
-                    cmbShadowRaytraceQuality.SelectedIndex = 4;
-                    chkContactShadows.IsChecked = true;
-                    chkContactShadowsLocal.IsChecked = true;
-                    chkShadowSkeletelProxy.IsChecked = false;
-                    chkShadowStaticSeperate.IsChecked = true;
-                    break;
-                case Presets.INSANE:
-                    sldrShadowCascades.Value = 15;
-                    cmbDirectionalLightQualityPreference.SelectedIndex = 4;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
-            }
-
-            //clouds
-            switch (preset)
-            {
-                case Presets.POTATO:
-                    chkCloudAO.IsChecked = false;
-                    cmbCloudAORes.SelectedIndex = 0;
-                    sldrCloudViewRayCount.Value = 126;
-                    sldrCloudReflectionRayCount.Value = 14;
-                    sldrCloudShadowRayCount.Value = 2;
-                    break;
-                case Presets.VERY_LOW:
-                    chkCloudAO.IsChecked = false;
-                    cmbCloudAORes.SelectedIndex = 1;
-                    sldrCloudViewRayCount.Value = 176;
-                    sldrCloudReflectionRayCount.Value = 18;
-                    sldrCloudShadowRayCount.Value = 3;
-                    break;
-                case Presets.LOW:
-                    chkCloudAO.IsChecked = false;
-                    cmbCloudAORes.SelectedIndex = 2;
-                    sldrCloudViewRayCount.Value = 196;
-                    sldrCloudReflectionRayCount.Value = 20;
-                    sldrCloudShadowRayCount.Value = 4;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    chkCloudAO.IsChecked = true;
-                    cmbCloudAORes.SelectedIndex = 2;
-                    sldrCloudViewRayCount.Value = 196;
-                    sldrCloudReflectionRayCount.Value = 60;
-                    sldrCloudShadowRayCount.Value = 4;
-                    break;
-                case Presets.ULTRA:
-                    chkCloudAO.IsChecked = true;
-                    cmbCloudAORes.SelectedIndex = 3;
-                    sldrCloudViewRayCount.Value = 300;
-                    sldrCloudReflectionRayCount.Value = 80;
-                    sldrCloudShadowRayCount.Value = 5;
-                    break;
-                case Presets.INSANE:
-                    sldrCloudViewRayCount.Value = 400;
-                    sldrCloudReflectionRayCount.Value = 100;
-                    sldrCloudShadowRayCount.Value = 6;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
-            }
-
-            //fog
-            switch (preset)
-            {
-                case Presets.POTATO:
-                    chkVolumetricFog.IsChecked = true;
-                    cmbFogRes.SelectedIndex = 0;
-                    sldrFogSampleCount.Value = 2;
-                    break;
-                case Presets.VERY_LOW:
-                    chkVolumetricFog.IsChecked = true;
-                    cmbFogRes.SelectedIndex = 0;
-                    sldrFogSampleCount.Value = 3;
-                    break;
-                case Presets.LOW:
-                    chkVolumetricFog.IsChecked = true;
-                    cmbFogRes.SelectedIndex = 0;
-                    sldrFogSampleCount.Value = 4;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    chkVolumetricFog.IsChecked = true;
-                    cmbFogRes.SelectedIndex = 3;
-                    sldrFogSampleCount.Value = 4;
-                    break;
-                case Presets.ULTRA:
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
-            }
-
-            //sky
-            switch (preset)
-            {
-                case Presets.POTATO:
-                    sldrSkySampleMax.Value = 1;
-                    cmbSkyDepthLevel.SelectedIndex = 0;
-                    sldrSkyColorSamples.Value = 10;
-                    sldrSkyAtmosphereSamples.Value = 10;
-                    chkHigherFormatLUT.IsChecked = false;
-                    sldrSkyTransmittanceSamples.Value = 6;
-                    sldrSkyScatteringSamples.Value = 7;
-                    chkSkyReflection.IsChecked = true;
-                    cmbSkyReflectionRes.SelectedIndex = 0;
-                    break;
-                case Presets.VERY_LOW:
-                    sldrSkySampleMax.Value = 1;
-                    cmbSkyDepthLevel.SelectedIndex = 1;
-                    sldrSkyColorSamples.Value = 14;
-                    sldrSkyAtmosphereSamples.Value = 14;
-                    chkHigherFormatLUT.IsChecked = false;
-                    sldrSkyTransmittanceSamples.Value = 9;
-                    sldrSkyScatteringSamples.Value = 13;
-                    chkSkyReflection.IsChecked = true;
-                    cmbSkyReflectionRes.SelectedIndex = 0;
-                    break;
-                case Presets.LOW:
-                    sldrSkySampleMax.Value = 1;
-                    cmbSkyDepthLevel.SelectedIndex = 2;
-                    sldrSkyColorSamples.Value = 16;
-                    sldrSkyAtmosphereSamples.Value = 16;
-                    chkHigherFormatLUT.IsChecked = false;
-                    sldrSkyTransmittanceSamples.Value = 10;
-                    sldrSkyScatteringSamples.Value = 15;
-                    chkSkyReflection.IsChecked = true;
-                    cmbSkyReflectionRes.SelectedIndex = 0;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    sldrSkySampleMax.Value = 8;
-                    cmbSkyDepthLevel.SelectedIndex = 4;
-                    sldrSkyColorSamples.Value = 128;
-                    sldrSkyAtmosphereSamples.Value = 128;
-                    chkHigherFormatLUT.IsChecked = false;
-                    sldrSkyTransmittanceSamples.Value = 10;
-                    sldrSkyScatteringSamples.Value = 15;
-                    chkSkyReflection.IsChecked = true;
-                    cmbSkyReflectionRes.SelectedIndex = 2;
-                    break;
-                case Presets.ULTRA:
-                    sldrSkySampleMax.Value = 12;
-                    cmbSkyDepthLevel.SelectedIndex = 5;
-                    sldrSkyColorSamples.Value = 192;
-                    sldrSkyAtmosphereSamples.Value = 192;
-                    chkHigherFormatLUT.IsChecked = true;
-                    sldrSkyTransmittanceSamples.Value = 15;
-                    sldrSkyScatteringSamples.Value = 20;
-                    chkSkyReflection.IsChecked = true;
-                    cmbSkyReflectionRes.SelectedIndex = 3;
-                    break;
-                case Presets.INSANE:
-                    sldrSkySampleMax.Value = 16;
-                    sldrSkyColorSamples.Value = 256;
-                    sldrSkyAtmosphereSamples.Value = 256;
-                    sldrSkyTransmittanceSamples.Value = 20;
-                    sldrSkyScatteringSamples.Value = 30;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
-            }
-
-            //foliage
-            switch (preset)
-            {
-                case Presets.POTATO:
-                    cmbFoliagePopin.SelectedIndex = 0;
-                    sldrFoliageLOD.Value = 0.52;
-                    sldrFoliageGrassDist.Value = 0.4;
-                    sldrFoliageTreeDist.Value = 0.4;
-                    sldrFoliageGrassDensity.Value = 0.35;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbFoliagePopin.SelectedIndex = 0;
-                    sldrFoliageLOD.Value = 0.72;
-                    sldrFoliageGrassDist.Value = 0.54;
-                    sldrFoliageTreeDist.Value = 0.54;
-                    sldrFoliageGrassDensity.Value = 0.45;
-                    break;
-                case Presets.LOW:
-                    cmbFoliagePopin.SelectedIndex = 0;
-                    sldrFoliageLOD.Value = 0.8;
-                    sldrFoliageGrassDist.Value = 0.6;
-                    sldrFoliageTreeDist.Value = 0.6;
-                    sldrFoliageGrassDensity.Value = 0.5;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbFoliagePopin.SelectedIndex = 2;
-                    sldrFoliageLOD.Value = 1;
-                    sldrFoliageGrassDist.Value = 1;
-                    sldrFoliageTreeDist.Value = 1;
-                    sldrFoliageGrassDensity.Value = 1;
-                    break;
-                case Presets.ULTRA:
-                    cmbFoliagePopin.SelectedIndex = 3;
-                    sldrFoliageLOD.Value = 1;
-                    sldrFoliageGrassDist.Value = 1;
-                    sldrFoliageTreeDist.Value = 1;
-                    sldrFoliageGrassDensity.Value = 1;
-                    break;
-                case Presets.INSANE:
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
-            }
-
-            //view distance
-            switch (preset)
-            {
-                case Presets.POTATO:
-                    sldrViewDistance.Value = 0.75;
-                    sldrLightViewDistance.Value = 0.35;
-                    break;
-                case Presets.VERY_LOW:
-                    sldrViewDistance.Value = 0.9;
-                    sldrLightViewDistance.Value = 0.45;
-                    break;
-                case Presets.LOW:
-                    sldrViewDistance.Value = 1;
-                    sldrLightViewDistance.Value = 0.5;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    sldrViewDistance.Value = 1;
-                    sldrLightViewDistance.Value = 1;
-                    break;
-                case Presets.ULTRA:
-                    sldrViewDistance.Value = 1.1;
-                    sldrLightViewDistance.Value = 1.1;
-                    break;
-                case Presets.INSANE:
-                    sldrViewDistance.Value = 1.5;
-                    sldrLightViewDistance.Value = 1.5;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblShadingPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbSceneFormat.SelectedIndex = 0;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 0;
+                        chkBlurTranslucent.IsChecked = false;
+                        chkSubsurfaceScattering.IsChecked = false;
+                        chkSSSubsurfaceScattering.IsChecked = false;
+                        cmbSSSSamples.SelectedIndex = 0;
+                        chkHQSSS.IsChecked = false;
+                        chkLQSSS.IsChecked = true;
+                        cmbAOFactor.SelectedIndex = 0;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 60;
+                        cmbAOQuality.SelectedIndex = 0;
+                        sldrAORadius.Value = 0.75;
+                        chkTranslucentShadowFilter.IsChecked = false;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbSceneFormat.SelectedIndex = 0;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 1;
+                        chkBlurTranslucent.IsChecked = false;
+                        chkSubsurfaceScattering.IsChecked = false;
+                        chkSSSubsurfaceScattering.IsChecked = false;
+                        cmbSSSSamples.SelectedIndex = 0;
+                        chkHQSSS.IsChecked = false;
+                        chkLQSSS.IsChecked = true;
+                        cmbAOFactor.SelectedIndex = 0;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 81;
+                        cmbAOQuality.SelectedIndex = 1;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = false;
+                        break;
+                    case Presets.LOW:
+                        cmbSceneFormat.SelectedIndex = 0;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 1;
+                        chkBlurTranslucent.IsChecked = false;
+                        chkSubsurfaceScattering.IsChecked = false;
+                        chkSSSubsurfaceScattering.IsChecked = false;
+                        cmbSSSSamples.SelectedIndex = 0;
+                        chkHQSSS.IsChecked = false;
+                        chkLQSSS.IsChecked = true;
+                        cmbAOFactor.SelectedIndex = 0;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 90;
+                        cmbAOQuality.SelectedIndex = 1;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = false;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbSceneFormat.SelectedIndex = 1;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 1;
+                        chkBlurTranslucent.IsChecked = true;
+                        chkSubsurfaceScattering.IsChecked = true;
+                        chkSSSubsurfaceScattering.IsChecked = true;
+                        cmbSSSSamples.SelectedIndex = 0;
+                        chkHQSSS.IsChecked = true;
+                        chkLQSSS.IsChecked = false;
+                        cmbAOFactor.SelectedIndex = 2;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 100;
+                        cmbAOQuality.SelectedIndex = 0;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = true;
+                        break;
+                    case Presets.ULTRA:
+                        cmbSceneFormat.SelectedIndex = 1;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 2;
+                        chkBlurTranslucent.IsChecked = true;
+                        chkSubsurfaceScattering.IsChecked = true;
+                        chkSSSubsurfaceScattering.IsChecked = true;
+                        cmbSSSSamples.SelectedIndex = 1;
+                        chkHQSSS.IsChecked = true;
+                        chkLQSSS.IsChecked = false;
+                        cmbAOFactor.SelectedIndex = 0;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 100;
+                        cmbAOQuality.SelectedIndex = 3;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = true;
+                        break;
+                    case Presets.INSANE:
+                        cmbSSSSamples.SelectedIndex = 2;
+                        chkAlwaysRequestMaxAOQ.IsChecked = true;
+                        cmbAOQuality.SelectedIndex = 4;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //global illum
-            switch (preset)
+            if (GlobalIlluminationPreset == null)
             {
-                case Presets.POTATO:
-                    chkIndirectDiffuse.IsChecked = true;
-                    chkDetailedMeshTracing.IsChecked = false;
-                    sldrDetailedMeshTracingDist.Value = 0;
-                    chkRadiosity.IsChecked = true;
-                    chkOffscreenTraceMeshes.IsChecked = false;
+                lblGlobalIlluminationPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = false;
+                        sldrDetailedMeshTracingDist.Value = 0;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = false;
 
-                    sldrLumenMeshCardSize.Value = 185;
-                    cmbLumenAtlasSize.SelectedIndex = 0;
+                        sldrLumenMeshCardSize.Value = 185;
+                        cmbLumenAtlasSize.SelectedIndex = 0;
 
-                    cmbProbeDownsample.SelectedIndex = 0;
-                    cmbLumenTraceOctaRes.SelectedIndex = 0;
-                    chkStochasticInterpolation.IsChecked = true;
-                    chkTwoSidedFoliageBackfaceDiffuse.IsChecked = false;
-                    cmbProbeRes.SelectedIndex = 0;
-                    cmbProbeTraceBudget.SelectedIndex = 0;
-                    cmbProbeAtlasResolution.SelectedIndex = 0;
-                    cmbProbeCacheFrameKeep.SelectedIndex = 0;
-                    chkLumenTranslucencyVolume.IsChecked = true;
-                    chkLumenTranslucencyTrace.IsChecked = true;
-                    sldrLumenFarFieldDistance.Value = 10000;
-                    chkTigherProbes.IsChecked = false;
-                    break;
-                case Presets.VERY_LOW:
-                    chkIndirectDiffuse.IsChecked = true;
-                    chkDetailedMeshTracing.IsChecked = false;
-                    sldrDetailedMeshTracingDist.Value = 0;
-                    chkRadiosity.IsChecked = true;
-                    chkOffscreenTraceMeshes.IsChecked = false;
+                        cmbProbeDownsample.SelectedIndex = 0;
+                        cmbLumenTraceOctaRes.SelectedIndex = 0;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = false;
+                        cmbProbeRes.SelectedIndex = 0;
+                        cmbProbeTraceBudget.SelectedIndex = 0;
+                        cmbProbeAtlasResolution.SelectedIndex = 0;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 0;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 10000;
+                        chkTigherProbes.IsChecked = false;
+                        break;
+                    case Presets.VERY_LOW:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = false;
+                        sldrDetailedMeshTracingDist.Value = 0;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = false;
 
-                    sldrLumenMeshCardSize.Value = 165;
-                    cmbLumenAtlasSize.SelectedIndex = 1;
+                        sldrLumenMeshCardSize.Value = 165;
+                        cmbLumenAtlasSize.SelectedIndex = 1;
 
-                    cmbProbeDownsample.SelectedIndex = 1;
-                    cmbLumenTraceOctaRes.SelectedIndex = 1;
-                    chkStochasticInterpolation.IsChecked = true;
-                    chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
-                    cmbProbeRes.SelectedIndex = 0;
-                    cmbProbeTraceBudget.SelectedIndex = 0;
-                    cmbProbeAtlasResolution.SelectedIndex = 0;
-                    cmbProbeCacheFrameKeep.SelectedIndex = 0;
-                    chkLumenTranslucencyVolume.IsChecked = true;
-                    chkLumenTranslucencyTrace.IsChecked = true;
-                    sldrLumenFarFieldDistance.Value = 18000;
-                    chkTigherProbes.IsChecked = false;
-                    break;
-                case Presets.LOW:
-                    chkIndirectDiffuse.IsChecked = true;
-                    chkDetailedMeshTracing.IsChecked = false;
-                    sldrDetailedMeshTracingDist.Value = 0;
-                    chkRadiosity.IsChecked = true;
-                    chkOffscreenTraceMeshes.IsChecked = false;
+                        cmbProbeDownsample.SelectedIndex = 1;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 0;
+                        cmbProbeTraceBudget.SelectedIndex = 0;
+                        cmbProbeAtlasResolution.SelectedIndex = 0;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 0;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 18000;
+                        chkTigherProbes.IsChecked = false;
+                        break;
+                    case Presets.LOW:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = false;
+                        sldrDetailedMeshTracingDist.Value = 0;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = false;
 
-                    sldrLumenMeshCardSize.Value = 150;
-                    cmbLumenAtlasSize.SelectedIndex = 2;
+                        sldrLumenMeshCardSize.Value = 150;
+                        cmbLumenAtlasSize.SelectedIndex = 2;
 
-                    cmbProbeDownsample.SelectedIndex = 1;
-                    cmbLumenTraceOctaRes.SelectedIndex = 1;
-                    chkStochasticInterpolation.IsChecked = true;
-                    chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
-                    cmbProbeRes.SelectedIndex = 0;
-                    cmbProbeTraceBudget.SelectedIndex = 1;
-                    cmbProbeAtlasResolution.SelectedIndex = 1;
-                    cmbProbeCacheFrameKeep.SelectedIndex = 0;
-                    chkLumenTranslucencyVolume.IsChecked = true;
-                    chkLumenTranslucencyTrace.IsChecked = true;
-                    sldrLumenFarFieldDistance.Value = 20000;
-                    chkTigherProbes.IsChecked = false;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    chkIndirectDiffuse.IsChecked = true;
-                    chkDetailedMeshTracing.IsChecked = true;
-                    sldrDetailedMeshTracingDist.Value = 20;
-                    chkRadiosity.IsChecked = true;
-                    chkOffscreenTraceMeshes.IsChecked = true;
+                        cmbProbeDownsample.SelectedIndex = 1;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 0;
+                        cmbProbeTraceBudget.SelectedIndex = 1;
+                        cmbProbeAtlasResolution.SelectedIndex = 1;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 0;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 20000;
+                        chkTigherProbes.IsChecked = false;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = true;
+                        sldrDetailedMeshTracingDist.Value = 20;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = true;
 
-                    sldrLumenMeshCardSize.Value = 50;
-                    cmbLumenAtlasSize.SelectedIndex = 3;
+                        sldrLumenMeshCardSize.Value = 50;
+                        cmbLumenAtlasSize.SelectedIndex = 3;
 
-                    cmbProbeDownsample.SelectedIndex = 2;
-                    cmbLumenTraceOctaRes.SelectedIndex = 1;
-                    chkStochasticInterpolation.IsChecked = true;
-                    chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
-                    cmbProbeRes.SelectedIndex = 1;
-                    cmbProbeTraceBudget.SelectedIndex = 4;
-                    cmbProbeAtlasResolution.SelectedIndex = 2;
-                    cmbProbeCacheFrameKeep.SelectedIndex = 1;
-                    chkLumenTranslucencyVolume.IsChecked = true;
-                    chkLumenTranslucencyTrace.IsChecked = true;
-                    sldrLumenFarFieldDistance.Value = 40000;
-                    chkTigherProbes.IsChecked = true;
-                    break;
-                case Presets.ULTRA:
-                    chkIndirectDiffuse.IsChecked = true;
-                    chkDetailedMeshTracing.IsChecked = true;
-                    sldrDetailedMeshTracingDist.Value = 25;
-                    chkRadiosity.IsChecked = true;
-                    chkOffscreenTraceMeshes.IsChecked = true;
+                        cmbProbeDownsample.SelectedIndex = 2;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 1;
+                        cmbProbeTraceBudget.SelectedIndex = 4;
+                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 1;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 40000;
+                        chkTigherProbes.IsChecked = true;
+                        break;
+                    case Presets.ULTRA:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = true;
+                        sldrDetailedMeshTracingDist.Value = 25;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = true;
 
-                    sldrLumenMeshCardSize.Value = 45;
-                    cmbLumenAtlasSize.SelectedIndex = 4;
+                        sldrLumenMeshCardSize.Value = 45;
+                        cmbLumenAtlasSize.SelectedIndex = 4;
 
-                    cmbProbeDownsample.SelectedIndex = 3;
-                    cmbLumenTraceOctaRes.SelectedIndex = 1;
-                    chkStochasticInterpolation.IsChecked = true;
-                    chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
-                    cmbProbeRes.SelectedIndex = 1;
-                    cmbProbeTraceBudget.SelectedIndex = 5;
-                    cmbProbeAtlasResolution.SelectedIndex = 2;
-                    cmbProbeCacheFrameKeep.SelectedIndex = 1;
-                    chkLumenTranslucencyVolume.IsChecked = true;
-                    chkLumenTranslucencyTrace.IsChecked = true;
-                    sldrLumenFarFieldDistance.Value = 50000;
-                    chkTigherProbes.IsChecked = true;
-                    break;
-                case Presets.INSANE:
-                    sldrDetailedMeshTracingDist.Value = 60;
-                    sldrLumenMeshCardSize.Value = 25;
-                    cmbProbeDownsample.SelectedIndex = 4;
-                    sldrLumenFarFieldDistance.Value = 50000;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                        cmbProbeDownsample.SelectedIndex = 3;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 1;
+                        cmbProbeTraceBudget.SelectedIndex = 5;
+                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 1;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 50000;
+                        chkTigherProbes.IsChecked = true;
+                        break;
+                    case Presets.INSANE:
+                        sldrDetailedMeshTracingDist.Value = 60;
+                        sldrLumenMeshCardSize.Value = 25;
+                        cmbProbeDownsample.SelectedIndex = 4;
+                        sldrLumenFarFieldDistance.Value = 50000;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
 
             //reflections
-            switch (preset)
+            if (ReflectionsPreset == null)
             {
-                case Presets.POTATO:
-                    cmbSSR.SelectedIndex = 1;
-                    chkHalfResScene.IsChecked = true;
-                    chkLumenReflections.IsChecked = false;
-                    chkTraceMeshReflections.IsChecked = false;
-                    cmbReflectionDownSample.SelectedIndex = 1;
-                    sldrMaxRoughness.Value = 0.05;
-                    cmbReflectionFilterSampleCount.SelectedIndex = 0;
-                    chkReflectionSkipEmissiveOpaque.IsChecked = false;
-                    chkReflectionSkipEmissiveFront.IsChecked = false;
-                    chkReflectionLumenTransparency.IsChecked = false;
-                    chkReflectionSceneColor.IsChecked = false;
-                    break;
-                case Presets.VERY_LOW:
-                    cmbSSR.SelectedIndex = 2;
-                    chkHalfResScene.IsChecked = true;
-                    chkLumenReflections.IsChecked = true;
-                    chkTraceMeshReflections.IsChecked = false;
-                    cmbReflectionDownSample.SelectedIndex = 2;
-                    sldrMaxRoughness.Value = 0.1;
-                    cmbReflectionFilterSampleCount.SelectedIndex = 1;
-                    chkReflectionSkipEmissiveOpaque.IsChecked = false;
-                    chkReflectionSkipEmissiveFront.IsChecked = false;
-                    chkReflectionLumenTransparency.IsChecked = false;
-                    chkReflectionSceneColor.IsChecked = false;
-                    break;
-                case Presets.LOW:
-                    cmbSSR.SelectedIndex = 3;
-                    chkHalfResScene.IsChecked = false;
-                    chkLumenReflections.IsChecked = true;
-                    chkTraceMeshReflections.IsChecked = false;
-                    cmbReflectionDownSample.SelectedIndex = 3;
-                    sldrMaxRoughness.Value = 0.2;
-                    cmbReflectionFilterSampleCount.SelectedIndex = 2;
-                    chkReflectionSkipEmissiveOpaque.IsChecked = false;
-                    chkReflectionSkipEmissiveFront.IsChecked = false;
-                    chkReflectionLumenTransparency.IsChecked = false;
-                    chkReflectionSceneColor.IsChecked = false;
-                    break;
-                case Presets.MEDIUM:
-                    break;
-                case Presets.HIGH:
-                    break;
-                case Presets.EPIC:
-                    cmbSSR.SelectedIndex = 3;
-                    chkHalfResScene.IsChecked = false;
-                    chkLumenReflections.IsChecked = true;
-                    chkTraceMeshReflections.IsChecked = true;
-                    cmbReflectionDownSample.SelectedIndex = 3;
-                    sldrMaxRoughness.Value = 0.3;
-                    cmbReflectionFilterSampleCount.SelectedIndex = 2;
-                    chkReflectionSkipEmissiveOpaque.IsChecked = true;
-                    chkReflectionSkipEmissiveFront.IsChecked = true;
-                    chkReflectionLumenTransparency.IsChecked = true;
-                    chkReflectionSceneColor.IsChecked = true;
-                    break;
-                case Presets.ULTRA:
-                    cmbSSR.SelectedIndex = 4;
-                    chkHalfResScene.IsChecked = false;
-                    chkLumenReflections.IsChecked = true;
-                    chkTraceMeshReflections.IsChecked = true;
-                    cmbReflectionDownSample.SelectedIndex = 4;
-                    sldrMaxRoughness.Value = 0.4;
-                    cmbReflectionFilterSampleCount.SelectedIndex = 3;
-                    chkReflectionSkipEmissiveOpaque.IsChecked = true;
-                    chkReflectionSkipEmissiveFront.IsChecked = true;
-                    chkReflectionLumenTransparency.IsChecked = true;
-                    chkReflectionSceneColor.IsChecked = true;
-                    break;
-                case Presets.INSANE:
-                    sldrMaxRoughness.Value = 0.5;
-                    break;
-                case Presets.CUSTOM:
-                    break;
-                default:
-                    break;
+                lblReflectionsPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbSSR.SelectedIndex = 1;
+                        chkHalfResScene.IsChecked = true;
+                        chkLumenReflections.IsChecked = false;
+                        chkTraceMeshReflections.IsChecked = false;
+                        cmbReflectionDownSample.SelectedIndex = 1;
+                        sldrMaxRoughness.Value = 0.05;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 0;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = false;
+                        chkReflectionSkipEmissiveFront.IsChecked = false;
+                        chkReflectionLumenTransparency.IsChecked = false;
+                        chkReflectionSceneColor.IsChecked = false;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbSSR.SelectedIndex = 2;
+                        chkHalfResScene.IsChecked = true;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = false;
+                        cmbReflectionDownSample.SelectedIndex = 2;
+                        sldrMaxRoughness.Value = 0.1;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 1;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = false;
+                        chkReflectionSkipEmissiveFront.IsChecked = false;
+                        chkReflectionLumenTransparency.IsChecked = false;
+                        chkReflectionSceneColor.IsChecked = false;
+                        break;
+                    case Presets.LOW:
+                        cmbSSR.SelectedIndex = 3;
+                        chkHalfResScene.IsChecked = false;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = false;
+                        cmbReflectionDownSample.SelectedIndex = 3;
+                        sldrMaxRoughness.Value = 0.2;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 2;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = false;
+                        chkReflectionSkipEmissiveFront.IsChecked = false;
+                        chkReflectionLumenTransparency.IsChecked = false;
+                        chkReflectionSceneColor.IsChecked = false;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbSSR.SelectedIndex = 3;
+                        chkHalfResScene.IsChecked = false;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = true;
+                        cmbReflectionDownSample.SelectedIndex = 3;
+                        sldrMaxRoughness.Value = 0.3;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 2;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = true;
+                        chkReflectionSkipEmissiveFront.IsChecked = true;
+                        chkReflectionLumenTransparency.IsChecked = true;
+                        chkReflectionSceneColor.IsChecked = true;
+                        break;
+                    case Presets.ULTRA:
+                        cmbSSR.SelectedIndex = 4;
+                        chkHalfResScene.IsChecked = false;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = true;
+                        cmbReflectionDownSample.SelectedIndex = 4;
+                        sldrMaxRoughness.Value = 0.4;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 3;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = true;
+                        chkReflectionSkipEmissiveFront.IsChecked = true;
+                        chkReflectionLumenTransparency.IsChecked = true;
+                        chkReflectionSceneColor.IsChecked = true;
+                        break;
+                    case Presets.INSANE:
+                        sldrMaxRoughness.Value = 0.5;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //shadows
+            if (ShadowsPreset == null)
+            {
+                lblShadowsPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbShadowQuality.SelectedIndex = 1;
+                        sldrShadowCascades.Value = 2;
+                        cmbShadowResolution.SelectedIndex = 1;
+                        sldrShadowRadiusThresh.Value = 0.08;
+                        sldrShadowDist.Value = 0.665;
+                        cmbShadowTransitionScale.SelectedIndex = 0;
+                        sldrPreshadowRes.Value = 0.35;
+                        chkDistanceFieldShadowing.IsChecked = false;
+                        sldrDistanceFieldShadowQuality.Value = 0;
+                        cmbShadowPageSize.SelectedIndex = 1;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 0;
+                        sldrViewBiasDirectional.Value = 5;
+                        cmbShadowRaytraceQuality.SelectedIndex = 1;
+                        chkContactShadows.IsChecked = false;
+                        chkContactShadowsLocal.IsChecked = false;
+                        chkShadowSkeletelProxy.IsChecked = true;
+                        chkShadowStaticSeperate.IsChecked = true;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbShadowQuality.SelectedIndex = 2;
+                        sldrShadowCascades.Value = 2;
+                        cmbShadowResolution.SelectedIndex = 2;
+                        sldrShadowRadiusThresh.Value = 0.07;
+                        sldrShadowDist.Value = 0.765;
+                        cmbShadowTransitionScale.SelectedIndex = 0;
+                        sldrPreshadowRes.Value = 0.45;
+                        chkDistanceFieldShadowing.IsChecked = false;
+                        sldrDistanceFieldShadowQuality.Value = 0;
+                        cmbShadowPageSize.SelectedIndex = 1;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 0;
+                        sldrViewBiasDirectional.Value = 5;
+                        cmbShadowRaytraceQuality.SelectedIndex = 1;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = false;
+                        chkShadowSkeletelProxy.IsChecked = true;
+                        chkShadowStaticSeperate.IsChecked = true;
+                        break;
+                    case Presets.LOW:
+                        cmbShadowQuality.SelectedIndex = 3;
+                        sldrShadowCascades.Value = 2;
+                        cmbShadowResolution.SelectedIndex = 3;
+                        sldrShadowRadiusThresh.Value = 0.06;
+                        sldrShadowDist.Value = 0.85;
+                        cmbShadowTransitionScale.SelectedIndex = 0;
+                        sldrPreshadowRes.Value = 0.5;
+                        chkDistanceFieldShadowing.IsChecked = false;
+                        sldrDistanceFieldShadowQuality.Value = 0;
+                        cmbShadowPageSize.SelectedIndex = 1;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 0;
+                        sldrViewBiasDirectional.Value = 5;
+                        cmbShadowRaytraceQuality.SelectedIndex = 1;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = false;
+                        chkShadowSkeletelProxy.IsChecked = true;
+                        chkShadowStaticSeperate.IsChecked = true;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbShadowQuality.SelectedIndex = 5;
+                        sldrShadowCascades.Value = 10;
+                        cmbShadowResolution.SelectedIndex = 4;
+                        sldrShadowRadiusThresh.Value = 0.01;
+                        sldrShadowDist.Value = 1.0;
+                        cmbShadowTransitionScale.SelectedIndex = 1;
+                        sldrPreshadowRes.Value = 1.0;
+                        chkDistanceFieldShadowing.IsChecked = true;
+                        sldrDistanceFieldShadowQuality.Value = 1.0;
+                        cmbShadowPageSize.SelectedIndex = 3;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 2;
+                        sldrViewBiasDirectional.Value = 0;
+                        cmbShadowRaytraceQuality.SelectedIndex = 4;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = true;
+                        chkShadowSkeletelProxy.IsChecked = false;
+                        chkShadowStaticSeperate.IsChecked = true;
+                        break;
+                    case Presets.ULTRA:
+                        cmbShadowQuality.SelectedIndex = 5;
+                        sldrShadowCascades.Value = 12;
+                        cmbShadowResolution.SelectedIndex = 4;
+                        sldrShadowRadiusThresh.Value = 0.01;
+                        sldrShadowDist.Value = 1.0;
+                        cmbShadowTransitionScale.SelectedIndex = 2;
+                        sldrPreshadowRes.Value = 1.0;
+                        chkDistanceFieldShadowing.IsChecked = true;
+                        sldrDistanceFieldShadowQuality.Value = 1.0;
+                        cmbShadowPageSize.SelectedIndex = 3;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 3;
+                        sldrViewBiasDirectional.Value = 0;
+                        cmbShadowRaytraceQuality.SelectedIndex = 4;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = true;
+                        chkShadowSkeletelProxy.IsChecked = false;
+                        chkShadowStaticSeperate.IsChecked = true;
+                        break;
+                    case Presets.INSANE:
+                        sldrShadowCascades.Value = 15;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 4;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //clouds
+            if (CloudsPreset == null)
+            {
+                lblCloudsPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        chkCloudAO.IsChecked = false;
+                        cmbCloudAORes.SelectedIndex = 0;
+                        sldrCloudViewRayCount.Value = 126;
+                        sldrCloudReflectionRayCount.Value = 14;
+                        sldrCloudShadowRayCount.Value = 2;
+                        break;
+                    case Presets.VERY_LOW:
+                        chkCloudAO.IsChecked = false;
+                        cmbCloudAORes.SelectedIndex = 1;
+                        sldrCloudViewRayCount.Value = 176;
+                        sldrCloudReflectionRayCount.Value = 18;
+                        sldrCloudShadowRayCount.Value = 3;
+                        break;
+                    case Presets.LOW:
+                        chkCloudAO.IsChecked = false;
+                        cmbCloudAORes.SelectedIndex = 2;
+                        sldrCloudViewRayCount.Value = 196;
+                        sldrCloudReflectionRayCount.Value = 20;
+                        sldrCloudShadowRayCount.Value = 4;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        chkCloudAO.IsChecked = true;
+                        cmbCloudAORes.SelectedIndex = 2;
+                        sldrCloudViewRayCount.Value = 196;
+                        sldrCloudReflectionRayCount.Value = 60;
+                        sldrCloudShadowRayCount.Value = 4;
+                        break;
+                    case Presets.ULTRA:
+                        chkCloudAO.IsChecked = true;
+                        cmbCloudAORes.SelectedIndex = 3;
+                        sldrCloudViewRayCount.Value = 300;
+                        sldrCloudReflectionRayCount.Value = 80;
+                        sldrCloudShadowRayCount.Value = 5;
+                        break;
+                    case Presets.INSANE:
+                        sldrCloudViewRayCount.Value = 400;
+                        sldrCloudReflectionRayCount.Value = 100;
+                        sldrCloudShadowRayCount.Value = 6;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //fog
+            if (FogPreset == null)
+            {
+                lblFogPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 0;
+                        sldrFogSampleCount.Value = 2;
+                        break;
+                    case Presets.VERY_LOW:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 0;
+                        sldrFogSampleCount.Value = 3;
+                        break;
+                    case Presets.LOW:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 0;
+                        sldrFogSampleCount.Value = 4;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 3;
+                        sldrFogSampleCount.Value = 4;
+                        break;
+                    case Presets.ULTRA:
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //sky
+            if (SkyPreset == null)
+            {
+                lblSkyPreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        sldrSkySampleMax.Value = 1;
+                        cmbSkyDepthLevel.SelectedIndex = 0;
+                        sldrSkyColorSamples.Value = 10;
+                        sldrSkyAtmosphereSamples.Value = 10;
+                        chkHigherFormatLUT.IsChecked = false;
+                        sldrSkyTransmittanceSamples.Value = 6;
+                        sldrSkyScatteringSamples.Value = 7;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 0;
+                        break;
+                    case Presets.VERY_LOW:
+                        sldrSkySampleMax.Value = 1;
+                        cmbSkyDepthLevel.SelectedIndex = 1;
+                        sldrSkyColorSamples.Value = 14;
+                        sldrSkyAtmosphereSamples.Value = 14;
+                        chkHigherFormatLUT.IsChecked = false;
+                        sldrSkyTransmittanceSamples.Value = 9;
+                        sldrSkyScatteringSamples.Value = 13;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 0;
+                        break;
+                    case Presets.LOW:
+                        sldrSkySampleMax.Value = 1;
+                        cmbSkyDepthLevel.SelectedIndex = 2;
+                        sldrSkyColorSamples.Value = 16;
+                        sldrSkyAtmosphereSamples.Value = 16;
+                        chkHigherFormatLUT.IsChecked = false;
+                        sldrSkyTransmittanceSamples.Value = 10;
+                        sldrSkyScatteringSamples.Value = 15;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 0;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        sldrSkySampleMax.Value = 8;
+                        cmbSkyDepthLevel.SelectedIndex = 4;
+                        sldrSkyColorSamples.Value = 128;
+                        sldrSkyAtmosphereSamples.Value = 128;
+                        chkHigherFormatLUT.IsChecked = false;
+                        sldrSkyTransmittanceSamples.Value = 10;
+                        sldrSkyScatteringSamples.Value = 15;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 2;
+                        break;
+                    case Presets.ULTRA:
+                        sldrSkySampleMax.Value = 12;
+                        cmbSkyDepthLevel.SelectedIndex = 5;
+                        sldrSkyColorSamples.Value = 192;
+                        sldrSkyAtmosphereSamples.Value = 192;
+                        chkHigherFormatLUT.IsChecked = true;
+                        sldrSkyTransmittanceSamples.Value = 15;
+                        sldrSkyScatteringSamples.Value = 20;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 3;
+                        break;
+                    case Presets.INSANE:
+                        sldrSkySampleMax.Value = 16;
+                        sldrSkyColorSamples.Value = 256;
+                        sldrSkyAtmosphereSamples.Value = 256;
+                        sldrSkyTransmittanceSamples.Value = 20;
+                        sldrSkyScatteringSamples.Value = 30;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //foliage
+            if (FoliagePreset == null)
+            {
+                lblFoliagePreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbFoliagePopin.SelectedIndex = 0;
+                        sldrFoliageLOD.Value = 0.52;
+                        sldrFoliageGrassDist.Value = 0.4;
+                        sldrFoliageTreeDist.Value = 0.4;
+                        sldrFoliageGrassDensity.Value = 0.35;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbFoliagePopin.SelectedIndex = 0;
+                        sldrFoliageLOD.Value = 0.72;
+                        sldrFoliageGrassDist.Value = 0.54;
+                        sldrFoliageTreeDist.Value = 0.54;
+                        sldrFoliageGrassDensity.Value = 0.45;
+                        break;
+                    case Presets.LOW:
+                        cmbFoliagePopin.SelectedIndex = 0;
+                        sldrFoliageLOD.Value = 0.8;
+                        sldrFoliageGrassDist.Value = 0.6;
+                        sldrFoliageTreeDist.Value = 0.6;
+                        sldrFoliageGrassDensity.Value = 0.5;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        cmbFoliagePopin.SelectedIndex = 2;
+                        sldrFoliageLOD.Value = 1;
+                        sldrFoliageGrassDist.Value = 1;
+                        sldrFoliageTreeDist.Value = 1;
+                        sldrFoliageGrassDensity.Value = 1;
+                        break;
+                    case Presets.ULTRA:
+                        cmbFoliagePopin.SelectedIndex = 3;
+                        sldrFoliageLOD.Value = 1;
+                        sldrFoliageGrassDist.Value = 1;
+                        sldrFoliageTreeDist.Value = 1;
+                        sldrFoliageGrassDensity.Value = 1;
+                        break;
+                    case Presets.INSANE:
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //view distance
+            if (ViewDistancePreset == null)
+            {
+                lblViewDistancePreset.Content = CurrentPreset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        sldrViewDistance.Value = 0.75;
+                        sldrLightViewDistance.Value = 0.35;
+                        break;
+                    case Presets.VERY_LOW:
+                        sldrViewDistance.Value = 0.9;
+                        sldrLightViewDistance.Value = 0.45;
+                        break;
+                    case Presets.LOW:
+                        sldrViewDistance.Value = 1;
+                        sldrLightViewDistance.Value = 0.5;
+                        break;
+                    case Presets.MEDIUM:
+                        break;
+                    case Presets.HIGH:
+                        break;
+                    case Presets.EPIC:
+                        sldrViewDistance.Value = 1;
+                        sldrLightViewDistance.Value = 1;
+                        break;
+                    case Presets.ULTRA:
+                        sldrViewDistance.Value = 1.1;
+                        sldrLightViewDistance.Value = 1.1;
+                        break;
+                    case Presets.INSANE:
+                        sldrViewDistance.Value = 1.5;
+                        sldrLightViewDistance.Value = 1.5;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
         private void rdioPotatoPreset_Checked(object sender, RoutedEventArgs e)
         {
-            ApplyPreset(Presets.POTATO);
+            CurrentPreset = Presets.POTATO;
+            ApplyPreset();
         }
 
         private void rdioVeryLowPreset_Checked(object sender, RoutedEventArgs e)
         {
-            ApplyPreset(Presets.VERY_LOW);
+            CurrentPreset = Presets.VERY_LOW;
+            ApplyPreset();
         }
 
         private void rdioLowPreset_Checked(object sender, RoutedEventArgs e)
         {
-            ApplyPreset(Presets.LOW);
+            CurrentPreset = Presets.LOW;
+            ApplyPreset();
         }
 
         private void rdioEpicPreset_Checked(object sender, RoutedEventArgs e)
@@ -2032,13 +2127,185 @@ namespace S2SettingsGenerator
             }
 
 
-            ApplyPreset(Presets.EPIC);
+            CurrentPreset = Presets.EPIC;
+            ApplyPreset();
 
         }
 
         private void rdioUltraPreset_Checked(object sender, RoutedEventArgs e)
         {
-            ApplyPreset(Presets.ULTRA);
+            CurrentPreset = Presets.ULTRA;
+            ApplyPreset();
+        }
+
+        private void chkLockTextures_Checked(object sender, RoutedEventArgs e)
+        {
+            TexturesPreset = CurrentPreset;
+        }
+
+        private void chkLockTextures_Unchecked(object sender, RoutedEventArgs e)
+        {
+            TexturesPreset = null;
+        }
+
+        private void chkLockHair_Checked(object sender, RoutedEventArgs e)
+        {
+            HairPreset = CurrentPreset;
+        }
+
+        private void chkLockHair_Unchecked(object sender, RoutedEventArgs e)
+        {
+            HairPreset = null;
+        }
+
+        private void chkLockObjectDetail_Checked(object sender, RoutedEventArgs e)
+        {
+            ObjectDetailPreset = CurrentPreset;
+        }
+
+        private void chkLockObjectDetail_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ObjectDetailPreset = null;
+        }
+
+        private void chkLockEffects_Checked(object sender, RoutedEventArgs e)
+        {
+            EffectsPreset = CurrentPreset;
+        }
+
+        private void chkLockEffects_Unchecked(object sender, RoutedEventArgs e)
+        {
+            EffectsPreset = null;
+        }
+
+        private void chkLockMaterialQuality_Checked(object sender, RoutedEventArgs e)
+        {
+            MaterialQualityPreset = CurrentPreset;
+        }
+
+        private void chkLockMaterialQuality_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MaterialQualityPreset = null;
+        }
+
+        private void chkLockpostProcessing_Checked(object sender, RoutedEventArgs e)
+        {
+            PostProcessingPreset = CurrentPreset;
+        }
+
+        private void chkLockpostProcessing_Unchecked(object sender, RoutedEventArgs e)
+        {
+            PostProcessingPreset = null;
+        }
+
+        private void chkLockDOF_Checked(object sender, RoutedEventArgs e)
+        {
+            DOFPreset = CurrentPreset;
+        }
+
+        private void chkLockDOF_Unchecked(object sender, RoutedEventArgs e)
+        {
+            DOFPreset = null;
+        }
+
+        private void chkLockAA_Checked(object sender, RoutedEventArgs e)
+        {
+            AAPreset = CurrentPreset;
+        }
+
+        private void chkLockAA_Unchecked(object sender, RoutedEventArgs e)
+        {
+            AAPreset = null;
+        }
+
+        private void chkLockShading_Checked(object sender, RoutedEventArgs e)
+        {
+            ShadingPreset = CurrentPreset;
+        }
+
+        private void chkLockShading_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ShadingPreset = null;
+        }
+
+        private void chkLockGlobalIllumination_Checked(object sender, RoutedEventArgs e)
+        {
+            GlobalIlluminationPreset = CurrentPreset;
+        }
+
+        private void chkLockGlobalIllumination_Unchecked(object sender, RoutedEventArgs e)
+        {
+            GlobalIlluminationPreset = null;
+        }
+
+        private void chkLockReflections_Checked(object sender, RoutedEventArgs e)
+        {
+            ReflectionsPreset = CurrentPreset;
+        }
+
+        private void chkLockReflections_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ReflectionsPreset = null;
+        }
+
+        private void chkLockShadows_Checked(object sender, RoutedEventArgs e)
+        {
+            ShadowsPreset = CurrentPreset;
+        }
+
+        private void chkLockShadows_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ShadowsPreset = null;
+        }
+
+        private void chkLockClouds_Checked(object sender, RoutedEventArgs e)
+        {
+            CloudsPreset = CurrentPreset;
+        }
+
+        private void chkLockClouds_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CloudsPreset = null;
+        }
+
+        private void chkLockFog_Checked(object sender, RoutedEventArgs e)
+        {
+            FogPreset = CurrentPreset;
+        }
+
+        private void chkLockFog_Unchecked(object sender, RoutedEventArgs e)
+        {
+            FogPreset = null;
+        }
+
+        private void chkLockSky_Checked(object sender, RoutedEventArgs e)
+        {
+            SkyPreset = CurrentPreset;
+        }
+
+        private void chkLockSky_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SkyPreset = null;
+        }
+
+        private void chkLockFoliage_Checked(object sender, RoutedEventArgs e)
+        {
+            FoliagePreset = CurrentPreset;
+        }
+
+        private void chkLockFoliage_Unchecked(object sender, RoutedEventArgs e)
+        {
+            FoliagePreset = null;
+        }
+
+        private void chkLockViewDistance_Checked(object sender, RoutedEventArgs e)
+        {
+            ViewDistancePreset = CurrentPreset;
+        }
+
+        private void chkLockViewDistance_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ViewDistancePreset = null;
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S2SettingsGenerator"
         mc:Ignorable="d"
-        Title="Stalker 2 Graphics Settings Generator for Engine.ini" Height="740" Width="630">
+        Title="Stalker 2 Graphics Settings Generator for Engine.ini" Height="920" Width="630">
     <Grid Margin="0,0,0,0">
         <Image Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/S2HoC_GSCGameWorld__Logo_on_white.png" Height="64" Opacity="0.7"/>
         <Label Content="Settings Generator" HorizontalAlignment="Left" Margin="72,44,0,0" VerticalAlignment="Top" Foreground="Red" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
@@ -64,19 +64,33 @@
                     </StackPanel.Resources>
 
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Texture Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Texture Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
+                    <Grid>
+                        <Label x:Name="lblTexturesPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <Label>
+                                    <Label.Content>
+                                        <TextBlock Text="Textures: " TextWrapping="Wrap"/>
+                                    </Label.Content>
+                                </Label>
+                                <CheckBox x:Name="chkLockTextures" Checked="chkLockTextures_Checked" Unchecked="chkLockTextures_Unchecked" VerticalAlignment="Center">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox">
+                                            <Setter Property="IsChecked" Value="False"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=chkLockTextures, Path=IsChecked}" Value="True">
+                                                    <Setter Property="Content" Value="🔒"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=chkLockTextures, Path=IsChecked}"  Value="False">
+                                                    <Setter Property="Content" Value="🔓"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                            </StackPanel>
+                        </Expander.Header>
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
                             <Line Stretch="Fill" X2="1" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
                             <Label Content="Textures" VerticalAlignment="Center" FontWeight="Bold"/>
@@ -141,956 +155,1197 @@
                             </StackPanel>
                         </WrapPanel>
                     </Expander>
+                    </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Hair Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Hair Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Hair" FontWeight="Bold" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkHairAO" Content="Ambient Occlusion" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="AO Samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrHairAOSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Strand Visiblity" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrHairStrandVisibility" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4"/>
-                            </StackPanel>
-                            <CheckBox x:Name="chkHairLightingAndShadows" Content="Lighting and Shadows" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Quality" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrHairQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="3" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="3"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Object Detail Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Object Detail Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Objects" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Overall Detail" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbOverallDetail" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High" IsSelected="True"/>
-                                    <ComboBoxItem Content="Epic" />
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Preferred Detail" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrPreferredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Required Detail" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrRequiredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0" TickFrequency="0.1" Minimum="-2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" IsDirectionReversed="True" Value="-2"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Max Attaches" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbMaxAttaches" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="5"/>
-                                    <ComboBoxItem Content="10" />
-                                    <ComboBoxItem Content="20"/>
-                                    <ComboBoxItem Content="No Limit" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Effects Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Effects Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Effects" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Refraction Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbRefractionQuality" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Off"/>
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" IsSelected="True"/>
-                                    <ComboBoxItem Content="High" />
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkParticleRefractionAA" Content="Refraction Antialiasing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Particle counts" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrEmitterSpawnRate" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Particle Lighting" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbParticleLighting" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Unlit"/>
-                                    <ComboBoxItem Content="Simple" />
-                                    <ComboBoxItem Content="High Quality" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Particle Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbParticleQuality" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Epic" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Particle simulation" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrParticleSimulation" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Material Quality Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Material Quality Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Materials" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Material Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbMaterialQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Epic" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkMaterialAniso" Content="Anisotropic BRDF" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Post Processing Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Post Processing Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Post Processing" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Filtering Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbPPFilteringQuality" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Tonemapper" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbToneMapper" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Basic"/>
-                                    <ComboBoxItem Content="Vignette" />
-                                    <ComboBoxItem Content="Grain" />
-                                    <ComboBoxItem Content="GrainJitter  " IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="VRAM Allowance" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrPPRenderTargetPool" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="50" LargeChange="100" Maximum="600" TickFrequency="1" Minimum="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="400"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lens-Flare Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbLensFlareQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkFringeQual" Content="Improve Scene Colour Fringe Quality" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkEyeAdapatation" Content="Eye Adaptation" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Bloom Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbBloomQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Off"/>
-                                    <ComboBoxItem Content="Very Low" />
-                                    <ComboBoxItem Content="Low" />
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High" />
-                                    <ComboBoxItem Content="Epic" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Blur Optimization" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbBlurOptmization" Width="140" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Always"/>
-                                    <ComboBoxItem Content="Sometimes" />
-                                    <ComboBoxItem Content="Prefer quality" />
-                                    <ComboBoxItem Content="Always prefer quality" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Upscale Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbUpscaleQuality" Width="150" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Nearest"/>
-                                    <ComboBoxItem Content="Bilinear" />
-                                    <ComboBoxItem Content="Directional" />
-                                    <ComboBoxItem Content="5-tap Catmull-Rom" IsSelected="True"/>
-                                    <ComboBoxItem Content="13-tap Lanczos" />
-                                    <ComboBoxItem Content="36-tap Gaussian"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkGrainQuant" Content="Try remove grainyness" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkLightShafts" Content="Light Shafts" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lightshaft Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbLightShaftQuality" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High" IsSelected="True"/>
-                                    <ComboBoxItem Content="Epic" />
-                                </ComboBox>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Depth of Field Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Depth of Field Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Depth of field" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="DOF Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbDOFQuality" Width="140" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Cutscenes-Very High"/>
-                                    <ComboBoxItem Content="Cinematic-Extreme" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Filtering" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbDOFFiltering" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="None"/>
-                                    <ComboBoxItem Content="Average 3x3" IsSelected="True"/>
-                                    <ComboBoxItem Content="Max 3x3"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkDOFBokeh" Content="Bokeh" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Gather Rings" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbGatherRings" Width="50" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="3"/>
-                                    <ComboBoxItem Content="4" IsSelected="True"/>
-                                    <ComboBoxItem Content="5"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkForegroundComposoting" Content="Foreground Hybrid Scattering" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Background Hybrid Scattering" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbBackgroundComposoting" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Disabled"/>
-                                    <ComboBoxItem Content="Add"/>
-                                    <ComboBoxItem Content="Gather occlusion" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Pixel Scatter" VerticalAlignment="Center"/>
-                                <Slider x:Name="slderMaxSpriteRatio" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="0.5" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Out Of Focus Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbRecombineQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="None"/>
-                                    <ComboBoxItem Content="24 samples" IsSelected="True"/>
-                                    <ComboBoxItem Content="32 samples"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkScatterBokeh" Content="Out of focus Bokeh" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkFastDOFAA" Content="Fast DOF Antialiasing" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Foregound blur limit" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrDOFForegroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.025" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
-                                <Label Content="Background blur limit" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrDOBackgroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.025" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Antialiasing Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Antialiasing Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Antialiasing" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Edge AA" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbFXAA" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Simple"/>
-                                    <ComboBoxItem Content="Dither x3"/>
-                                    <ComboBoxItem Content="Dither x5" />
-                                    <ComboBoxItem Content="Dither x8"/>
-                                    <ComboBoxItem Content="Dither x12" IsSelected="True"/>
-                                    <ComboBoxItem Content="x12" />
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Temporal AA" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbTemporalAA" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="High-Antighost" IsSelected="True"/>
-                                    <ComboBoxItem Content="Epic-Antighost"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="TSR AA" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbTSRAA" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" IsSelected="True"/>
-                                    <ComboBoxItem Content="High"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblHairPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Hair: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockHair" Checked="chkLockHair_Checked" Unchecked="chkLockHair_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockHair, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockHair, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
                             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                <Label Content="Motion blur" VerticalAlignment="Center" FontWeight="Bold" />
+                                <Label Content="Hair" FontWeight="Bold" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkHairAO" Content="Ambient Occlusion" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="AO Samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrHairAOSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Strand Visiblity" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrHairStrandVisibility" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4"/>
+                                </StackPanel>
+                                <CheckBox x:Name="chkHairLightingAndShadows" Content="Lighting and Shadows" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Quality" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrHairQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="3" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="3"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblObjectDetailsPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Object Detail: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockObjectDetail" Checked="chkLockObjectDetail_Checked" Unchecked="chkLockObjectDetail_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockObjectDetail, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockObjectDetail, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Objects" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
-                                    <Label Content="Motion Blur Quality" VerticalAlignment="Center"/>
-                                    <ComboBox Width="120" VerticalAlignment="Center">
+                                    <Label Content="Overall Detail" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbOverallDetail" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                        <ComboBoxItem Content="Epic" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Preferred Detail" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrPreferredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Required Detail" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrRequiredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0" TickFrequency="0.1" Minimum="-2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" IsDirectionReversed="True" Value="-2"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Max Attaches" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbMaxAttaches" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="5"/>
+                                        <ComboBoxItem Content="10" />
+                                        <ComboBoxItem Content="20"/>
+                                        <ComboBoxItem Content="No Limit" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblEffectsPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Effects: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockEffects" Checked="chkLockEffects_Checked" Unchecked="chkLockEffects_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockEffects, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockEffects, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Effects" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Refraction Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbRefractionQuality" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" IsSelected="True"/>
+                                        <ComboBoxItem Content="High" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkParticleRefractionAA" Content="Refraction Antialiasing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Particle counts" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrEmitterSpawnRate" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Particle Lighting" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbParticleLighting" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Unlit"/>
+                                        <ComboBoxItem Content="Simple" />
+                                        <ComboBoxItem Content="High Quality" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Particle Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbParticleQuality" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Epic" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Particle simulation" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrParticleSimulation" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblMaterialQualityPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Material Quality: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockMaterialQuality" Checked="chkLockMaterialQuality_Checked" Unchecked="chkLockMaterialQuality_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockMaterialQuality, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockMaterialQuality, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Materials" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Material Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbMaterialQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Epic" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkMaterialAniso" Content="Anisotropic BRDF" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblPostProcessingPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Post Processing: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockpostProcessing" Checked="chkLockpostProcessing_Checked" Unchecked="chkLockpostProcessing_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockpostProcessing, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockpostProcessing, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Post Processing" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Filtering Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbPPFilteringQuality" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Tonemapper" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbToneMapper" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Basic"/>
+                                        <ComboBoxItem Content="Vignette" />
+                                        <ComboBoxItem Content="Grain" />
+                                        <ComboBoxItem Content="GrainJitter  " IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="VRAM Allowance" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrPPRenderTargetPool" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="50" LargeChange="100" Maximum="600" TickFrequency="1" Minimum="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="400"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lens-Flare Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbLensFlareQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkFringeQual" Content="Improve Scene Colour Fringe Quality" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkEyeAdapatation" Content="Eye Adaptation" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Bloom Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbBloomQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Very Low" />
+                                        <ComboBoxItem Content="Low" />
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High" />
+                                        <ComboBoxItem Content="Epic" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Blur Optimization" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbBlurOptmization" Width="140" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Always"/>
+                                        <ComboBoxItem Content="Sometimes" />
+                                        <ComboBoxItem Content="Prefer quality" />
+                                        <ComboBoxItem Content="Always prefer quality" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Upscale Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbUpscaleQuality" Width="150" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Nearest"/>
+                                        <ComboBoxItem Content="Bilinear" />
+                                        <ComboBoxItem Content="Directional" />
+                                        <ComboBoxItem Content="5-tap Catmull-Rom" IsSelected="True"/>
+                                        <ComboBoxItem Content="13-tap Lanczos" />
+                                        <ComboBoxItem Content="36-tap Gaussian"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkGrainQuant" Content="Try remove grainyness" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLightShafts" Content="Light Shafts" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lightshaft Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbLightShaftQuality" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                        <ComboBoxItem Content="Epic" />
+                                    </ComboBox>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblDepthOfFieldPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Depth Of Field: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockDOF" Checked="chkLockDOF_Checked" Unchecked="chkLockDOF_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockDOF, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockDOF, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Depth of field" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="DOF Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbDOFQuality" Width="140" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Cutscenes-Very High"/>
+                                        <ComboBoxItem Content="Cinematic-Extreme" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Filtering" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbDOFFiltering" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="None"/>
+                                        <ComboBoxItem Content="Average 3x3" IsSelected="True"/>
+                                        <ComboBoxItem Content="Max 3x3"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkDOFBokeh" Content="Bokeh" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Gather Rings" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbGatherRings" Width="50" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="3"/>
+                                        <ComboBoxItem Content="4" IsSelected="True"/>
+                                        <ComboBoxItem Content="5"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkForegroundComposoting" Content="Foreground Hybrid Scattering" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Background Hybrid Scattering" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbBackgroundComposoting" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Disabled"/>
+                                        <ComboBoxItem Content="Add"/>
+                                        <ComboBoxItem Content="Gather occlusion" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Pixel Scatter" VerticalAlignment="Center"/>
+                                    <Slider x:Name="slderMaxSpriteRatio" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="0.5" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Out Of Focus Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbRecombineQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="None"/>
+                                        <ComboBoxItem Content="24 samples" IsSelected="True"/>
+                                        <ComboBoxItem Content="32 samples"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkScatterBokeh" Content="Out of focus Bokeh" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkFastDOFAA" Content="Fast DOF Antialiasing" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Foregound blur limit" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrDOFForegroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.025" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Label Content="Background blur limit" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrDOBackgroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.025" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblAntiAliasingPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Antialiasing: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockAA" Checked="chkLockAA_Checked" Unchecked="chkLockAA_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockAA, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockAA, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Antialiasing" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Edge AA" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbFXAA" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Simple"/>
+                                        <ComboBoxItem Content="Dither x3"/>
+                                        <ComboBoxItem Content="Dither x5" />
+                                        <ComboBoxItem Content="Dither x8"/>
+                                        <ComboBoxItem Content="Dither x12" IsSelected="True"/>
+                                        <ComboBoxItem Content="x12" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Temporal AA" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbTemporalAA" Width="120" VerticalAlignment="Center">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium"/>
-                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                        <ComboBoxItem Content="High-Antighost" IsSelected="True"/>
+                                        <ComboBoxItem Content="Epic-Antighost"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="TSR AA" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbTSRAA" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" IsSelected="True"/>
+                                        <ComboBoxItem Content="High"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Label Content="Motion blur" VerticalAlignment="Center" FontWeight="Bold" />
+                                    <StackPanel Orientation="Horizontal" Margin="0">
+                                        <Label Content="Motion Blur Quality" VerticalAlignment="Center"/>
+                                        <ComboBox Width="120" VerticalAlignment="Center">
+                                            <ComboBoxItem Content="Low"/>
+                                            <ComboBoxItem Content="Medium"/>
+                                            <ComboBoxItem Content="High" IsSelected="True"/>
+                                            <ComboBoxItem Content="Very High" IsSelected="True"/>
+                                        </ComboBox>
+                                    </StackPanel>
+                                    <CheckBox Content="Faster Mode While Turning Rapidly" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                </WrapPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblShadingPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Shading: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockShading" Checked="chkLockShading_Checked" Unchecked="chkLockShading_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockShading, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockShading, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Shading" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Format" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbSceneFormat" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="32bit RGB"/>
+                                        <ComboBoxItem Content="64bit RGBA" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkTranslucentLighting" Content="Light through transparent surfaces" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Transparent Lighting Resolution" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbTranslucentLightingDim" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="32x32x32"/>
+                                        <ComboBoxItem Content="64x64x64" IsSelected="True"/>
+                                        <ComboBoxItem Content="128x128x128"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkBlurTranslucent" Content="Blur the transparent lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTranslucentShadowFilter" Content="Transparent lighting shadow filtering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkSubsurfaceScattering" Content="Subsurface scattering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkSSSubsurfaceScattering" Content="Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkHQSSS" Content="HQ Screenspace Subsurface scattering blend" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLQSSS" Content="LQ Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Screenspace Subsurface scattering samples" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbSSSSamples" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="62+1"/>
+                                        <ComboBoxItem Content="92+1"/>
+                                        <ComboBoxItem Content="13*2+1" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Ambient Occlusion Quality Levels" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbAOQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Auto" IsSelected="True"/>
+                                        <ComboBoxItem Content="None (disabled)"/>
+                                        <ComboBoxItem Content="1"/>
+                                        <ComboBoxItem Content="2"/>
+                                        <ComboBoxItem Content="3"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Ambient Occlusion Factor" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbAOFactor" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Force"/>
+                                        <ComboBoxItem Content="Balanced"/>
+                                        <ComboBoxItem Content="Best Try" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Ambient Occlusion Quality" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrAOQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="10" LargeChange="25" Maximum="100" TickFrequency="10" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="100" AutoToolTipPlacement="BottomRight"/>
+                                    <CheckBox x:Name="chkAlwaysRequestMaxAOQ" Content="Always request max AO quality" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Ambient Occlusion Radius" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrAORadius" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="2.0" TickFrequency="0.1" Minimum="-1.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight" />
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblGlobalIlluminationPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Global Illumination: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockGlobalIllumination" Checked="chkLockGlobalIllumination_Checked" Unchecked="chkLockGlobalIllumination_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockGlobalIllumination, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockGlobalIllumination, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Global Illumination" VerticalAlignment="Center" FontWeight="Bold" />
+                                <CheckBox x:Name="chkIndirectDiffuse" Content="Indirect Diffuse Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkDetailedMeshTracing" Content="Detailed Mesh Tracing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Detailed Mesh Tracing Distance" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrDetailedMeshTracingDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="180" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <CheckBox x:Name="chkRadiosity" Content="Diffuse Bounce Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkOffscreenTraceMeshes" Content="Detailed meshes for shadows from offscreen casters" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Mesh Geometry Detail" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrLumenMeshCardSize" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="25" LargeChange="50" Maximum="200" TickFrequency="25" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="50" AutoToolTipPlacement="BottomRight" IsDirectionReversed="True" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Cache Size out of 4096" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbLumenAtlasSize" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="256"/>
+                                        <ComboBoxItem Content="512"/>
+                                        <ComboBoxItem Content="1024"/>
+                                        <ComboBoxItem Content="2048" IsSelected="True"/>
+                                        <ComboBoxItem Content="4096"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Pixels Per Probe Gather" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbProbeDownsample" Width="50" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="96"/>
+                                        <ComboBoxItem Content="48" />
+                                        <ComboBoxItem Content="32" IsSelected="True"/>
+                                        <ComboBoxItem Content="16"/>
+                                        <ComboBoxItem Content="8"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Probe Gather Resolution" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbLumenTraceOctaRes" Width="50" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="4"/>
+                                        <ComboBoxItem Content="8" IsSelected="True"/>
+                                        <ComboBoxItem Content="16" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Probe Gather Resolution Scale" VerticalAlignment="Center"/>
+                                    <Slider Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Probe Density (VRAM)" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbProbeAtlasResolution" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="64"/>
+                                        <ComboBoxItem Content="128"/>
+                                        <ComboBoxItem Content="256" IsSelected="True"/>
+                                        <ComboBoxItem Content="512"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Probe Placement Resolution" VerticalAlignment="Center"/>
+                                    <ComboBox Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="medium" IsSelected="True"/>
+                                        <ComboBoxItem Content="High" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Probe Raytrace count out of 128" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbProbeRes" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="16"/>
+                                        <ComboBoxItem Content="32" IsSelected="True"/>
+                                        <ComboBoxItem Content="64" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Max Probe Traces Per Frame out of 200" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbProbeTraceBudget" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="10"/>
+                                        <ComboBoxItem Content="25"/>
+                                        <ComboBoxItem Content="50"/>
+                                        <ComboBoxItem Content="75"/>
+                                        <ComboBoxItem Content="100" IsSelected="True"/>
+                                        <ComboBoxItem Content="200" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Probe Cache Accuracy" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbProbeCacheFrameKeep" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" IsSelected="True"/>
+                                        <ComboBoxItem Content="High" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkStochasticInterpolation" Content="Blinear Probe Gather" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTwoSidedFoliageBackfaceDiffuse" Content="Light back of foliage from front with scattering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLumenTranslucencyVolume" Content="Lumen Transparent Surface Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLumenTranslucencyTrace" Content="Raytrace the transparent volumes" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTigherProbes" Content="Tighter probe spacing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Far Field" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrLumenFarFieldDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1000" LargeChange="5000" Maximum="50000" TickFrequency="1000" Minimum="1000" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="40000" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblReflectionsPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Reflections: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockReflections" Checked="chkLockReflections_Checked" Unchecked="chkLockReflections_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockReflections, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockReflections, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Reflections" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Screen Space Reflection Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbSSR" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="High"  IsSelected="True"/>
+                                        <ComboBoxItem Content="Very High"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkHalfResScene" Content="Half res Screen Space Reflections" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLumenReflections" Content="Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTraceMeshReflections" Content="Detailed Mesh Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Reflections Scale" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbReflectionDownSample" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Eighth"/>
+                                        <ComboBoxItem Content="Quarter"/>
+                                        <ComboBoxItem Content="Half"  IsSelected="True"/>
+                                        <ComboBoxItem Content="Native"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Max surface roughness for a raytrace" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrMaxRoughness" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.3" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <CheckBox Content="Higher Lumen Reflections gather quality" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Lumen Reflections Fitler Samples out of 8" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbReflectionFilterSampleCount" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="1"/>
+                                        <ComboBoxItem Content="2"/>
+                                        <ComboBoxItem Content="4" IsSelected="True"/>
+                                        <ComboBoxItem Content="8" />
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkReflectionSkipEmissiveOpaque"  Content="Lumen Reflections Skip Emmissive Opaque" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkReflectionSkipEmissiveFront"  Content="Lumen Reflections Skip Emmissive Front" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkReflectionLumenTransparency" Content="Lumen Reflections Allow Translucency" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkReflectionSceneColor" Content="Scene Coloured Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblShadowsPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Shadows: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockShadows" Checked="chkLockShadows_Checked" Unchecked="chkLockShadows_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockShadows, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockShadows, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Shadows" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Shadow Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbShadowQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Very Low"/>
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="High"/>
                                         <ComboBoxItem Content="Very High" IsSelected="True"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox Content="Faster Mode While Turning Rapidly" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Shadow Cascades" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrShadowCascades" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="2" Maximum="15" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Shadow Cascade Transition" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbShadowTransitionScale" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Disable"/>
+                                        <ComboBoxItem Content="Default" IsSelected="True"/>
+                                        <ComboBoxItem Content="Double"/>
+
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Shadow Resolution" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbShadowResolution" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="128"/>
+                                        <ComboBoxItem Content="256"/>
+                                        <ComboBoxItem Content="512"/>
+                                        <ComboBoxItem Content="1024"/>
+                                        <ComboBoxItem Content="2048" IsSelected="True"/>
+                                        <ComboBoxItem Content="4096"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Min Shadow Caster Size" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrShadowRadiusThresh" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="2" Maximum="0.1" TickFrequency="1" Minimum="0.01" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.01" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Shadow Distance" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrShadowDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Preshadow Resolution" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrPreshadowRes" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <CheckBox x:Name="chkDistanceFieldShadowing" Content="Distance Field Shadowing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Distance Field Shadow Quality" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrDistanceFieldShadowQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Virtual Shadow Page Size" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbShadowPageSize" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="512"/>
+                                        <ComboBoxItem Content="1024"/>
+                                        <ComboBoxItem Content="2048"/>
+                                        <ComboBoxItem Content="4096" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Higher detailed shadows up close preference" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrFirstClipmapLevel" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="6" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Directional light shadow quality preference" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbDirectionalLightQualityPreference" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="0.5x" />
+                                        <ComboBoxItem Content="Normal"/>
+                                        <ComboBoxItem Content="1.5x" IsSelected="True"/>
+                                        <ComboBoxItem Content="2x"/>
+                                        <ComboBoxItem Content="4x"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Directional Shadow preference" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrViewBiasDirectional" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Shadowmap Raytracing quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbShadowRaytraceQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Very low" />
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Epic" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Mesh Detail For Shadows" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrShadowMeshDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1" TickFrequency="1" Minimum="-1" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <CheckBox x:Name="chkContactShadows" Content="Contact Shadows" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkContactShadowsLocal" Content="Contact Shadows For Local Lights" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkShadowSkeletelProxy" Content="Simpler mesh for animated shadows" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkShadowStaticSeperate"  Content="Prefer performance over VRAM for static meshes" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                             </WrapPanel>
-                        </WrapPanel>
-                    </Expander>
+                        </Expander>
+                    </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Shading Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Shading Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Shading" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Format" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbSceneFormat" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="32bit RGB"/>
-                                    <ComboBoxItem Content="64bit RGBA" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkTranslucentLighting" Content="Light through transparent surfaces" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Transparent Lighting Resolution" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbTranslucentLightingDim" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="32x32x32"/>
-                                    <ComboBoxItem Content="64x64x64" IsSelected="True"/>
-                                    <ComboBoxItem Content="128x128x128"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkBlurTranslucent" Content="Blur the transparent lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkTranslucentShadowFilter" Content="Transparent lighting shadow filtering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkSubsurfaceScattering" Content="Subsurface scattering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkSSSubsurfaceScattering" Content="Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkHQSSS" Content="HQ Screenspace Subsurface scattering blend" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkLQSSS" Content="LQ Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Screenspace Subsurface scattering samples" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbSSSSamples" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="62+1"/>
-                                    <ComboBoxItem Content="92+1"/>
-                                    <ComboBoxItem Content="13*2+1" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Ambient Occlusion Quality Levels" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbAOQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Auto" IsSelected="True"/>
-                                    <ComboBoxItem Content="None (disabled)"/>
-                                    <ComboBoxItem Content="1"/>
-                                    <ComboBoxItem Content="2"/>
-                                    <ComboBoxItem Content="3"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Ambient Occlusion Factor" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbAOFactor" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Force"/>
-                                    <ComboBoxItem Content="Balanced"/>
-                                    <ComboBoxItem Content="Best Try" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Ambient Occlusion Quality" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrAOQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="10" LargeChange="25" Maximum="100" TickFrequency="10" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="100" AutoToolTipPlacement="BottomRight"/>
-                                <CheckBox x:Name="chkAlwaysRequestMaxAOQ" Content="Always request max AO quality" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Ambient Occlusion Radius" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrAORadius" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="2.0" TickFrequency="0.1" Minimum="-1.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight" />
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
+                    <Grid>
+                        <Label x:Name="lblCloudsPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Clouds: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockClouds" Checked="chkLockClouds_Checked" Unchecked="chkLockClouds_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockClouds, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockClouds, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Clouds" VerticalAlignment="Center" FontWeight="Bold" />
+                                <CheckBox x:Name="chkCloudAO" Content="Enable Sky Ambient Occlusion" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Sky Ambient Occlusion Resolution" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbCloudAORes" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="32"/>
+                                        <ComboBoxItem Content="64"/>
+                                        <ComboBoxItem Content="128" IsSelected="True"/>
+                                        <ComboBoxItem Content="256"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Max View Ray Samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrCloudViewRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="50" Maximum="400" TickFrequency="50" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="196" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Max Reflection Ray Samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrCloudReflectionRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="10" Maximum="100" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="60" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Max Shadow Ray Samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrCloudShadowRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Global Illumination Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Global Illumination Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Global Illumination" VerticalAlignment="Center" FontWeight="Bold" />
-                            <CheckBox x:Name="chkIndirectDiffuse" Content="Indirect Diffuse Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkDetailedMeshTracing" Content="Detailed Mesh Tracing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Detailed Mesh Tracing Distance" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrDetailedMeshTracingDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="180" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <CheckBox x:Name="chkRadiosity" Content="Diffuse Bounce Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkOffscreenTraceMeshes" Content="Detailed meshes for shadows from offscreen casters" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Mesh Geometry Detail" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrLumenMeshCardSize" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="25" LargeChange="50" Maximum="200" TickFrequency="25" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="50" AutoToolTipPlacement="BottomRight" IsDirectionReversed="True" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Cache Size out of 4096" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbLumenAtlasSize" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="256"/>
-                                    <ComboBoxItem Content="512"/>
-                                    <ComboBoxItem Content="1024"/>
-                                    <ComboBoxItem Content="2048" IsSelected="True"/>
-                                    <ComboBoxItem Content="4096"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Pixels Per Probe Gather" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbProbeDownsample" Width="50" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="96"/>
-                                    <ComboBoxItem Content="48" />
-                                    <ComboBoxItem Content="32" IsSelected="True"/>
-                                    <ComboBoxItem Content="16"/>
-                                    <ComboBoxItem Content="8"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Probe Gather Resolution" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbLumenTraceOctaRes" Width="50" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="4"/>
-                                    <ComboBoxItem Content="8" IsSelected="True"/>
-                                    <ComboBoxItem Content="16" />
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Probe Gather Resolution Scale" VerticalAlignment="Center"/>
-                                <Slider Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" />
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Probe Density (VRAM)" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbProbeAtlasResolution" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="64"/>
-                                    <ComboBoxItem Content="128"/>
-                                    <ComboBoxItem Content="256" IsSelected="True"/>
-                                    <ComboBoxItem Content="512"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Probe Placement Resolution" VerticalAlignment="Center"/>
-                                <ComboBox Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="medium" IsSelected="True"/>
-                                    <ComboBoxItem Content="High" />
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Probe Raytrace count out of 128" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbProbeRes" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="16"/>
-                                    <ComboBoxItem Content="32" IsSelected="True"/>
-                                    <ComboBoxItem Content="64" />
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Max Probe Traces Per Frame out of 200" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbProbeTraceBudget" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="10"/>
-                                    <ComboBoxItem Content="25"/>
-                                    <ComboBoxItem Content="50"/>
-                                    <ComboBoxItem Content="75"/>
-                                    <ComboBoxItem Content="100" IsSelected="True"/>
-                                    <ComboBoxItem Content="200" />
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Probe Cache Accuracy" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbProbeCacheFrameKeep" Width="100" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" IsSelected="True"/>
-                                    <ComboBoxItem Content="High" />
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkStochasticInterpolation" Content="Blinear Probe Gather" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkTwoSidedFoliageBackfaceDiffuse" Content="Light back of foliage from front with scattering" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkLumenTranslucencyVolume" Content="Lumen Transparent Surface Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkLumenTranslucencyTrace" Content="Raytrace the transparent volumes" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkTigherProbes" Content="Tighter probe spacing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Far Field" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrLumenFarFieldDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1000" LargeChange="5000" Maximum="50000" TickFrequency="1000" Minimum="1000" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="40000" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
+                    <Grid>
+                        <Label x:Name="lblFogPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Fog: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockFog" Checked="chkLockFog_Checked" Unchecked="chkLockFog_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockFog, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockFog, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Fog" VerticalAlignment="Center" FontWeight="Bold" />
+                                <CheckBox x:Name="chkVolumetricFog" Content="Volumetric Fog" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Volumetric Fog Resolution" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbFogRes" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Epic" IsSelected="True"/>
+                                        <ComboBoxItem Content="Ultra"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Supersample count" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrFogSampleCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="12" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Reflection Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Reflection Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Reflections" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Screen Space Reflection Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbSSR" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Off"/>
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="High"  IsSelected="True"/>
-                                    <ComboBoxItem Content="Very High"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkHalfResScene" Content="Half res Screen Space Reflections" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkLumenReflections" Content="Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkTraceMeshReflections" Content="Detailed Mesh Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Reflections Scale" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbReflectionDownSample" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Off"/>
-                                    <ComboBoxItem Content="Eighth"/>
-                                    <ComboBoxItem Content="Quarter"/>
-                                    <ComboBoxItem Content="Half"  IsSelected="True"/>
-                                    <ComboBoxItem Content="Native"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Max surface roughness for a raytrace" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrMaxRoughness" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.3" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <CheckBox Content="Higher Lumen Reflections gather quality" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Lumen Reflections Fitler Samples out of 8" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbReflectionFilterSampleCount" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="1"/>
-                                    <ComboBoxItem Content="2"/>
-                                    <ComboBoxItem Content="4" IsSelected="True"/>
-                                    <ComboBoxItem Content="8" />
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox x:Name="chkReflectionSkipEmissiveOpaque"  Content="Lumen Reflections Skip Emmissive Opaque" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkReflectionSkipEmissiveFront"  Content="Lumen Reflections Skip Emmissive Front" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkReflectionLumenTransparency" Content="Lumen Reflections Allow Translucency" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkReflectionSceneColor" Content="Scene Coloured Lumen Reflections" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                        </WrapPanel>
-                    </Expander>
+                    <Grid>
+                        <Label x:Name="lblSkyPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Sky: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockSky" Checked="chkLockSky_Checked" Unchecked="chkLockSky_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockSky, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockSky, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Sky" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Sky sample count" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrSkySampleMax" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="16" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="8" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Sky Depth Detail" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbSkyDepthLevel" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Very Low"/>
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Epic" IsSelected="True"/>
+                                        <ComboBoxItem Content="Ultra"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox Content="Always recalculate sky colour." Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Sky colour samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrSkyColorSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="128" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Atmosphere samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrSkyAtmosphereSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="128" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <CheckBox x:Name="chkHigherFormatLUT" Content="Higher detail transmittance lookup" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Transmittance lookup samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrSkyTransmittanceSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Scattering lookup samples" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrSkyScatteringSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="30" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="15" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <CheckBox x:Name="chkSkyReflection" Content="Sky realtime reflection" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Sky realtime reflection resolution" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbSkyReflectionRes" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                        <ComboBoxItem Content="Epic"/>
+                                    </ComboBox>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Shadow Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Shadow Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Shadows" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Shadow Quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbShadowQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Off"/>
-                                    <ComboBoxItem Content="Very Low"/>
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Very High" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Shadow Cascades" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrShadowCascades" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="2" Maximum="15" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Shadow Cascade Transition" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbShadowTransitionScale" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Disable"/>
-                                    <ComboBoxItem Content="Default" IsSelected="True"/>
-                                    <ComboBoxItem Content="Double"/>
-
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Shadow Resolution" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbShadowResolution" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="128"/>
-                                    <ComboBoxItem Content="256"/>
-                                    <ComboBoxItem Content="512"/>
-                                    <ComboBoxItem Content="1024"/>
-                                    <ComboBoxItem Content="2048" IsSelected="True"/>
-                                    <ComboBoxItem Content="4096"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Min Shadow Caster Size" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrShadowRadiusThresh" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="2" Maximum="0.1" TickFrequency="1" Minimum="0.01" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.01" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Shadow Distance" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrShadowDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Preshadow Resolution" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrPreshadowRes" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <CheckBox x:Name="chkDistanceFieldShadowing" Content="Distance Field Shadowing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Distance Field Shadow Quality" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrDistanceFieldShadowQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Virtual Shadow Page Size" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbShadowPageSize" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="512"/>
-                                    <ComboBoxItem Content="1024"/>
-                                    <ComboBoxItem Content="2048"/>
-                                    <ComboBoxItem Content="4096" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Higher detailed shadows up close preference" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrFirstClipmapLevel" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="6" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Directional light shadow quality preference" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbDirectionalLightQualityPreference" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="0.5x" />
-                                    <ComboBoxItem Content="Normal"/>
-                                    <ComboBoxItem Content="1.5x" IsSelected="True"/>
-                                    <ComboBoxItem Content="2x"/>
-                                    <ComboBoxItem Content="4x"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Directional Shadow preference" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrViewBiasDirectional" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Shadowmap Raytracing quality" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbShadowRaytraceQuality" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Very low" />
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium" />
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Epic" IsSelected="True"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Mesh Detail For Shadows" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrShadowMeshDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1" TickFrequency="1" Minimum="-1" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <CheckBox x:Name="chkContactShadows" Content="Contact Shadows" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkContactShadowsLocal" Content="Contact Shadows For Local Lights" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkShadowSkeletelProxy" Content="Simpler mesh for animated shadows" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <CheckBox x:Name="chkShadowStaticSeperate"  Content="Prefer performance over VRAM for static meshes" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                        </WrapPanel>
-                    </Expander>
+                    <Grid>
+                        <Label x:Name="lblFoliagePreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Foliage: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockFoliage" Checked="chkLockFoliage_Checked" Unchecked="chkLockFoliage_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockFoliage, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockFoliage, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Foliage" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Foliage Pop-In Distance" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbFoliagePopin" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Near"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="Far" IsSelected="True"/>
+                                        <ComboBoxItem Content="Very Far"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Foliage LOD" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrFoliageLOD" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Grass Distance" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrFoliageGrassDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Tree Distance" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrFoliageTreeDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Grass Density" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrFoliageGrassDensity" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Clouds Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Clouds Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Clouds" VerticalAlignment="Center" FontWeight="Bold" />
-                            <CheckBox x:Name="chkCloudAO" Content="Enable Sky Ambient Occlusion" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Sky Ambient Occlusion Resolution" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbCloudAORes" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="32"/>
-                                    <ComboBoxItem Content="64"/>
-                                    <ComboBoxItem Content="128" IsSelected="True"/>
-                                    <ComboBoxItem Content="256"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Max View Ray Samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrCloudViewRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="50" Maximum="400" TickFrequency="50" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="196" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Max Reflection Ray Samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrCloudReflectionRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="10" Maximum="100" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="60" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Max Shadow Ray Samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrCloudShadowRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Fog Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Fog Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Fog" VerticalAlignment="Center" FontWeight="Bold" />
-                            <CheckBox x:Name="chkVolumetricFog" Content="Volumetric Fog" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Volumetric Fog Resolution" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbFogRes" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Epic" IsSelected="True"/>
-                                    <ComboBoxItem Content="Ultra"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Supersample count" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrFogSampleCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="12" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Sky Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Sky Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Sky" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Sky sample count" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrSkySampleMax" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="16" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="8" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Sky Depth Detail" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbSkyDepthLevel" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Very Low"/>
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="High"/>
-                                    <ComboBoxItem Content="Epic" IsSelected="True"/>
-                                    <ComboBoxItem Content="Ultra"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <CheckBox Content="Always recalculate sky colour." Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Sky colour samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrSkyColorSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="128" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Atmosphere samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrSkyAtmosphereSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="128" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <CheckBox x:Name="chkHigherFormatLUT" Content="Higher detail transmittance lookup" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Transmittance lookup samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrSkyTransmittanceSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Scattering lookup samples" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrSkyScatteringSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="30" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="15" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <CheckBox x:Name="chkSkyReflection" Content="Sky realtime reflection" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Sky realtime reflection resolution" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbSkyReflectionRes" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Low"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="High" IsSelected="True"/>
-                                    <ComboBoxItem Content="Epic"/>
-                                </ComboBox>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See Foliage Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide Foliage Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="Foliage" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Foliage Pop-In Distance" VerticalAlignment="Center"/>
-                                <ComboBox x:Name="cmbFoliagePopin" Width="120" VerticalAlignment="Center">
-                                    <ComboBoxItem Content="Near"/>
-                                    <ComboBoxItem Content="Medium"/>
-                                    <ComboBoxItem Content="Far" IsSelected="True"/>
-                                    <ComboBoxItem Content="Very Far"/>
-                                </ComboBox>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Foliage LOD" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrFoliageLOD" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Grass Distance" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrFoliageGrassDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Tree Distance" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrFoliageTreeDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Grass Density" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrFoliageGrassDensity" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
-                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                    <Expander>
-                        <Expander.Style>
-                            <Style TargetType="Expander">
-                                <Setter Property="IsExpanded" Value="False" />
-                                <Setter Property="Header" Value="See View Distance Settings" />
-
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding IsExpanded,RelativeSource={RelativeSource Self}}" Value="True">
-                                        <Setter Property="Header" Value="Hide View Distance Settings" />
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Expander.Style>
-                        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                            <Label Content="View Distance" VerticalAlignment="Center" FontWeight="Bold" />
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="View Distance Scale" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="2" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0">
-                                <Label Content="Light View Distance Scale" VerticalAlignment="Center"/>
-                                <Slider x:Name="sldrLightViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
-                            </StackPanel>
-                        </WrapPanel>
-                    </Expander>
+                    <Grid>
+                        <Label x:Name="lblViewDistancePreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="View Distance: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockViewDistance" Checked="chkLockViewDistance_Checked" Unchecked="chkLockViewDistance_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockViewDistance, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockViewDistance, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="View Distance" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="View Distance Scale" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="2" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Light View Distance Scale" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrLightViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                </StackPanel>
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
                 </StackPanel>
             </ScrollViewer>
         </StackPanel>
