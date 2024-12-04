@@ -937,6 +937,14 @@ namespace S2SettingsGenerator
                         cmbTextureGenerationSpeed.SelectedIndex = 3;
                         break;
                     case Presets.INSANE:
+                        sldrTextures.Value = 0;
+                        cmbAnisotropic.SelectedIndex = 4;
+                        chkAmortizeCPUToGPUCopy.IsChecked = false;
+                        cmbStreamLimitPerFrame.SelectedIndex = 0;
+                        cmbMipPreference.SelectedIndex = 2;
+                        cmbStreamingPool.SelectedIndex = 4;
+                        cmbTextureCopySpeed.SelectedIndex = 3;
+                        cmbTextureGenerationSpeed.SelectedIndex = 3;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -991,6 +999,11 @@ namespace S2SettingsGenerator
                         sldrHairQuality.Value = 3;
                         break;
                     case Presets.INSANE:
+                        chkHairAO.IsChecked = true;
+                        sldrHairAOSamples.Value = 5;
+                        sldrHairStrandVisibility.Value = 5;
+                        chkHairLightingAndShadows.IsChecked = true;
+                        sldrHairQuality.Value = 3;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1040,6 +1053,10 @@ namespace S2SettingsGenerator
                         cmbMaxAttaches.SelectedIndex = 3;
                         break;
                     case Presets.INSANE:
+                        sldrPreferredObjectDetail.Value = 0;
+                        sldrRequiredObjectDetail.Value = -2;
+                        cmbOverallDetail.SelectedIndex = 3;
+                        cmbMaxAttaches.SelectedIndex = 3;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1099,6 +1116,12 @@ namespace S2SettingsGenerator
                         chkParticleRefractionAA.IsChecked = true;
                         break;
                     case Presets.INSANE:
+                        cmbRefractionQuality.SelectedIndex = 3;
+                        sldrEmitterSpawnRate.Value = 1.0;
+                        cmbParticleLighting.SelectedIndex = 2;
+                        cmbParticleQuality.SelectedIndex = 3;
+                        sldrParticleSimulation.Value = 20;
+                        chkParticleRefractionAA.IsChecked = true;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1138,6 +1161,8 @@ namespace S2SettingsGenerator
                         chkMaterialAniso.IsChecked = true;
                         break;
                     case Presets.INSANE:
+                        cmbMaterialQuality.SelectedIndex = 3;
+                        chkMaterialAniso.IsChecked = true;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1228,7 +1253,17 @@ namespace S2SettingsGenerator
                         break;
                     case Presets.INSANE:
                         sldrPPRenderTargetPool.Value = 600;
+                        cmbLensFlareQuality.SelectedIndex = 2;
+                        chkFringeQual.IsChecked = true;
+                        chkEyeAdapatation.IsChecked = true;
+                        cmbBloomQuality.SelectedIndex = 5;
+                        cmbBlurOptmization.SelectedIndex = 3;
                         cmbUpscaleQuality.SelectedIndex = 5;
+                        chkGrainQuant.IsChecked = true;
+                        chkLightShafts.IsChecked = true;
+                        cmbLightShaftQuality.SelectedIndex = 3;
+                        cmbPPFilteringQuality.SelectedIndex = 2;
+                        cmbToneMapper.SelectedIndex = 3;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1318,8 +1353,16 @@ namespace S2SettingsGenerator
                         sldrDOBackgroundBlurLimit.Value = 0.05;
                         break;
                     case Presets.INSANE:
+                        cmbDOFQuality.SelectedIndex = 3;
+                        cmbDOFFiltering.SelectedIndex = 1;
+                        chkDOFBokeh.IsChecked = true;
+                        cmbGatherRings.SelectedIndex = 2;
+                        chkForegroundComposoting.IsChecked = true;
                         cmbBackgroundComposoting.SelectedIndex = 2;
+                        chkScatterBokeh.IsChecked = true;
                         slderMaxSpriteRatio.Value = 0.025;
+                        cmbRecombineQuality.SelectedIndex = 2;
+                        chkFastDOFAA.IsChecked = false;
                         sldrDOFForegroundBlurLimit.Value = 0.1;
                         sldrDOBackgroundBlurLimit.Value = 0.1;
                         break;
@@ -1366,6 +1409,9 @@ namespace S2SettingsGenerator
                         cmbTSRAA.SelectedIndex = 2;
                         break;
                     case Presets.INSANE:
+                        cmbFXAA.SelectedIndex = 5;
+                        cmbTemporalAA.SelectedIndex = 3;
+                        cmbTSRAA.SelectedIndex = 2;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1516,9 +1562,21 @@ namespace S2SettingsGenerator
                         chkTranslucentShadowFilter.IsChecked = true;
                         break;
                     case Presets.INSANE:
+                        cmbSceneFormat.SelectedIndex = 1;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 2;
+                        chkBlurTranslucent.IsChecked = true;
+                        chkSubsurfaceScattering.IsChecked = true;
+                        chkSSSubsurfaceScattering.IsChecked = true;
                         cmbSSSSamples.SelectedIndex = 2;
+                        chkHQSSS.IsChecked = true;
+                        chkLQSSS.IsChecked = false;
+                        cmbAOFactor.SelectedIndex = 0;
                         chkAlwaysRequestMaxAOQ.IsChecked = true;
+                        sldrAOQuality.Value = 100;
                         cmbAOQuality.SelectedIndex = 4;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = true;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1653,10 +1711,27 @@ namespace S2SettingsGenerator
                         chkTigherProbes.IsChecked = true;
                         break;
                     case Presets.INSANE:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = true;
                         sldrDetailedMeshTracingDist.Value = 60;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = true;
+
                         sldrLumenMeshCardSize.Value = 25;
+                        cmbLumenAtlasSize.SelectedIndex = 4;
+
                         cmbProbeDownsample.SelectedIndex = 4;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 1;
+                        cmbProbeTraceBudget.SelectedIndex = 5;
+                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 1;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
                         sldrLumenFarFieldDistance.Value = 50000;
+                        chkTigherProbes.IsChecked = true;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1741,7 +1816,17 @@ namespace S2SettingsGenerator
                         chkReflectionSceneColor.IsChecked = true;
                         break;
                     case Presets.INSANE:
+                        cmbSSR.SelectedIndex = 4;
+                        chkHalfResScene.IsChecked = false;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = true;
+                        cmbReflectionDownSample.SelectedIndex = 4;
                         sldrMaxRoughness.Value = 0.5;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 3;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = true;
+                        chkReflectionSkipEmissiveFront.IsChecked = true;
+                        chkReflectionLumenTransparency.IsChecked = true;
+                        chkReflectionSceneColor.IsChecked = true;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1861,8 +1946,24 @@ namespace S2SettingsGenerator
                         chkShadowStaticSeperate.IsChecked = true;
                         break;
                     case Presets.INSANE:
+                        cmbShadowQuality.SelectedIndex = 5;
                         sldrShadowCascades.Value = 15;
+                        cmbShadowResolution.SelectedIndex = 4;
+                        sldrShadowRadiusThresh.Value = 0.01;
+                        sldrShadowDist.Value = 1.0;
+                        cmbShadowTransitionScale.SelectedIndex = 2;
+                        sldrPreshadowRes.Value = 1.0;
+                        chkDistanceFieldShadowing.IsChecked = true;
+                        sldrDistanceFieldShadowQuality.Value = 1.0;
+                        cmbShadowPageSize.SelectedIndex = 3;
+                        sldrFirstClipmapLevel.Value = 6;
                         cmbDirectionalLightQualityPreference.SelectedIndex = 4;
+                        sldrViewBiasDirectional.Value = 0;
+                        cmbShadowRaytraceQuality.SelectedIndex = 4;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = true;
+                        chkShadowSkeletelProxy.IsChecked = false;
+                        chkShadowStaticSeperate.IsChecked = true;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -1917,6 +2018,8 @@ namespace S2SettingsGenerator
                         sldrCloudShadowRayCount.Value = 5;
                         break;
                     case Presets.INSANE:
+                        chkCloudAO.IsChecked = true;
+                        cmbCloudAORes.SelectedIndex = 3;
                         sldrCloudViewRayCount.Value = 400;
                         sldrCloudReflectionRayCount.Value = 100;
                         sldrCloudShadowRayCount.Value = 6;
@@ -1959,8 +2062,14 @@ namespace S2SettingsGenerator
                         sldrFogSampleCount.Value = 4;
                         break;
                     case Presets.ULTRA:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 4;
+                        sldrFogSampleCount.Value = 8;
                         break;
                     case Presets.INSANE:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 4;
+                        sldrFogSampleCount.Value = 12;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -2036,10 +2145,14 @@ namespace S2SettingsGenerator
                         break;
                     case Presets.INSANE:
                         sldrSkySampleMax.Value = 16;
+                        cmbSkyDepthLevel.SelectedIndex = 5;
                         sldrSkyColorSamples.Value = 256;
                         sldrSkyAtmosphereSamples.Value = 256;
+                        chkHigherFormatLUT.IsChecked = true;
                         sldrSkyTransmittanceSamples.Value = 20;
                         sldrSkyScatteringSamples.Value = 30;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 3;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -2094,6 +2207,11 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDensity.Value = 1;
                         break;
                     case Presets.INSANE:
+                        cmbFoliagePopin.SelectedIndex = 3;
+                        sldrFoliageLOD.Value = 1;
+                        sldrFoliageGrassDist.Value = 1;
+                        sldrFoliageTreeDist.Value = 1;
+                        sldrFoliageGrassDensity.Value = 1;
                         break;
                     case Presets.CUSTOM:
                         break;
@@ -2366,6 +2484,12 @@ namespace S2SettingsGenerator
         private void chkLockMotionBlur_Unchecked(object sender, RoutedEventArgs e)
         {
             MotionBlurPreset = null;
+        }
+
+        private void rdioInsanePreset_Checked(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.CurrentPreset = Presets.INSANE;
+            ApplyPreset();
         }
     }
 }

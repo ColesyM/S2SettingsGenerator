@@ -48,7 +48,7 @@
                     <RadioButton Content="Very High" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
                     <RadioButton x:Name="rdioEpicPreset" Content="Epic" Margin="10,0,0,0" IsEnabled="True" IsChecked="True" Checked="rdioEpicPreset_Checked"/>
                     <RadioButton x:Name="rdioUltraPreset" Content="Ultra" Margin="10,0,0,0" Checked="rdioUltraPreset_Checked"/>
-                    <RadioButton Content="Insane" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
+                    <RadioButton x:Name="rdioInsanePreset"  Content="Insane" Margin="10,0,0,0" Checked="rdioInsanePreset_Checked"/>
                     <RadioButton Content="Custom" Margin="10,0,0,0" IsEnabled="False" Opacity="0.5"/>
                 </WrapPanel>
             </StackPanel>
