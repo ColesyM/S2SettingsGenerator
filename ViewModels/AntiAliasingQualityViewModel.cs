@@ -8,10 +8,8 @@ using System.Windows.Controls;
 
 namespace S2SettingsGenerator.ViewModels
 {
-    public class AntiAliasingQualityViewModel : ViewModel
+    public class AntiAliasingQualityViewModel : QualityViewModel<AntiAliasingQualitySettings>
     {
-        private AntiAliasingQualitySettings Settings { get; set; }
-
         private int fxAAQualityIndex;
 
         public int FXAAQualityIndex
@@ -19,7 +17,7 @@ namespace S2SettingsGenerator.ViewModels
             get { return fxAAQualityIndex; }
             set { 
                 fxAAQualityIndex = value;
-                OnPropertyChanged("FXAAQualityIndex");
+                this.OnPropertyChanged("FXAAQualityIndex");
             }
         }
 
@@ -47,36 +45,7 @@ namespace S2SettingsGenerator.ViewModels
             }
         }
 
-        private bool presetLocked;
-
-        public bool PresetLocked
-        {
-            get { return presetLocked; }
-            set
-            {
-                presetLocked = value;
-                OnPropertyChanged("PresetLocked");
-            }
-        }
-
-        private Nullable<Presets> preset;
-
-        public Nullable<Presets> Preset
-        {
-            get { return preset; }
-            set { 
-                preset = value;
-                OnPropertyChanged("Preset");
-                OnPropertyChanged("PresetString");
-            }
-        }
-
-        public string PresetString
-        {
-            get { return (preset.HasValue ? preset.Value.ToString() : "Unset"); }
-        }
-
-        public void PopulateSettingsModel()
+        public override void PopulateSettingsModel()
         {
             this.Settings = new AntiAliasingQualitySettings()
             {
@@ -109,16 +78,13 @@ namespace S2SettingsGenerator.ViewModels
             };
         }
 
-        public AntiAliasingQualityViewModel()
+        [System.Diagnostics.CodeAnalysis.SetsRequiredMembersAttribute]
+        public AntiAliasingQualityViewModel() : base("Antialiasing: ")
         {
             this.FXAAQualityIndex = 4;
             this.TemporalAAQualityIndex = 2;
             this.TSRRejectionAntiAliasingQualityIndex = 1;
         }
 
-        public void AddSettingsStrings(StringBuilder sb)
-        {
-            Settings.appendLines(sb);
-        }
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct AntiAliasingQualitySettings
+    public struct AntiAliasingQualitySettings: ISettingsModel
     {
         public int r_FXAA_Quality = 4;
         public int r_TemporalAA_Quality = 2;
