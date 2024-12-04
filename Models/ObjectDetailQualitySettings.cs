@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct ObjectDetailQualitySettings
+    public struct ObjectDetailQualitySettings : ISettingsModel
     {
         public float r_Nanite_ViewMeshLODBias_Offset = 0f; //; vk: defalut value
         public float r_Nanite_ViewMeshLODBias_Min = -2f; //; vk: defalut value

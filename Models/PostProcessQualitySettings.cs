@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct PostProcessQualitySettings
+    public struct PostProcessQualitySettings : ISettingsModel
     {
         public int r_RenderTargetPoolMin = 400;
         public int r_LensFlareQuality = 2;

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct GlobalIlluminationQualitySettings
+    public struct GlobalIlluminationQualitySettings : ISettingsModel
     {
         public int r_DynamicGlobalIlluminationMethod_Override = 1;
         public int r_Lumen_DiffuseIndirect_Allow = 1;

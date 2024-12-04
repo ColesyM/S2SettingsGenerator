@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct ShadowQualitySettings
+    public struct ShadowQualitySettings : ISettingsModel
     {
         public int r_LightFunctionQuality = 1;
 

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct ViewDistanceQualitySettings
+    public struct ViewDistanceQualitySettings : ISettingsModel
     {
         public int r_SkeletalMeshLODBias = 0;
         public float r_ViewDistanceScale = 1.0f;

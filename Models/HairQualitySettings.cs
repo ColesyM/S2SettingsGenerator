@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct HairQualitySettings
+    public struct HairQualitySettings : ISettingsModel
     {
         public int r_HairStrands_SkyAO=1;
         public int r_HairStrands_SkyAO_SampleCount = 4;

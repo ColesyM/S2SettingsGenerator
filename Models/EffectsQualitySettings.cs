@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct EffectsQualitySettings
+    public struct EffectsQualitySettings : ISettingsModel
     {
         public int r_RefractionQuality = 2;
         public float r_EmitterSpawnRateScale = 1.0f;

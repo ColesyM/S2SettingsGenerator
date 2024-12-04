@@ -4,10 +4,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct SkyQualitySettings
+    public struct SkyQualitySettings : ISettingsModel
     {
         public int r_SkyAtmosphere_AerialPerspectiveLUT_FastApplyOnOpaque=1; //; Always have FastSkyLUT 1 in this case to avoid wrong sky
         public int r_SkyAtmosphere_AerialPerspectiveLUT_SampleCountMaxPerSlice=4;

@@ -372,8 +372,6 @@ namespace S2SettingsGenerator
                r_DOF_Kernel_MaxBackgroundRadius = (float)sldrDOBackgroundBlurLimit.Value
             };
             dof.appendLines(sb);
-            sb.AppendLine();
-            sb.AppendLine(";--AA--");
             this.viewModel.AAQualitySettings.PopulateSettingsModel();
             this.viewModel.AAQualitySettings.AddSettingsStrings(sb);
             sb.AppendLine();

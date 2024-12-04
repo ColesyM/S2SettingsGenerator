@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct ReflectionQualitySettings
+    public struct ReflectionQualitySettings : ISettingsModel
     {
         public int r_ReflectionMethod_Override = 1;
 

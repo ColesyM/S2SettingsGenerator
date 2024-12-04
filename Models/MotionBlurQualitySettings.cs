@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct MotionBlurQualitySettings
+    public struct MotionBlurQualitySettings : ISettingsModel
     {
         public int r_MotionBlurQuality=4;
         public int r_MotionBlur_HalfResGather=0;

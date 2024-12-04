@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct ShadingQualitySettings
+    public struct ShadingQualitySettings : ISettingsModel
     {
         public int r_SceneColorFormat = 4; //; PF_FloatRGBA 64Bit
         public int r_TranslucentLightingVolume = 1;

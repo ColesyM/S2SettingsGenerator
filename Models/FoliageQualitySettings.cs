@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct FoliageQualitySettings
+    public struct FoliageQualitySettings : ISettingsModel
     {
         public float foliage_MinimumScreenSize=0.000005f;
         public float foliage_LODDistanceScale = 1.0f;

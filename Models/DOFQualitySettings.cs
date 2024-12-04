@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 
 namespace S2SettingsGenerator
 {
-    internal struct DOFQualitySettings
+    public struct DOFQualitySettings : ISettingsModel
     {
         public int r_DepthOfFieldQuality=3;
         public int r_DOF_Gather_AccumulatorQuality=1;       //; higher gathering accumulator quality
