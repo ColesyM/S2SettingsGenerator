@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:S2SettingsGenerator"
         mc:Ignorable="d"
-        Title="Stalker 2 Graphics Settings Generator for Engine.ini" Height="920" Width="630">
+        Title="Stalker 2 Graphics Settings Generator for Engine.ini" Height="920" Width="630" Loaded="Window_Loaded">
     <Grid Margin="0,0,0,0">
         <Image Margin="10,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Source="/S2HoC_GSCGameWorld__Logo_on_white.png" Height="64" Opacity="0.7"/>
         <Label Content="Settings Generator" HorizontalAlignment="Left" Margin="72,44,0,0" VerticalAlignment="Top" Foreground="Red" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.5,0.5">
@@ -571,7 +571,7 @@
                     </Grid>
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
                     <Grid>
-                        <Label x:Name="lblAntiAliasingPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Label x:Name="lblAntiAliasingPreset" Margin="25,0,0,0" Content="{Binding AAQualitySettings.PresetString}" FontWeight="Bold" FontSize="10"/>
                         <Expander>
                             <Expander.Header>
                                 <StackPanel Orientation="Horizontal">
@@ -597,50 +597,81 @@
                                     </CheckBox>
                                 </StackPanel>
                             </Expander.Header>
-                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <WrapPanel DataContext="{Binding AAQualitySettings}" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Label Content="Antialiasing" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Edge AA" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbFXAA" Width="100" VerticalAlignment="Center">
+                                    <ComboBox x:Name="cmbFXAA" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding FXAAQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Simple"/>
                                         <ComboBoxItem Content="Dither x3"/>
                                         <ComboBoxItem Content="Dither x5" />
                                         <ComboBoxItem Content="Dither x8"/>
-                                        <ComboBoxItem Content="Dither x12" IsSelected="True"/>
+                                        <ComboBoxItem Content="Dither x12"/>
                                         <ComboBoxItem Content="x12" />
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Temporal AA" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTemporalAA" Width="120" VerticalAlignment="Center">
+                                    <ComboBox x:Name="cmbTemporalAA" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TemporalAAQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium"/>
-                                        <ComboBoxItem Content="High-Antighost" IsSelected="True"/>
+                                        <ComboBoxItem Content="High-Antighost"/>
                                         <ComboBoxItem Content="Epic-Antighost"/>
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="TSR AA" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTSRAA" Width="120" VerticalAlignment="Center">
+                                    <ComboBox x:Name="cmbTSRAA" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TSRRejectionAntiAliasingQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
-                                        <ComboBoxItem Content="Medium" IsSelected="True"/>
+                                        <ComboBoxItem Content="Medium"/>
                                         <ComboBoxItem Content="High"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
-                                <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-                                    <Label Content="Motion blur" VerticalAlignment="Center" FontWeight="Bold" />
-                                    <StackPanel Orientation="Horizontal" Margin="0">
-                                        <Label Content="Motion Blur Quality" VerticalAlignment="Center"/>
-                                        <ComboBox Width="120" VerticalAlignment="Center">
-                                            <ComboBoxItem Content="Low"/>
-                                            <ComboBoxItem Content="Medium"/>
-                                            <ComboBoxItem Content="High" IsSelected="True"/>
-                                            <ComboBoxItem Content="Very High" IsSelected="True"/>
-                                        </ComboBox>
-                                    </StackPanel>
-                                    <CheckBox Content="Faster Mode While Turning Rapidly" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
-                                </WrapPanel>
+                                
+                            </WrapPanel>
+                        </Expander>
+                    </Grid>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <Grid>
+                        <Label x:Name="lblMotionBlurPreset" Margin="25,0,0,0" Content="EPIC" FontWeight="Bold" FontSize="10"/>
+                        <Expander>
+                            <Expander.Header>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label>
+                                        <Label.Content>
+                                            <TextBlock Text="Motion Blur: " TextWrapping="Wrap"/>
+                                        </Label.Content>
+                                    </Label>
+                                    <CheckBox x:Name="chkLockMotionBlur" Checked="chkLockMotionBlur_Checked" Unchecked="chkLockMotionBlur_Unchecked" VerticalAlignment="Center">
+                                        <CheckBox.Style>
+                                            <Style TargetType="CheckBox">
+                                                <Setter Property="IsChecked" Value="False"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockMotionBlur, Path=IsChecked}" Value="True">
+                                                        <Setter Property="Content" Value="🔒"/>
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding ElementName=chkLockMotionBlur, Path=IsChecked}"  Value="False">
+                                                        <Setter Property="Content" Value="🔓"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </CheckBox.Style>
+                                    </CheckBox>
+                                </StackPanel>
+                            </Expander.Header>
+                            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Label Content="Motion blur" VerticalAlignment="Center" FontWeight="Bold" />
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Motion Blur Quality" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbMotionBlurQuality" Width="120" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Off"/>
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium"/>
+                                        <ComboBoxItem Content="High" IsSelected="True"/>
+                                        <ComboBoxItem Content="Very High"/>
+                                    </ComboBox>
+                                </StackPanel>
+                                <CheckBox x:Name="chkFasterMotionBlur" Content="Faster Mode While Turning Rapidly" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
                             </WrapPanel>
                         </Expander>
                     </Grid>

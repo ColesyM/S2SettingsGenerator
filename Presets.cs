@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace S2SettingsGenerator
 {
-    internal enum Presets
+    public enum Presets
     {
         POTATO = 0,
         VERY_LOW,

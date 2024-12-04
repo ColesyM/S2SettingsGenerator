@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace S2SettingsGenerator
 {
-    internal class MotionBlurQualitySettings
+    internal struct MotionBlurQualitySettings
     {
         public int r_MotionBlurQuality=4;
         public int r_MotionBlur_HalfResGather=0;

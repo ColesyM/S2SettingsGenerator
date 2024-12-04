@@ -18,8 +18,7 @@ namespace S2SettingsGenerator
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal Presets CurrentPreset { get; set; }
-
+        //internal Presets CurrentPreset { get; set; } = Presets.EPIC;
 
         private Nullable<Presets> TexturesPreset { get; set; }
         private Nullable<Presets> HairPreset { get; set; }
@@ -28,7 +27,7 @@ namespace S2SettingsGenerator
         private Nullable<Presets> MaterialQualityPreset { get; set; }
         private Nullable<Presets> PostProcessingPreset { get; set; }
         private Nullable<Presets> DOFPreset { get; set; }
-        private Nullable<Presets> AAPreset { get; set; }
+        private Nullable<Presets> MotionBlurPreset { get; set; }
         private Nullable<Presets> ShadingPreset { get; set; }
         private Nullable<Presets> GlobalIlluminationPreset { get; set; }
         private Nullable<Presets> ReflectionsPreset { get; set; }
@@ -42,9 +41,19 @@ namespace S2SettingsGenerator
         const string RENDER_SETTINGS_HEADER = "[/Script/Engine.RendererSettings]";
 
 
+        private MainWindowViewModel viewModel;
+
+        public MainWindowViewModel ViewModel
+        {
+            get { return viewModel; }
+            set { viewModel = value; }
+        }
+
+
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this.ViewModel = new MainWindowViewModel();
         }
 
         private void TextureSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -365,36 +374,8 @@ namespace S2SettingsGenerator
             dof.appendLines(sb);
             sb.AppendLine();
             sb.AppendLine(";--AA--");
-            AntiAliasingQualitySettings aa = new AntiAliasingQualitySettings()
-            {
-                r_FXAA_Quality = cmbFXAA.SelectedIndex switch
-                {
-                    0 => 0,
-                    1 => 1,
-                    2 => 2,
-                    3 => 3,
-                    4 => 4,
-                    5 => 5,
-                    _ => 4
-                },
-                r_TemporalAA_Quality = cmbTemporalAA.SelectedIndex switch
-                {
-                    0 => 0,
-                    1 => 1,
-                    2 => 2,
-                    3 => 3,
-                    _ => 2
-                },
-                r_TSR_RejectionAntiAliasingQuality = cmbTSRAA.SelectedIndex switch
-                {
-                    0 => 0,
-                    1 => 1,
-                    2 => 2,
-                    _ => 1
-                },
-                r_TSR_History_GrandReprojection = 0
-            };
-            aa.appendLines(sb);
+            this.viewModel.AAQualitySettings.PopulateSettingsModel();
+            this.viewModel.AAQualitySettings.AddSettingsStrings(sb);
             sb.AppendLine();
             sb.AppendLine(";--Shading--");
             ShadingQualitySettings shading = new ShadingQualitySettings()
@@ -804,7 +785,7 @@ namespace S2SettingsGenerator
             };
             globalIllumination.appendLines(sb);
             sb.AppendLine();
-            sb.AppendLine(";--GlobalIllumination--");
+            sb.AppendLine(";--Reflection--");
             ReflectionQualitySettings reflection = new ReflectionQualitySettings()
             {
                 r_ReflectionMethod_Override = 1,
@@ -848,6 +829,23 @@ namespace S2SettingsGenerator
             };
             reflection.appendLines(sb);
 
+            sb.AppendLine();
+            sb.AppendLine(";--MotionBlur--");
+            MotionBlurQualitySettings motionBlur = new MotionBlurQualitySettings()
+            {
+                r_MotionBlurQuality = cmbMotionBlurQuality.SelectedIndex switch
+                {
+                    0 => 0,
+                    1 => 1,
+                    2 => 2,
+                    3 => 3,
+                    _ => 2
+                },
+                r_MotionBlur_HalfResGather = (bool)chkFasterMotionBlur.IsChecked ? 1 : 0
+
+            };
+            motionBlur.appendLines(sb);
+
             string iniLines = sb.ToString();
             Debug.Write(iniLines);
 
@@ -876,12 +874,12 @@ namespace S2SettingsGenerator
 
         private void ApplyPreset()
         {
-            var preset = CurrentPreset;
+            var preset = this.ViewModel.CurrentPreset;
 
             //Textures
             if (TexturesPreset == null)
             {
-                lblTexturesPreset.Content = CurrentPreset.ToString();
+                lblTexturesPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -950,7 +948,7 @@ namespace S2SettingsGenerator
             //Hair
             if (HairPreset == null)
             {
-                lblHairPreset.Content = CurrentPreset.ToString();
+                lblHairPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1004,7 +1002,7 @@ namespace S2SettingsGenerator
             //object detail
             if (ObjectDetailPreset == null)
             {
-                lblObjectDetailsPreset.Content = CurrentPreset.ToString();
+                lblObjectDetailsPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1053,7 +1051,7 @@ namespace S2SettingsGenerator
             //effects
             if (EffectsPreset == null)
             {
-                lblEffectsPreset.Content = CurrentPreset.ToString();
+                lblEffectsPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1112,7 +1110,7 @@ namespace S2SettingsGenerator
             //materials
             if (MaterialQualityPreset == null)
             {
-                lblMaterialQualityPreset.Content = CurrentPreset.ToString();
+                lblMaterialQualityPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1151,7 +1149,7 @@ namespace S2SettingsGenerator
             //post processing
             if (PostProcessingPreset == null)
             {
-                lblPostProcessingPreset.Content = CurrentPreset.ToString();
+                lblPostProcessingPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1242,7 +1240,7 @@ namespace S2SettingsGenerator
             //dof
             if (DOFPreset == null)
             {
-                lblDepthOfFieldPreset.Content = CurrentPreset.ToString();
+                lblDepthOfFieldPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1333,9 +1331,9 @@ namespace S2SettingsGenerator
             }
 
             //aa
-            if (AAPreset == null)
+            if (this.viewModel.AAQualitySettings.PresetLocked == false)
             {
-                lblAntiAliasingPreset.Content = CurrentPreset.ToString();
+                this.ViewModel.AAQualitySettings.Preset = preset;
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1376,10 +1374,56 @@ namespace S2SettingsGenerator
                 }
             }
 
+            //motionblur
+            if (MotionBlurPreset == null)
+            {
+                lblMotionBlurPreset.Content = preset.ToString();
+                switch (preset)
+                {
+                    case Presets.POTATO:
+                        cmbMotionBlurQuality.SelectedIndex = 0;
+                        chkFasterMotionBlur.IsChecked = true;
+                        break;
+                    case Presets.VERY_LOW:
+                        cmbMotionBlurQuality.SelectedIndex = 1;
+                        chkFasterMotionBlur.IsChecked = true;
+                        break;
+                    case Presets.LOW:
+                        cmbMotionBlurQuality.SelectedIndex = 3;
+                        chkFasterMotionBlur.IsChecked = true;
+                        break;
+                    case Presets.MEDIUM:
+                        cmbMotionBlurQuality.SelectedIndex = 3;
+                        chkFasterMotionBlur.IsChecked = true;
+                        break;
+                    case Presets.HIGH:
+                        cmbMotionBlurQuality.SelectedIndex = 3;
+                        chkFasterMotionBlur.IsChecked = false;
+                        break;
+                    case Presets.EPIC:
+                        cmbMotionBlurQuality.SelectedIndex = 4;
+                        chkFasterMotionBlur.IsChecked = false;
+                        break;
+                    case Presets.ULTRA:
+                        cmbMotionBlurQuality.SelectedIndex = 4;
+                        chkFasterMotionBlur.IsChecked = false;
+                        break;
+                    case Presets.INSANE:
+                        cmbMotionBlurQuality.SelectedIndex = 4;
+                        chkFasterMotionBlur.IsChecked = false;
+                        break;
+                    case Presets.CUSTOM:
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+
             //shading
             if (ShadingPreset == null)
             {
-                lblShadingPreset.Content = CurrentPreset.ToString();
+                lblShadingPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1486,7 +1530,7 @@ namespace S2SettingsGenerator
             //global illum
             if (GlobalIlluminationPreset == null)
             {
-                lblGlobalIlluminationPreset.Content = CurrentPreset.ToString();
+                lblGlobalIlluminationPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1624,7 +1668,7 @@ namespace S2SettingsGenerator
             //reflections
             if (ReflectionsPreset == null)
             {
-                lblReflectionsPreset.Content = CurrentPreset.ToString();
+                lblReflectionsPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1709,7 +1753,7 @@ namespace S2SettingsGenerator
             //shadows
             if (ShadowsPreset == null)
             {
-                lblShadowsPreset.Content = CurrentPreset.ToString();
+                lblShadowsPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1830,7 +1874,7 @@ namespace S2SettingsGenerator
             //clouds
             if (CloudsPreset == null)
             {
-                lblCloudsPreset.Content = CurrentPreset.ToString();
+                lblCloudsPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1887,7 +1931,7 @@ namespace S2SettingsGenerator
             //fog
             if (FogPreset == null)
             {
-                lblFogPreset.Content = CurrentPreset.ToString();
+                lblFogPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1928,7 +1972,7 @@ namespace S2SettingsGenerator
             //sky
             if (SkyPreset == null)
             {
-                lblSkyPreset.Content = CurrentPreset.ToString();
+                lblSkyPreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -2007,7 +2051,7 @@ namespace S2SettingsGenerator
             //foliage
             if (FoliagePreset == null)
             {
-                lblFoliagePreset.Content = CurrentPreset.ToString();
+                lblFoliagePreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -2061,7 +2105,7 @@ namespace S2SettingsGenerator
             //view distance
             if (ViewDistancePreset == null)
             {
-                lblViewDistancePreset.Content = CurrentPreset.ToString();
+                lblViewDistancePreset.Content = preset.ToString();
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -2102,19 +2146,19 @@ namespace S2SettingsGenerator
 
         private void rdioPotatoPreset_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPreset = Presets.POTATO;
+            this.ViewModel.CurrentPreset = Presets.POTATO;
             ApplyPreset();
         }
 
         private void rdioVeryLowPreset_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPreset = Presets.VERY_LOW;
+            this.ViewModel.CurrentPreset = Presets.VERY_LOW;
             ApplyPreset();
         }
 
         private void rdioLowPreset_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPreset = Presets.LOW;
+            this.ViewModel.CurrentPreset = Presets.LOW;
             ApplyPreset();
         }
 
@@ -2127,20 +2171,20 @@ namespace S2SettingsGenerator
             }
 
 
-            CurrentPreset = Presets.EPIC;
+            this.ViewModel.CurrentPreset = Presets.EPIC;
             ApplyPreset();
 
         }
 
         private void rdioUltraPreset_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPreset = Presets.ULTRA;
+            this.ViewModel.CurrentPreset = Presets.ULTRA;
             ApplyPreset();
         }
 
         private void chkLockTextures_Checked(object sender, RoutedEventArgs e)
         {
-            TexturesPreset = CurrentPreset;
+            TexturesPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockTextures_Unchecked(object sender, RoutedEventArgs e)
@@ -2150,7 +2194,7 @@ namespace S2SettingsGenerator
 
         private void chkLockHair_Checked(object sender, RoutedEventArgs e)
         {
-            HairPreset = CurrentPreset;
+            HairPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockHair_Unchecked(object sender, RoutedEventArgs e)
@@ -2160,7 +2204,7 @@ namespace S2SettingsGenerator
 
         private void chkLockObjectDetail_Checked(object sender, RoutedEventArgs e)
         {
-            ObjectDetailPreset = CurrentPreset;
+            ObjectDetailPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockObjectDetail_Unchecked(object sender, RoutedEventArgs e)
@@ -2170,7 +2214,7 @@ namespace S2SettingsGenerator
 
         private void chkLockEffects_Checked(object sender, RoutedEventArgs e)
         {
-            EffectsPreset = CurrentPreset;
+            EffectsPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockEffects_Unchecked(object sender, RoutedEventArgs e)
@@ -2180,7 +2224,7 @@ namespace S2SettingsGenerator
 
         private void chkLockMaterialQuality_Checked(object sender, RoutedEventArgs e)
         {
-            MaterialQualityPreset = CurrentPreset;
+            MaterialQualityPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockMaterialQuality_Unchecked(object sender, RoutedEventArgs e)
@@ -2190,7 +2234,7 @@ namespace S2SettingsGenerator
 
         private void chkLockpostProcessing_Checked(object sender, RoutedEventArgs e)
         {
-            PostProcessingPreset = CurrentPreset;
+            PostProcessingPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockpostProcessing_Unchecked(object sender, RoutedEventArgs e)
@@ -2200,7 +2244,7 @@ namespace S2SettingsGenerator
 
         private void chkLockDOF_Checked(object sender, RoutedEventArgs e)
         {
-            DOFPreset = CurrentPreset;
+            DOFPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockDOF_Unchecked(object sender, RoutedEventArgs e)
@@ -2210,17 +2254,17 @@ namespace S2SettingsGenerator
 
         private void chkLockAA_Checked(object sender, RoutedEventArgs e)
         {
-            AAPreset = CurrentPreset;
+            this.viewModel.AAQualitySettings.Preset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockAA_Unchecked(object sender, RoutedEventArgs e)
         {
-            AAPreset = null;
+            this.viewModel.AAQualitySettings.Preset = null;
         }
 
         private void chkLockShading_Checked(object sender, RoutedEventArgs e)
         {
-            ShadingPreset = CurrentPreset;
+            ShadingPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockShading_Unchecked(object sender, RoutedEventArgs e)
@@ -2230,7 +2274,7 @@ namespace S2SettingsGenerator
 
         private void chkLockGlobalIllumination_Checked(object sender, RoutedEventArgs e)
         {
-            GlobalIlluminationPreset = CurrentPreset;
+            GlobalIlluminationPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockGlobalIllumination_Unchecked(object sender, RoutedEventArgs e)
@@ -2240,7 +2284,7 @@ namespace S2SettingsGenerator
 
         private void chkLockReflections_Checked(object sender, RoutedEventArgs e)
         {
-            ReflectionsPreset = CurrentPreset;
+            ReflectionsPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockReflections_Unchecked(object sender, RoutedEventArgs e)
@@ -2250,7 +2294,7 @@ namespace S2SettingsGenerator
 
         private void chkLockShadows_Checked(object sender, RoutedEventArgs e)
         {
-            ShadowsPreset = CurrentPreset;
+            ShadowsPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockShadows_Unchecked(object sender, RoutedEventArgs e)
@@ -2260,7 +2304,7 @@ namespace S2SettingsGenerator
 
         private void chkLockClouds_Checked(object sender, RoutedEventArgs e)
         {
-            CloudsPreset = CurrentPreset;
+            CloudsPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockClouds_Unchecked(object sender, RoutedEventArgs e)
@@ -2270,7 +2314,7 @@ namespace S2SettingsGenerator
 
         private void chkLockFog_Checked(object sender, RoutedEventArgs e)
         {
-            FogPreset = CurrentPreset;
+            FogPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockFog_Unchecked(object sender, RoutedEventArgs e)
@@ -2280,7 +2324,7 @@ namespace S2SettingsGenerator
 
         private void chkLockSky_Checked(object sender, RoutedEventArgs e)
         {
-            SkyPreset = CurrentPreset;
+            SkyPreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockSky_Unchecked(object sender, RoutedEventArgs e)
@@ -2290,7 +2334,7 @@ namespace S2SettingsGenerator
 
         private void chkLockFoliage_Checked(object sender, RoutedEventArgs e)
         {
-            FoliagePreset = CurrentPreset;
+            FoliagePreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockFoliage_Unchecked(object sender, RoutedEventArgs e)
@@ -2300,12 +2344,28 @@ namespace S2SettingsGenerator
 
         private void chkLockViewDistance_Checked(object sender, RoutedEventArgs e)
         {
-            ViewDistancePreset = CurrentPreset;
+            ViewDistancePreset = this.ViewModel.CurrentPreset;
         }
 
         private void chkLockViewDistance_Unchecked(object sender, RoutedEventArgs e)
         {
             ViewDistancePreset = null;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.CurrentPreset = Presets.EPIC;
+            ApplyPreset();
+        }
+
+        private void chkLockMotionBlur_Checked(object sender, RoutedEventArgs e)
+        {
+            MotionBlurPreset = this.ViewModel.CurrentPreset;
+        }
+
+        private void chkLockMotionBlur_Unchecked(object sender, RoutedEventArgs e)
+        {
+            MotionBlurPreset = null;
         }
     }
 }
