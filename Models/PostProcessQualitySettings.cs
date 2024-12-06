@@ -13,6 +13,7 @@ namespace S2SettingsGenerator
         public int r_LensFlareQuality = 2;
         public int r_SceneColorFringeQuality = 1;
         public int r_EyeAdaptationQuality = 2;
+        public float r_EyeAdaptation_LensAttenuation = 0.78f;
         public int r_BloomQuality = 5;
         public int r_FastBlurThreshold = 100;
         public int r_Upscale_Quality = 3;
@@ -32,6 +33,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.LensFlareQuality={r_LensFlareQuality}");
             sb.AppendLine($"r.SceneColorFringeQuality={r_SceneColorFringeQuality}");
             sb.AppendLine($"r.EyeAdaptationQuality={r_EyeAdaptationQuality}");
+            sb.AppendLine($"r.EyeAdaptation.LensAttenuation={r_EyeAdaptation_LensAttenuation}");
             sb.AppendLine($"r.BloomQuality={r_BloomQuality}");
             sb.AppendLine($"r.FastBlurThreshold={r_FastBlurThreshold}");
             sb.AppendLine($"r.Upscale.Quality={r_Upscale_Quality}");

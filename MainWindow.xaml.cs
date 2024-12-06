@@ -164,6 +164,14 @@ namespace S2SettingsGenerator
             {
                 r_Nanite_ViewMeshLODBias_Offset = (float)sldrPreferredObjectDetail.Value,
                 r_Nanite_ViewMeshLODBias_Min = (float)sldrRequiredObjectDetail.Value,
+                r_Nanite_MaxPixelsPerEdge = cmbNanitePixelsPerEdge.SelectedIndex switch
+                {   
+                    0 => 4,
+                    1 => 3,
+                    2 => 2,
+                    3 => 1,
+                    _ => 1
+                },
                 r_SkeletalMeshLODBias = 0,
                 r_DetailMode = cmbOverallDetail.SelectedIndex switch
                 {
@@ -259,6 +267,7 @@ namespace S2SettingsGenerator
                 },
                 r_SceneColorFringeQuality = (bool)chkFringeQual.IsChecked ? 1 : 0,
                 r_EyeAdaptationQuality = (bool)chkEyeAdapatation.IsChecked ? 2 : 0,
+                r_EyeAdaptation_LensAttenuation = (float)sldrEyeAdaptationLensAtt.Value,
                 r_BloomQuality = cmbBloomQuality.SelectedIndex switch
                 {
                     0 => 0,
@@ -673,9 +682,11 @@ namespace S2SettingsGenerator
                     _ => 0.000005f
                 },
                 foliage_LODDistanceScale = (float)sldrFoliageLOD.Value,
+                foliage_MaxTrianglesToRender = (bool)chkLimitFoliageGeometry.IsChecked ? 133333 : 100000000,
                 fg_CullDistanceScale_Grass = (float)sldrFoliageGrassDist.Value,
                 fg_CullDistanceScale_Trees = (float)sldrFoliageTreeDist.Value,
                 fg_DensityScale_Grass = (float)sldrFoliageGrassDensity.Value
+
             };
             foliage.appendLines(sb);
             sb.AppendLine();
@@ -1018,19 +1029,22 @@ namespace S2SettingsGenerator
                 {
                     case Presets.POTATO:
                         sldrPreferredObjectDetail.Value = 0.8434;
-                        sldrRequiredObjectDetail.Value = -0.2736; ;
+                        sldrRequiredObjectDetail.Value = -0.2736;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 0;
                         cmbOverallDetail.SelectedIndex = 0;
                         cmbMaxAttaches.SelectedIndex = 0;
                         break;
                     case Presets.VERY_LOW:
                         sldrPreferredObjectDetail.Value = 0.6434;
-                        sldrRequiredObjectDetail.Value = -0.3736; ;
+                        sldrRequiredObjectDetail.Value = -0.3736;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 1;
                         cmbOverallDetail.SelectedIndex = 0;
                         cmbMaxAttaches.SelectedIndex = 0;
                         break;
                     case Presets.LOW:
                         sldrPreferredObjectDetail.Value = 0.5849;
-                        sldrRequiredObjectDetail.Value = -0.4151; ;
+                        sldrRequiredObjectDetail.Value = -0.4151;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 3;
                         cmbOverallDetail.SelectedIndex = 0;
                         cmbMaxAttaches.SelectedIndex = 1;
                         break;
@@ -1041,18 +1055,21 @@ namespace S2SettingsGenerator
                     case Presets.EPIC:
                         sldrPreferredObjectDetail.Value = 0;
                         sldrRequiredObjectDetail.Value = -2;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 3;
                         cmbOverallDetail.SelectedIndex = 2;
                         cmbMaxAttaches.SelectedIndex = 3;
                         break;
                     case Presets.ULTRA:
                         sldrPreferredObjectDetail.Value = 0;
                         sldrRequiredObjectDetail.Value = -2;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 3;
                         cmbOverallDetail.SelectedIndex = 3;
                         cmbMaxAttaches.SelectedIndex = 3;
                         break;
                     case Presets.INSANE:
                         sldrPreferredObjectDetail.Value = 0;
                         sldrRequiredObjectDetail.Value = -2;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 3;
                         cmbOverallDetail.SelectedIndex = 3;
                         cmbMaxAttaches.SelectedIndex = 3;
                         break;
@@ -1180,6 +1197,7 @@ namespace S2SettingsGenerator
                         cmbLensFlareQuality.SelectedIndex = 0;
                         chkFringeQual.IsChecked = false;
                         chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
                         cmbBloomQuality.SelectedIndex = 0;
                         cmbBlurOptmization.SelectedIndex = 0;
                         cmbUpscaleQuality.SelectedIndex = 0;
@@ -1194,6 +1212,7 @@ namespace S2SettingsGenerator
                         cmbLensFlareQuality.SelectedIndex = 0;
                         chkFringeQual.IsChecked = false;
                         chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
                         cmbBloomQuality.SelectedIndex = 1;
                         cmbBlurOptmization.SelectedIndex = 0;
                         cmbUpscaleQuality.SelectedIndex = 1;
@@ -1208,6 +1227,7 @@ namespace S2SettingsGenerator
                         cmbLensFlareQuality.SelectedIndex = 0;
                         chkFringeQual.IsChecked = false;
                         chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
                         cmbBloomQuality.SelectedIndex = 4;
                         cmbBlurOptmization.SelectedIndex = 0;
                         cmbUpscaleQuality.SelectedIndex = 1;
@@ -1226,6 +1246,7 @@ namespace S2SettingsGenerator
                         cmbLensFlareQuality.SelectedIndex = 2;
                         chkFringeQual.IsChecked = true;
                         chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
                         cmbBloomQuality.SelectedIndex = 5;
                         cmbBlurOptmization.SelectedIndex = 3;
                         cmbUpscaleQuality.SelectedIndex = 3;
@@ -1240,6 +1261,7 @@ namespace S2SettingsGenerator
                         cmbLensFlareQuality.SelectedIndex = 2;
                         chkFringeQual.IsChecked = true;
                         chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
                         cmbBloomQuality.SelectedIndex = 5;
                         cmbBlurOptmization.SelectedIndex = 3;
                         cmbUpscaleQuality.SelectedIndex = 4;
@@ -1254,6 +1276,7 @@ namespace S2SettingsGenerator
                         cmbLensFlareQuality.SelectedIndex = 2;
                         chkFringeQual.IsChecked = true;
                         chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
                         cmbBloomQuality.SelectedIndex = 5;
                         cmbBlurOptmization.SelectedIndex = 3;
                         cmbUpscaleQuality.SelectedIndex = 5;
@@ -2171,6 +2194,7 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDist.Value = 0.4;
                         sldrFoliageTreeDist.Value = 0.4;
                         sldrFoliageGrassDensity.Value = 0.35;
+                        chkLimitFoliageGeometry.IsChecked = true;
                         break;
                     case Presets.VERY_LOW:
                         cmbFoliagePopin.SelectedIndex = 0;
@@ -2178,6 +2202,7 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDist.Value = 0.54;
                         sldrFoliageTreeDist.Value = 0.54;
                         sldrFoliageGrassDensity.Value = 0.45;
+                        chkLimitFoliageGeometry.IsChecked = true;
                         break;
                     case Presets.LOW:
                         cmbFoliagePopin.SelectedIndex = 0;
@@ -2185,6 +2210,7 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDist.Value = 0.6;
                         sldrFoliageTreeDist.Value = 0.6;
                         sldrFoliageGrassDensity.Value = 0.5;
+                        chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.MEDIUM:
                         break;
@@ -2196,6 +2222,7 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDist.Value = 1;
                         sldrFoliageTreeDist.Value = 1;
                         sldrFoliageGrassDensity.Value = 1;
+                        chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.ULTRA:
                         cmbFoliagePopin.SelectedIndex = 3;
@@ -2203,6 +2230,7 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDist.Value = 1;
                         sldrFoliageTreeDist.Value = 1;
                         sldrFoliageGrassDensity.Value = 1;
+                        chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.INSANE:
                         cmbFoliagePopin.SelectedIndex = 3;
@@ -2210,6 +2238,7 @@ namespace S2SettingsGenerator
                         sldrFoliageGrassDist.Value = 1;
                         sldrFoliageTreeDist.Value = 1;
                         sldrFoliageGrassDensity.Value = 1;
+                        chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.CUSTOM:
                         break;

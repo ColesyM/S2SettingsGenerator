@@ -101,7 +101,7 @@
                         <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
                             <Line Stretch="Fill" X2="1" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
                             <Label Content="Textures" VerticalAlignment="Center" FontWeight="Bold"/>
-                            <Slider x:Name="sldrTextures" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.5" LargeChange="0.5" Maximum="2" TickFrequency="0.5" Minimum="0" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" ValueChanged="TextureSlider_ValueChanged"/>
+                            <Slider x:Name="sldrTextures" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.5" LargeChange="0.5" Maximum="2" TickFrequency="0.5" Minimum="0" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" ValueChanged="TextureSlider_ValueChanged" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                             <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                 <Label Content="Anisotropic" VerticalAlignment="Center"/>
                                 <ComboBox x:Name="cmbAnisotropic" Width="100" VerticalAlignment="Center">
@@ -196,16 +196,16 @@
                                 <CheckBox x:Name="chkHairAO" Content="Ambient Occlusion" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="AO Samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrHairAOSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4"/>
+                                    <Slider x:Name="sldrHairAOSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Strand Visiblity" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrHairStrandVisibility" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4"/>
+                                    <Slider x:Name="sldrHairStrandVisibility" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkHairLightingAndShadows" Content="Lighting and Shadows" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Quality" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrHairQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="3" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="3"/>
+                                    <Slider x:Name="sldrHairQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="3" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="3" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -249,13 +249,22 @@
                                         <ComboBoxItem Content="Epic" />
                                     </ComboBox>
                                 </StackPanel>
+                                <StackPanel Orientation="Horizontal" Margin="0">
+                                    <Label Content="Nanite Fine Detail" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbNanitePixelsPerEdge" Width="100" VerticalAlignment="Center">
+                                        <ComboBoxItem Content="Low"/>
+                                        <ComboBoxItem Content="Medium" />
+                                        <ComboBoxItem Content="High"/>
+                                        <ComboBoxItem Content="Per Pixel" IsSelected="True"/>
+                                    </ComboBox>
+                                </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Preferred Detail" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrPreferredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrPreferredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="0" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Required Detail" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrRequiredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0" TickFrequency="0.1" Minimum="-2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" IsDirectionReversed="True" Value="-2"/>
+                                    <Slider x:Name="sldrRequiredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0" TickFrequency="0.1" Minimum="-2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" IsDirectionReversed="True" Value="-2" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max Attaches" VerticalAlignment="Center"/>
@@ -311,7 +320,7 @@
                                 <CheckBox x:Name="chkParticleRefractionAA" Content="Refraction Antialiasing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle counts" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrEmitterSpawnRate" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrEmitterSpawnRate" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle Lighting" VerticalAlignment="Center"/>
@@ -332,7 +341,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle simulation" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrParticleSimulation" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrParticleSimulation" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -429,7 +438,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="VRAM Allowance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrPPRenderTargetPool" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="50" LargeChange="100" Maximum="600" TickFrequency="1" Minimum="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="400"/>
+                                    <Slider x:Name="sldrPPRenderTargetPool" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="50" LargeChange="100" Maximum="600" TickFrequency="50" Minimum="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="400" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lens-Flare Quality" VerticalAlignment="Center"/>
@@ -441,6 +450,10 @@
                                 </StackPanel>
                                 <CheckBox x:Name="chkFringeQual" Content="Improve Scene Colour Fringe Quality" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <CheckBox x:Name="chkEyeAdapatation" Content="Eye Adaptation" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
+                                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                                    <Label Content="Eye Adaptation Brightness" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrEyeAdaptationLensAtt" Width="150"  Minimum="0.0" Maximum="5.0" SmallChange="0.01" LargeChange="0.5" Value="0.78" TickFrequency="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
+                                </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Bloom Quality" VerticalAlignment="Center"/>
                                     <ComboBox x:Name="cmbBloomQuality" Width="120" VerticalAlignment="Center">
@@ -553,7 +566,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Pixel Scatter" VerticalAlignment="Center"/>
-                                    <Slider x:Name="slderMaxSpriteRatio" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="0.5" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.1" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="slderMaxSpriteRatio" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.01" Maximum="0.5" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="0.1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Out Of Focus Quality" VerticalAlignment="Center"/>
@@ -567,11 +580,11 @@
                                 <CheckBox x:Name="chkFastDOFAA" Content="Fast DOF Antialiasing" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Foregound blur limit" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDOFForegroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.025" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrDOFForegroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="0.025" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Background blur limit" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDOBackgroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.025" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrDOBackgroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="0.025" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -746,7 +759,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Ambient Occlusion Radius" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrAORadius" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="2.0" TickFrequency="0.1" Minimum="-1.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight" />
+                                    <Slider x:Name="sldrAORadius" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="2.0" TickFrequency="0.1" Minimum="-1.0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="1.0" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1" />
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -785,13 +798,13 @@
                                 <CheckBox x:Name="chkDetailedMeshTracing" Content="Detailed Mesh Tracing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Detailed Mesh Tracing Distance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDetailedMeshTracingDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="180" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="20" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrDetailedMeshTracingDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="180" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="20" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkRadiosity" Content="Diffuse Bounce Lighting" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <CheckBox x:Name="chkOffscreenTraceMeshes" Content="Detailed meshes for shadows from offscreen casters" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Mesh Geometry Detail" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrLumenMeshCardSize" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="25" LargeChange="50" Maximum="200" TickFrequency="25" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="50" AutoToolTipPlacement="BottomRight" IsDirectionReversed="True" />
+                                    <Slider x:Name="sldrLumenMeshCardSize" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="25" LargeChange="50" Maximum="200" TickFrequency="25" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="50" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Cache Size out of 4096" VerticalAlignment="Center"/>
@@ -823,7 +836,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Probe Gather Resolution Scale" VerticalAlignment="Center"/>
-                                    <Slider Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" />
+                                    <Slider Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Probe Density (VRAM)" VerticalAlignment="Center"/>
@@ -876,7 +889,7 @@
                                 <CheckBox x:Name="chkTigherProbes" Content="Tighter probe spacing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Far Field" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrLumenFarFieldDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1000" LargeChange="5000" Maximum="50000" TickFrequency="1000" Minimum="1000" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="40000" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrLumenFarFieldDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1000" LargeChange="5000" Maximum="50000" TickFrequency="1000" Minimum="1000" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="40000" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -936,7 +949,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max surface roughness for a raytrace" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrMaxRoughness" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.3" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrMaxRoughness" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="0.3" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <CheckBox Content="Higher Lumen Reflections gather quality" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
@@ -998,7 +1011,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Shadow Cascades" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrShadowCascades" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="2" Maximum="15" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrShadowCascades" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="2" Maximum="15" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Shadow Cascade Transition" VerticalAlignment="Center"/>
@@ -1022,20 +1035,20 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Min Shadow Caster Size" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrShadowRadiusThresh" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="2" Maximum="0.1" TickFrequency="1" Minimum="0.01" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0.01" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrShadowRadiusThresh" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="2" Maximum="0.1" TickFrequency="1" Minimum="0.01" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="0.01" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Shadow Distance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrShadowDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrShadowDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="1.0" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Preshadow Resolution" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrPreshadowRes" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrPreshadowRes" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="1.0" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkDistanceFieldShadowing" Content="Distance Field Shadowing" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Distance Field Shadow Quality" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDistanceFieldShadowQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1.0" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrDistanceFieldShadowQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1.0" TickFrequency="1" Minimum="0.0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="1.0" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Virtual Shadow Page Size" VerticalAlignment="Center"/>
@@ -1048,7 +1061,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Higher detailed shadows up close preference" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFirstClipmapLevel" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="6" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrFirstClipmapLevel" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="6" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Directional light shadow quality preference" VerticalAlignment="Center"/>
@@ -1062,7 +1075,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Directional Shadow preference" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrViewBiasDirectional" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrViewBiasDirectional" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Shadowmap Raytracing quality" VerticalAlignment="Center"/>
@@ -1076,7 +1089,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Mesh Detail For Shadows" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrShadowMeshDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1" TickFrequency="1" Minimum="-1" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" Value="0" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrShadowMeshDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="1" TickFrequency="1" Minimum="-1" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="False" Value="0" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkContactShadows" Content="Contact Shadows" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <CheckBox x:Name="chkContactShadowsLocal" Content="Contact Shadows For Local Lights" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
@@ -1127,15 +1140,15 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max View Ray Samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrCloudViewRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="50" Maximum="400" TickFrequency="50" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="196" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrCloudViewRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="50" Maximum="400" TickFrequency="50" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="196" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max Reflection Ray Samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrCloudReflectionRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="10" Maximum="100" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="60" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrCloudReflectionRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="10" Maximum="100" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="60" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max Shadow Ray Samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrCloudShadowRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrCloudShadowRayCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="6" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -1183,7 +1196,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Supersample count" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFogSampleCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="12" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrFogSampleCount" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="12" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="4" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -1220,7 +1233,7 @@
                                 <Label Content="Sky" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Sky sample count" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrSkySampleMax" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="16" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="8" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrSkySampleMax" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="16" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="8" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Sky Depth Detail" VerticalAlignment="Center"/>
@@ -1236,20 +1249,20 @@
                                 <CheckBox Content="Always recalculate sky colour." Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Sky colour samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrSkyColorSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="128" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrSkyColorSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="128" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Atmosphere samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrSkyAtmosphereSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="128" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrSkyAtmosphereSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="2" LargeChange="8" Maximum="256" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="128" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkHigherFormatLUT" Content="Higher detail transmittance lookup" Margin="10,0,0,0" IsChecked="False" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Transmittance lookup samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrSkyTransmittanceSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="10" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrSkyTransmittanceSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="10" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Scattering lookup samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrSkyScatteringSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="30" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="15" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrSkyScatteringSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="30" TickFrequency="8" Minimum="2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="15" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkSkyReflection" Content="Sky realtime reflection" Margin="10,0,0,0" IsChecked="True" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
@@ -1317,8 +1330,9 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Grass Density" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFoliageGrassDensity" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrFoliageGrassDensity" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
+                                <CheckBox x:Name="chkLimitFoliageGeometry" Margin="10,10,0,0" Content="Limit Foliage Geometry" IsChecked="False" />
                             </WrapPanel>
                         </Expander>
                     </Grid>
@@ -1354,11 +1368,11 @@
                                 <Label Content="View Distance" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="View Distance Scale" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="2" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="2" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Light View Distance Scale" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrLightViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrLightViewDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>

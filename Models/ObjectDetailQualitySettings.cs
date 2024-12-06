@@ -11,6 +11,7 @@ namespace S2SettingsGenerator
     {
         public float r_Nanite_ViewMeshLODBias_Offset = 0f; //; vk: defalut value
         public float r_Nanite_ViewMeshLODBias_Min = -2f; //; vk: defalut value
+        public int r_Nanite_MaxPixelsPerEdge = 1;
         public int r_SkeletalMeshLODBias = 0;
         public int r_DetailMode = 2;
         public int mg_CharacterQuality = 3;
@@ -26,6 +27,7 @@ namespace S2SettingsGenerator
         {
             sb.AppendLine($"r.Nanite.ViewMeshLODBias.Offset={r_Nanite_ViewMeshLODBias_Offset}");
             sb.AppendLine($"r.Nanite.ViewMeshLODBias.Min={r_Nanite_ViewMeshLODBias_Min}");
+            sb.AppendLine($"r.Nanite.MaxPixelsPerEdge={r_Nanite_MaxPixelsPerEdge}");
             sb.AppendLine($"r.SkeletalMeshLODBias={r_SkeletalMeshLODBias}");
             sb.AppendLine($"r.DetailMode={r_DetailMode}");
             sb.AppendLine($"mg.CharacterQuality={mg_CharacterQuality}");
