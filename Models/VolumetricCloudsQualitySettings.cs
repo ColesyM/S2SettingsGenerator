@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S2SettingsGenerator
+namespace S2SettingsGenerator.Models
 {
-    internal struct VolumetricCloudsQualitySettings
+    public struct VolumetricCloudsQualitySettings: ISettingsModel
     {
         public int r_VolumetricCloud_SkyAO = 1;
         public int r_VolumetricCloud_SkyAO_MaxResolution = 128;

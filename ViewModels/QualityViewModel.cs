@@ -10,11 +10,26 @@ namespace S2SettingsGenerator.ViewModels
 {
     public abstract class QualityViewModel<T> : ViewModel where T: ISettingsModel, new()
     {
+        private int presetIndex;
+
+        public int PresetIndex
+        {
+            get { return presetIndex; }
+            set { 
+                presetIndex = value;
+                OnPropertyChanged("PresetIndex");
+                preset = (Presets)presetIndex;
+                OnPropertyChanged("Preset");
+            }
+        }
+
         [System.Diagnostics.CodeAnalysis.SetsRequiredMembersAttribute]
         public QualityViewModel(string name)
         {
             this.settingsName = name;
             Settings = new T();
+
+            this.PresetIndex = (int)Presets.EPIC;
         }
 
         protected T Settings { get; set; }
@@ -43,22 +58,15 @@ namespace S2SettingsGenerator.ViewModels
             }
         }
 
-        private Nullable<Presets> preset;
+        private Presets preset;
 
-        public Nullable<Presets> Preset
+        public Presets Preset
         {
             get { return preset; }
             set
             {
-                preset = value;
-                OnPropertyChanged("Preset");
-                OnPropertyChanged("PresetString");
+                PresetIndex = (int)value;
             }
-        }
-
-        public string PresetString
-        {
-            get { return (preset.HasValue ? preset.Value.ToString() : "Unset"); }
         }
 
         public abstract void PopulateSettingsModel();

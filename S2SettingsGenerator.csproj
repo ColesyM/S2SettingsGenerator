@@ -22,4 +22,10 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="InverseBooleanConverter.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,6 +25,17 @@ namespace S2SettingsGenerator
         public LockableExpanderHeader()
         {
             InitializeComponent();
+        }
+
+        private void sldrSectionPreset_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            var presetIndex = System.Convert.ToInt32(e.NewValue);
+            Presets preset = (Presets)presetIndex;
+
+            if (lblCurrentSectionPreset != null)
+            {
+                lblCurrentSectionPreset.Content = preset.ToString().Replace("_", "");
+            }
         }
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace S2SettingsGenerator
+namespace S2SettingsGenerator.Models
 {
-    internal struct VolumetricFogQualitySettings
+    public struct VolumetricFogQualitySettings: ISettingsModel
     {
         public int r_VolumetricFog = 1;
         public int r_VolumetricFog_GridPixelSize = 8;
