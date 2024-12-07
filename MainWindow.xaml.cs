@@ -1606,15 +1606,15 @@ namespace S2SettingsGenerator
                     case Presets.POTATO:
                         chkCloudAO.IsChecked = false;
                         cmbCloudAORes.SelectedIndex = 0;
-                        sldrCloudViewRayCount.Value = 126;
-                        sldrCloudReflectionRayCount.Value = 14;
-                        sldrCloudShadowRayCount.Value = 2;
+                        sldrCloudViewRayCount.Value = 100;
+                        sldrCloudReflectionRayCount.Value = 7;
+                        sldrCloudShadowRayCount.Value = 1;
                         break;
                     case Presets.VERY_LOW:
                         chkCloudAO.IsChecked = false;
                         cmbCloudAORes.SelectedIndex = 1;
-                        sldrCloudViewRayCount.Value = 176;
-                        sldrCloudReflectionRayCount.Value = 18;
+                        sldrCloudViewRayCount.Value = 150;
+                        sldrCloudReflectionRayCount.Value = 9;
                         sldrCloudShadowRayCount.Value = 3;
                         break;
                     case Presets.LOW:
@@ -1844,7 +1844,7 @@ namespace S2SettingsGenerator
                     case Presets.POTATO:
                         cmbFoliagePopin.SelectedIndex = 0;
                         sldrFoliageLOD.Value = 0.52;
-                        sldrFoliageGrassDist.Value = 0.4;
+                        sldrFoliageGrassDist.Value = 0.2;
                         sldrFoliageTreeDist.Value = 0.4;
                         sldrFoliageGrassDensity.Value = 0.35;
                         chkLimitFoliageGeometry.IsChecked = true;
@@ -1852,8 +1852,8 @@ namespace S2SettingsGenerator
                     case Presets.VERY_LOW:
                         cmbFoliagePopin.SelectedIndex = 0;
                         sldrFoliageLOD.Value = 0.72;
-                        sldrFoliageGrassDist.Value = 0.54;
-                        sldrFoliageTreeDist.Value = 0.54;
+                        sldrFoliageGrassDist.Value = 0.4;
+                        sldrFoliageTreeDist.Value = 0.5;
                         sldrFoliageGrassDensity.Value = 0.45;
                         chkLimitFoliageGeometry.IsChecked = true;
                         break;
@@ -1924,11 +1924,11 @@ namespace S2SettingsGenerator
                 switch (preset)
                 {
                     case Presets.POTATO:
-                        sldrViewDistance.Value = 0.75;
+                        sldrViewDistance.Value = 0.5;
                         sldrLightViewDistance.Value = 0.35;
                         break;
                     case Presets.VERY_LOW:
-                        sldrViewDistance.Value = 0.9;
+                        sldrViewDistance.Value = 0.7;
                         sldrLightViewDistance.Value = 0.45;
                         break;
                     case Presets.LOW:
