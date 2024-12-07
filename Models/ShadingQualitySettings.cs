@@ -32,11 +32,11 @@ namespace S2SettingsGenerator
         public void appendLines(StringBuilder sb)
         {
             sb.AppendLine($"r.SceneColorFormat={r_SceneColorFormat}");
-            sb.AppendLine($"r.SceneColorFormat={r_SceneColorFormat}");
             sb.AppendLine($"r.TranslucentLightingVolume={r_TranslucentLightingVolume}");
             sb.AppendLine($"r.ranslucencyLightingVolumeDim={r_TranslucencyLightingVolumeDim}");
             sb.AppendLine($"r.TranslucencyVolumeBlur={r_TranslucencyVolumeBlur}");
             sb.AppendLine($"r.SubsurfaceScatteringPass={r_SubsurfaceScatteringPass}");
+            sb.AppendLine($"r.SubsurfaceScattering={r_SubsurfaceScatteringPass}");
             sb.AppendLine($"r.SSS.Scale={r_SSS_Scale}");
             sb.AppendLine($"r.SSS.SampleSet={r_SSS_SampleSet}");
             sb.AppendLine($"r.SSS.Quality={r_SSS_Quality}");
@@ -44,7 +44,7 @@ namespace S2SettingsGenerator
             sb.AppendLine($"r.AmbientOcclusionMipLevelFactor={r_AmbientOcclusionMipLevelFactor}");
             sb.AppendLine($"r.AmbientOcclusionMaxQuality={r_AmbientOcclusionMaxQuality}");
             sb.AppendLine($"r.AmbientOcclusionLevels={r_AmbientOcclusionLevels}");
-            sb.AppendLine($"r.AmbientOcclusionRadiusScal={r_AmbientOcclusionRadiusScale}");
+            sb.AppendLine($"r.AmbientOcclusionRadiusScale={r_AmbientOcclusionRadiusScale}");
             sb.AppendLine($"r.TranslucencyLightingVolume.UseShadowFiltering={r_TranslucencyLightingVolume_UseShadowFiltering}");
         }
     }

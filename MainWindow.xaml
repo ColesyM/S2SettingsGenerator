@@ -124,7 +124,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Texture Copy Speed" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTextureCopySpeed" ToolTip="Max number of texture pages uploaded per frame. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium"  Width="100" VerticalAlignment="Center" SelectedIndex="{Binding TextureCopySpeedIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbTextureCopySpeed" ToolTip="Max number of texture pages uploaded per frame. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding TextureCopySpeedIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Very Low"/>
                                         <ComboBoxItem Content="Low" />
                                         <ComboBoxItem Content="Medium" />
@@ -151,19 +151,19 @@
                             </Expander.Header>
                             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Label Content="Hair" FontWeight="Bold" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkHairAO" Content="Ambient Occlusion" IsChecked="{Binding HairAO, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkHairAO" ToolTip="Sky ambient occlusion on hair. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Content="Ambient Occlusion" IsChecked="{Binding HairAO, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="AO Samples" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrHairAOSamples" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding HairAOSamples, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrHairAOSamples" ToolTip="Number of samples for sky ambient occlusion on hair. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding HairAOSamples, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Strand Visiblity" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrHairStrandVisibility" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding HairStrandVisibility, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrHairStrandVisibility" ToolTip="Hair multisample count for visibility. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="5" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding HairStrandVisibility, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
-                                <CheckBox x:Name="chkHairLightingAndShadows" Content="Lighting and Shadows" IsChecked="{Binding HairLightingAndShadows, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkHairLightingAndShadows" ToolTip="Hair voxelization for light transmittance. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Lighting and Shadows" IsChecked="{Binding HairLightingAndShadows, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Quality" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrHairQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="3" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding HairQuality, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrHairQuality" ToolTip="Overall hair quality. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="3" TickFrequency="1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding HairQuality, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -178,7 +178,7 @@
                                 <Label Content="Objects" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Overall Detail" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbOverallDetail" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding OverallDetailIndex,Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbOverallDetail" ToolTip="Object update detail for ticks. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding OverallDetailIndex,Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High" IsSelected="True"/>
@@ -187,7 +187,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Nanite Fine Detail" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbNanitePixelsPerEdge" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding NanitePixelsPerEdgeIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbNanitePixelsPerEdge" ToolTip="The triangle edge length that nanite targets. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding NanitePixelsPerEdgeIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High"/>
@@ -196,15 +196,15 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Preferred Detail" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrPreferredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding PreferredObjectDetail, Mode=TwoWay}" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
+                                    <Slider x:Name="sldrPreferredObjectDetail" ToolTip="Preferred mesh LOD for nanite rasterized meshes. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding PreferredObjectDetail, Mode=TwoWay}" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Required Detail" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrRequiredObjectDetail" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0" TickFrequency="0.1" Minimum="-2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" IsDirectionReversed="True" Value="{Binding RequiredObjectDetail, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
+                                    <Slider x:Name="sldrRequiredObjectDetail" ToolTip="Minimum mesh LOD for nanite rasterized meshes. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0" TickFrequency="0.1" Minimum="-2" TickPlacement="BottomRight" IsSnapToTickEnabled="False" IsDirectionReversed="True" Value="{Binding RequiredObjectDetail, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max Attaches" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbMaxAttaches" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding MaxAttachesIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbMaxAttaches" ToolTip="Max character attaches. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding MaxAttachesIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="5"/>
                                         <ComboBoxItem Content="10" />
                                         <ComboBoxItem Content="20"/>
@@ -224,21 +224,21 @@
                                 <Label Content="Effects" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Refraction Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbRefractionQuality" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding RefractionQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbRefractionQuality" ToolTip="Distortion/refraction quality. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Minimal" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding RefractionQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Off"/>
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" IsSelected="True"/>
                                         <ComboBoxItem Content="High" />
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkParticleRefractionAA" Content="Refraction Antialiasing" Margin="10,0,0,0" IsChecked="{Binding ParticleRefractionAA, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkParticleRefractionAA" ToolTip="Temporal antialising of scene colour buffer for less flicker. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Content="Refraction Antialiasing" Margin="10,0,0,0" IsChecked="{Binding ParticleRefractionAA, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle counts" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrEmitterSpawnRate" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding EmitterSpawnRate, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
+                                    <Slider x:Name="sldrEmitterSpawnRate" ToolTip="Spawn rate of particles. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding EmitterSpawnRate, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle Lighting" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbParticleLighting" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ParticleLightingIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbParticleLighting" ToolTip="Particle lighting quality. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ParticleLightingIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Unlit"/>
                                         <ComboBoxItem Content="Simple" />
                                         <ComboBoxItem Content="High Quality" IsSelected="True"/>
@@ -246,7 +246,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle Quality" VerticalAlignment="Center" />
-                                    <ComboBox x:Name="cmbParticleQuality" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ParticleQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbParticleQuality" ToolTip="Niagara effect quality. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ParticleQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High"/>
@@ -255,7 +255,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Particle simulation" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrParticleSimulation" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding ParticleSimulation, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrParticleSimulation" ToolTip="Niagara effect simulation rate. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="20" TickFrequency="1" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding ParticleSimulation, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -270,14 +270,14 @@
                                 <Label Content="Materials" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Material Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbMaterialQuality" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MaterialQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbMaterialQuality" ToolTip="Object surface shader material quality. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MaterialQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High"/>
                                         <ComboBoxItem Content="Epic" IsSelected="True"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkMaterialAniso" Content="Anisotropic BRDF" Margin="10,0,0,0" IsChecked="{Binding MaterialAnisotropic, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkMaterialAniso" ToolTip="Use BRDF on materials with anisotropy. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Content="Anisotropic BRDF" Margin="10,0,0,0" IsChecked="{Binding MaterialAnisotropic, Mode=TwoWay}" VerticalAlignment="Center"/>
                             </WrapPanel>
                         </Expander>
                     </Grid>
@@ -291,7 +291,7 @@
                                 <Label Content="Post Processing" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Filtering Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbPPFilteringQuality" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding FilteringQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbPPFilteringQuality" ToolTip="Sample count for bloom and depth of field like effects. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding FilteringQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High" IsSelected="True"/>
@@ -299,7 +299,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Tonemapper" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbToneMapper" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding ToneMapperIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbToneMapper" ToolTip="Tone mapper quality for mapping scene into viewable brightness. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding ToneMapperIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Basic"/>
                                         <ComboBoxItem Content="Vignette" />
                                         <ComboBoxItem Content="Grain" />
@@ -308,25 +308,25 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="VRAM Allowance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrPPRenderTargetPool" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="50" LargeChange="100" Maximum="600" TickFrequency="50" Minimum="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding RenderTargetPool, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrPPRenderTargetPool" ToolTip="Render target pool size. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="50" LargeChange="100" Maximum="600" TickFrequency="50" Minimum="100" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding RenderTargetPool, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lens-Flare Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbLensFlareQuality" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding LensFlareQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbLensFlareQuality" ToolTip="Lens flare quality. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding LensFlareQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High" IsSelected="True"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkFringeQual" Content="Improve Scene Colour Fringe Quality" Margin="10,0,0,0" IsChecked="{Binding ImproveFringeQuality, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkEyeAdapatation" Content="Eye Adaptation" Margin="10,0,0,0" IsChecked="{Binding EyeAdaptation, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkFringeQual" ToolTip="Scene colour fring sampling. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Content="Improve Scene Colour Fringe Quality" Margin="10,0,0,0" IsChecked="{Binding ImproveFringeQuality, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkEyeAdapatation" ToolTip="Turns eye adapation off, or normal qualty. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Content="Eye Adaptation" Margin="10,0,0,0" IsChecked="{Binding EyeAdaptation, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                                    <Label Content="Eye Adaptation Brightness" VerticalAlignment="Center"/>
+                                    <Label Content="Eye Adaptation Brightness" ToolTip="Eeye adapation lens attenutation for brigher or darker scenes. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" VerticalAlignment="Center"/>
                                     <Slider x:Name="sldrEyeAdaptationLensAtt" Width="150"  Minimum="0.0" Maximum="5.0" SmallChange="0.01" LargeChange="0.5" Value="{Binding EyeAdaptationLensAttenuation, Mode=TwoWay}" TickFrequency="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Bloom Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbBloomQuality" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding BloomQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbBloomQuality" ToolTip="Bright light bloom quality. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding BloomQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Off"/>
                                         <ComboBoxItem Content="Very Low" />
                                         <ComboBoxItem Content="Low" />
@@ -337,7 +337,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Blur Optimization" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbBlurOptmization" Width="140" VerticalAlignment="Center" SelectedIndex="{Binding BlurOptimizationIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbBlurOptmization" ToolTip="Gaussian blur speedup. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Width="140" VerticalAlignment="Center" SelectedIndex="{Binding BlurOptimizationIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Always"/>
                                         <ComboBoxItem Content="Sometimes" />
                                         <ComboBoxItem Content="Prefer quality" />
@@ -346,7 +346,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Upscale Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbUpscaleQuality" Width="150" VerticalAlignment="Center" SelectedIndex="{Binding UpscaleQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbUpscaleQuality" ToolTip="Type of upscaling for quality vs pixellation. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Width="150" VerticalAlignment="Center" SelectedIndex="{Binding UpscaleQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Nearest"/>
                                         <ComboBoxItem Content="Bilinear" />
                                         <ComboBoxItem Content="Directional" />
@@ -355,11 +355,11 @@
                                         <ComboBoxItem Content="36-tap Gaussian"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkGrainQuant" Content="Try remove grainyness" Margin="10,0,0,0" IsChecked="{Binding GrainQuant, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkLightShafts" Content="Light Shafts" Margin="10,0,0,0" IsChecked="{Binding LightShafts, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkGrainQuant" ToolTip="Film grain in the tonemapper. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Content="Try remove grainyness" Margin="10,0,0,0" IsChecked="{Binding GrainQuant, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLightShafts" ToolTip="Use Light Shafts. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Content="Light Shafts" Margin="10,0,0,0" IsChecked="{Binding LightShafts, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lightshaft Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbLightShaftQuality" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding LightshaftQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbLightShaftQuality" ToolTip="Light shaft resolution. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding LightshaftQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" />
                                         <ComboBoxItem Content="High" IsSelected="True"/>
@@ -379,7 +379,7 @@
                                 <Label Content="Depth of field" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="DOF Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbDOFQuality" Width="140" VerticalAlignment="Center" SelectedIndex="{Binding DOFQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbDOFQuality" ToolTip="DOF quality for bokeh. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Width="140" VerticalAlignment="Center" SelectedIndex="{Binding DOFQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="High"/>
                                         <ComboBoxItem Content="Cutscenes-Very High"/>
@@ -388,13 +388,13 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Filtering" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbDOFFiltering" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding DOFFilteringIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbDOFFiltering" ToolTip="DOF gather pass filtering. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding DOFFilteringIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="None"/>
                                         <ComboBoxItem Content="Average 3x3" IsSelected="True"/>
                                         <ComboBoxItem Content="Max 3x3"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkDOFBokeh" Content="Bokeh" Margin="10,0,0,0" IsChecked="{Binding IsBokehEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkDOFBokeh" ToolTip="DOF bokeh effects. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Content="Bokeh" Margin="10,0,0,0" IsChecked="{Binding IsBokehEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Gather Rings" VerticalAlignment="Center"/>
                                     <ComboBox x:Name="cmbGatherRings" Width="50" VerticalAlignment="Center" SelectedIndex="{Binding DOFGatherRingIndex, Mode=TwoWay}">
@@ -403,10 +403,10 @@
                                         <ComboBoxItem Content="5"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkForegroundComposoting" Content="Foreground Hybrid Scattering" Margin="10,0,0,0" IsChecked="{Binding ForegroundComposoting, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkForegroundComposoting" ToolTip="DOF hybrid scattering for foreground composite. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Foreground Hybrid Scattering" Margin="10,0,0,0" IsChecked="{Binding ForegroundComposoting, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Background Hybrid Scattering" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbBackgroundComposoting" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding BackgroundCompositingIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbBackgroundComposoting" ToolTip="DOF hybrid scattering for background. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding BackgroundCompositingIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Disabled"/>
                                         <ComboBoxItem Content="Add"/>
                                         <ComboBoxItem Content="Gather occlusion" IsSelected="True"/>
@@ -414,25 +414,25 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Pixel Scatter" VerticalAlignment="Center"/>
-                                    <Slider x:Name="slderMaxSpriteRatio" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.01" Maximum="0.5" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding MaxSpriteRatio, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
+                                    <Slider x:Name="slderMaxSpriteRatio" ToolTip="Ratio of scattered pixel quads. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.01" LargeChange="0.01" Maximum="0.5" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding MaxSpriteRatio, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Out Of Focus Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbRecombineQuality" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding RecombineQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbRecombineQuality" ToolTip="Recombine pass samples. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding RecombineQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="None"/>
                                         <ComboBoxItem Content="24 samples" IsSelected="True"/>
                                         <ComboBoxItem Content="32 samples"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkScatterBokeh" Content="Out of focus Bokeh" Margin="10,0,0,0" IsChecked="{Binding IsScatterBokehEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkFastDOFAA" Content="Fast DOF Antialiasing" Margin="10,0,0,0" IsChecked="{Binding IsFastDOFEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkScatterBokeh" ToolTip="Bokeh on scatter pass &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Out of focus Bokeh" Margin="10,0,0,0" IsChecked="{Binding IsScatterBokehEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkFastDOFAA" ToolTip="Temporal antialising Quality in DOF &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Fast DOF Antialiasing" Margin="10,0,0,0" IsChecked="{Binding IsFastDOFEnabled, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Foregound blur limit" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDOFForegroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding ForegroundBlurLimit, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
+                                    <Slider x:Name="sldrDOFForegroundBlurLimit" ToolTip="Max foreground blur &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding ForegroundBlurLimit, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10,0,0,0">
                                     <Label Content="Background blur limit" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDOBackgroundBlurLimit" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding BackgroundBlurLimit, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
+                                    <Slider x:Name="sldrDOBackgroundBlurLimit" ToolTip="Max background blur &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.05" LargeChange="0.1" Maximum="0.3" TickFrequency="0.05" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding BackgroundBlurLimit, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="2"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -447,7 +447,7 @@
                                 <Label Content="Antialiasing" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Edge AA" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbFXAA" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding FXAAQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbFXAA" ToolTip="FXAA screen space anti aliasing quality &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Minimal" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding FXAAQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Simple"/>
                                         <ComboBoxItem Content="Dither x3"/>
                                         <ComboBoxItem Content="Dither x5" />
@@ -458,7 +458,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Temporal AA" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTemporalAA" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TemporalAAQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbTemporalAA" ToolTip="Temporal anti aliasing quality &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Minimal" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TemporalAAQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium"/>
                                         <ComboBoxItem Content="High-Antighost"/>
@@ -467,7 +467,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="TSR AA" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTSRAA" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TSRRejectionAntiAliasingQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbTSRAA" ToolTip="TSR spatial anti alising rejection quality &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Minimal" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TSRRejectionAntiAliasingQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium"/>
                                         <ComboBoxItem Content="High"/>
@@ -487,7 +487,7 @@
                                 <Label Content="Motion blur" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Motion Blur Quality" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbMotionBlurQuality" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MotionBlurQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbMotionBlurQuality" ToolTip="Motion blur quality &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MotionBlurQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Off"/>
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium"/>
@@ -495,7 +495,7 @@
                                         <ComboBoxItem Content="Very High"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkFasterMotionBlur" Content="Faster Mode While Turning Rapidly" Margin="10,0,0,0" IsChecked="{Binding FasterMotionBlur, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkFasterMotionBlur" ToolTip="Filter scene at half resolution &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Content="Faster Mode While Turning Rapidly" Margin="10,0,0,0" IsChecked="{Binding FasterMotionBlur, Mode=TwoWay}" VerticalAlignment="Center"/>
                             </WrapPanel>
                         </Expander>
                     </Grid>
@@ -509,29 +509,29 @@
                                 <Label Content="Shading" VerticalAlignment="Center" FontWeight="Bold" />
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Format" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbSceneFormat" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding SceneFormatIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbSceneFormat" ToolTip="Scene colour memory layout &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding SceneFormatIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="32bit RGB"/>
                                         <ComboBoxItem Content="64bit RGBA" IsSelected="True"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkTranslucentLighting" Content="Light through transparent surfaces" Margin="10,0,0,0" IsChecked="{Binding TranslucentLighting, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTranslucentLighting" ToolTip="Update translucent lighting volume or not &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Content="Light through transparent surfaces" Margin="10,0,0,0" IsChecked="{Binding TranslucentLighting, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Transparent Lighting Resolution" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTranslucentLightingDim" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TranslucentLightingDimensionsIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbTranslucentLightingDim" ToolTip="Translucent lighting volume resolution &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Medium" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding TranslucentLightingDimensionsIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="32x32x32"/>
                                         <ComboBoxItem Content="64x64x64" IsSelected="True"/>
                                         <ComboBoxItem Content="128x128x128"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkBlurTranslucent" Content="Blur the transparent lighting" Margin="10,0,0,0" IsChecked="{Binding BlurTranslucent, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkTranslucentShadowFilter" Content="Transparent lighting shadow filtering" Margin="10,0,0,0" IsChecked="{Binding TranslucentShadowFilter, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkSubsurfaceScattering" Content="Subsurface scattering" Margin="10,0,0,0" IsChecked="{Binding SubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkSSSubsurfaceScattering" Content="Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="{Binding ScreenSpaceSubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkHQSSS" Content="HQ Screenspace Subsurface scattering blend" Margin="10,0,0,0" IsChecked="{Binding HigherQualitySubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkLQSSS" Content="LQ Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="{Binding LowerQualitySubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkBlurTranslucent" ToolTip="Blur the translucent lighting volume &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Content="Blur the transparent lighting" Margin="10,0,0,0" IsChecked="{Binding BlurTranslucent, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTranslucentShadowFilter" ToolTip="Translucent lighting volume shadows &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Transparent lighting shadow filtering" Margin="10,0,0,0" IsChecked="{Binding TranslucentShadowFilter, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkSubsurfaceScattering" ToolTip="Enable or disable subsurface scattering &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Subsurface scattering" Margin="10,0,0,0" IsChecked="{Binding SubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkSSSubsurfaceScattering" ToolTip="Screen space separable subsurface scattering pass &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Screenspace Subsurface scattering" Margin="10,0,0,0" IsChecked="{Binding ScreenSpaceSubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkHQSSS" Content="HQ Screenspace Subsurface scattering blend" ToolTip="Higher quality screen space separable subsurface scattering recombine pass &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Margin="10,0,0,0" IsChecked="{Binding HigherQualitySubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLQSSS" Content="LQ Screenspace Subsurface scattering" ToolTip="Run some parts of the screen space subsurface scattering at half resolution so its faster &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Margin="10,0,0,0" IsChecked="{Binding LowerQualitySubsurfaceScattering, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Screenspace Subsurface scattering samples" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbSSSSamples" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding SubsurfaceScatteringSamplesIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbSSSSamples" ToolTip="Sample count for screen space separable subsurface scattering &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding SubsurfaceScatteringSamplesIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="62+1"/>
                                         <ComboBoxItem Content="92+1"/>
                                         <ComboBoxItem Content="13*2+1" IsSelected="True"/>
@@ -539,7 +539,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Ambient Occlusion Quality Levels" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbAOQuality" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding AmbientOcclusionQualityIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbAOQuality" ToolTip="MIP level count for the ambient occlusion calculation &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Medium" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding AmbientOcclusionQualityIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Auto" IsSelected="True"/>
                                         <ComboBoxItem Content="None (disabled)"/>
                                         <ComboBoxItem Content="1"/>
@@ -549,7 +549,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Ambient Occlusion Factor" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbAOFactor" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding AmbientOcclusionFactorIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbAOFactor" ToolTip="MIP level strategy for looking up ambient occlusion &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding AmbientOcclusionFactorIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Force"/>
                                         <ComboBoxItem Content="Balanced"/>
                                         <ComboBoxItem Content="Best Try" IsSelected="True"/>
@@ -557,12 +557,12 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Ambient Occlusion Quality" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrAOQuality" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="10" LargeChange="25" Maximum="100" TickFrequency="10" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding AmbientOcclusionQuality, Mode=TwoWay}" AutoToolTipPlacement="BottomRight"/>
-                                    <CheckBox x:Name="chkAlwaysRequestMaxAOQ" Content="Always request max AO quality" Margin="10,0,0,0" IsChecked="{Binding AlwaysRequestMaxAmbientOcclusion, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrAOQuality" ToolTip="Ambient occlusion quality &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="10" LargeChange="25" Maximum="100" TickFrequency="10" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding AmbientOcclusionQuality, Mode=TwoWay}" AutoToolTipPlacement="BottomRight"/>
+                                    <CheckBox x:Name="chkAlwaysRequestMaxAOQ" ToolTip="Dont override ambient occlusion quality lookup &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Content="Always request max AO quality" Margin="10,0,0,0" IsChecked="{Binding AlwaysRequestMaxAmbientOcclusion, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Ambient Occlusion Radius" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrAORadius" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="2.0" TickFrequency="0.1" Minimum="-1.0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding AmbientOcclusionRadius, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1" />
+                                    <Slider x:Name="sldrAORadius" ToolTip="Ambient occlusion scale &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.25" Maximum="2.0" TickFrequency="0.1" Minimum="-1.0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding AmbientOcclusionRadius, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1" />
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -575,21 +575,21 @@
                             </Expander.Header>
                             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Label Content="Global Illumination" VerticalAlignment="Center" FontWeight="Bold" />
-                                <CheckBox x:Name="chkIndirectDiffuse" Content="Indirect Diffuse Lighting" Margin="10,0,0,0" IsChecked="{Binding IndirectDiffuse, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkDetailedMeshTracing" Content="Detailed Mesh Tracing" Margin="10,0,0,0" IsChecked="{Binding DetailedMeshTracing, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkIndirectDiffuse" ToolTip="Allow Lumen Global Illumination &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Content="Indirect Diffuse Lighting" Margin="10,0,0,0" IsChecked="{Binding IndirectDiffuse, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkDetailedMeshTracing" ToolTip="Lumen trace against more accuracte meshes &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Content="Detailed Mesh Tracing" Margin="10,0,0,0" IsChecked="{Binding DetailedMeshTracing, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Detailed Mesh Tracing Distance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrDetailedMeshTracingDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="180" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding DetailedMeshTracingDist, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrDetailedMeshTracingDist" ToolTip="Lumen distance to trace against more accuracte meshes and terrain heightfields &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1" LargeChange="1" Maximum="180" TickFrequency="10" Minimum="1" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding DetailedMeshTracingDist, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
-                                <CheckBox x:Name="chkRadiosity" Content="Diffuse Bounce Lighting" Margin="10,0,0,0" IsChecked="{Binding Radiosity, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkOffscreenTraceMeshes" Content="Detailed meshes for shadows from offscreen casters" Margin="10,0,0,0" IsChecked="{Binding OffscreenTraceMeshes, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkRadiosity" Content="Diffuse Bounce Lighting" ToolTip="Indirect lighting gather from surface cache to simulate multibounce lighting &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Margin="10,0,0,0" IsChecked="{Binding Radiosity, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkOffscreenTraceMeshes" ToolTip="Lumen trace against more accuracte meshes for things not visible on screen &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Detailed meshes for shadows from offscreen casters" Margin="10,0,0,0" IsChecked="{Binding OffscreenTraceMeshes, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
-                                    <Label Content="Lumen Mesh Geometry Detail" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrLumenMeshCardSize" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="25" LargeChange="50" Maximum="200" TickFrequency="25" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding LumenMeshCardSize, Mode=TwoWay}" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Label Content="Lumen Mesh Geometry Detail"  VerticalAlignment="Center"/>
+                                    <Slider x:Name="sldrLumenMeshCardSize" ToolTip="Lumen world space mesh card size &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="25" LargeChange="50" Maximum="200" TickFrequency="25" Minimum="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding LumenMeshCardSize, Mode=TwoWay}" IsDirectionReversed="True" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Cache Size out of 4096" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbLumenAtlasSize" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding LumenAtlasSizeIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbLumenAtlasSize" ToolTip="Lumen surface cache size &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding LumenAtlasSizeIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="256"/>
                                         <ComboBoxItem Content="512"/>
                                         <ComboBoxItem Content="1024"/>
@@ -599,7 +599,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Pixels Per Probe Gather" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbProbeDownsample" Width="50" VerticalAlignment="Center" SelectedIndex="{Binding ProbeDownsampleIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbProbeDownsample" ToolTip="Lumen scale of the probe for gather &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Medium" Width="50" VerticalAlignment="Center" SelectedIndex="{Binding ProbeDownsampleIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="96"/>
                                         <ComboBoxItem Content="48" />
                                         <ComboBoxItem Content="32" IsSelected="True"/>
@@ -609,19 +609,15 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Probe Gather Resolution" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbLumenTraceOctaRes" Width="50" VerticalAlignment="Center" SelectedIndex="{Binding TraceOctaResIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbLumenTraceOctaRes" ToolTip="Lumen octahedron resolution for number of traces per probe &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Width="50" VerticalAlignment="Center" SelectedIndex="{Binding TraceOctaResIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="4"/>
                                         <ComboBoxItem Content="8" IsSelected="True"/>
                                         <ComboBoxItem Content="16" />
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
-                                    <Label Content="Lumen Probe Gather Resolution Scale" VerticalAlignment="Center"/>
-                                    <Slider Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0.1" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="1" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0">
-                                    <Label Content="Probe Density (VRAM)" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbProbeAtlasResolution" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding ProbeAtlasResIndex, Mode=TwoWay}">
+                                    <Label Content="Probe Density" VerticalAlignment="Center"/>
+                                    <ComboBox x:Name="cmbProbeAtlasResolution" ToolTip="Lumen gather probes per row in cache. Affects VRAM, can break lighting. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding ProbeAtlasResIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="64"/>
                                         <ComboBoxItem Content="128"/>
                                         <ComboBoxItem Content="256" IsSelected="True"/>
@@ -629,16 +625,8 @@
                                     </ComboBox>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
-                                    <Label Content="Probe Placement Resolution" VerticalAlignment="Center"/>
-                                    <ComboBox Width="100" VerticalAlignment="Center">
-                                        <ComboBoxItem Content="Low"/>
-                                        <ComboBoxItem Content="medium" IsSelected="True"/>
-                                        <ComboBoxItem Content="High" />
-                                    </ComboBox>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Probe Resolution" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbProbeRes" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ProbeResIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbProbeRes" ToolTip="Controls surface card min resolution and radiance cache probe resolution. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ProbeResIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="16"/>
                                         <ComboBoxItem Content="32" IsSelected="True"/>
                                         <ComboBoxItem Content="64" />
@@ -646,7 +634,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Max Probe Traces Per Frame out of 200" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbProbeTraceBudget" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ProbeTraceBudgetIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbProbeTraceBudget" ToolTip="Controls number of probes that can be updated in a frame before resolution is decreased. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ProbeTraceBudgetIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="10"/>
                                         <ComboBoxItem Content="25"/>
                                         <ComboBoxItem Content="50"/>
@@ -657,20 +645,20 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Probe Cache Accuracy" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbProbeCacheFrameKeep" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ProbeCacheFrameKeepIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbProbeCacheFrameKeep" ToolTip="Number of frames to keep unused probes in cache. Balance between VRAM and lighting accuracy. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding ProbeCacheFrameKeepIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Low"/>
                                         <ComboBoxItem Content="Medium" IsSelected="True"/>
                                         <ComboBoxItem Content="High" />
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkStochasticInterpolation" Content="Blinear Probe Gather" Margin="10,0,0,0" IsChecked="{Binding StochasticInterpolation, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkTwoSidedFoliageBackfaceDiffuse" Content="Light back of foliage from front with scattering" Margin="10,0,0,0" IsChecked="{Binding TwoSidedFoliageBackfaceDiffuse, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkLumenTranslucencyVolume" Content="Lumen Transparent Surface Lighting" Margin="10,0,0,0" IsChecked="{Binding LumenTranslucencyVolume, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkLumenTranslucencyTrace" Content="Raytrace the transparent volumes" Margin="10,0,0,0" IsChecked="{Binding LumenTranslucencyTrace, Mode=TwoWay}" VerticalAlignment="Center"/>
-                                <CheckBox x:Name="chkTigherProbes" Content="Tighter probe spacing" Margin="10,0,0,0" IsChecked="{Binding TighterProbes, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkStochasticInterpolation" ToolTip="Blend screen probes inaccurately. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Content="Blinear Probe Gather" Margin="10,0,0,0" IsChecked="{Binding StochasticInterpolation, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTwoSidedFoliageBackfaceDiffuse" ToolTip="Gather lighting across foliage backface to control subsurface color. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: High" Content="Light back of foliage from front with scattering" Margin="10,0,0,0" IsChecked="{Binding TwoSidedFoliageBackfaceDiffuse, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLumenTranslucencyVolume" ToolTip="Enable Lumen translucency volume, i.e underwater. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Content="Lumen Transparent Surface Lighting" Margin="10,0,0,0" IsChecked="{Binding LumenTranslucencyVolume, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkLumenTranslucencyTrace" ToolTip="Trace Lumen translucency volume voxels &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: High" Content="Raytrace the transparent volumes" Margin="10,0,0,0" IsChecked="{Binding LumenTranslucencyTrace, Mode=TwoWay}" VerticalAlignment="Center"/>
+                                <CheckBox x:Name="chkTigherProbes" ToolTip="Reduce probe spacing in the surface cache texture &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low" Content="Tighter probe spacing" Margin="10,0,0,0" IsChecked="{Binding TighterProbes, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Lumen Far Field" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrLumenFarFieldDistance" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1000" LargeChange="5000" Maximum="50000" TickFrequency="1000" Minimum="1000" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding LumenFarfieldDist, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
+                                    <Slider x:Name="sldrLumenFarFieldDistance" ToolTip="FarField distance that can affect the surface cache &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: High" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="1000" LargeChange="5000" Maximum="50000" TickFrequency="1000" Minimum="1000" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding LumenFarfieldDist, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="0"/>
                                 </StackPanel>
                             </WrapPanel>
                         </Expander>
@@ -965,19 +953,19 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Foliage LOD" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFoliageLOD" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding FoliageLOD, Mode=TwoWay}" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrFoliageLOD" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding FoliageLOD, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Grass Distance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFoliageGrassDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding GrassDistance, Mode=TwoWay}" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrFoliageGrassDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding GrassDistance, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Tree Distance" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFoliageTreeDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding TreeDistance, Mode=TwoWay}" AutoToolTipPlacement="BottomRight"/>
+                                    <Slider x:Name="sldrFoliageTreeDist" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding TreeDistance, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Grass Density" VerticalAlignment="Center"/>
-                                    <Slider x:Name="sldrFoliageGrassDensity" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.1" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="True" Value="{Binding GrassDensity, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
+                                    <Slider x:Name="sldrFoliageGrassDensity" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.1" LargeChange="0.5" Maximum="1" TickFrequency="0.1" Minimum="0" TickPlacement="BottomRight" IsSnapToTickEnabled="False" Value="{Binding GrassDensity, Mode=TwoWay}" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 </StackPanel>
                                 <CheckBox x:Name="chkLimitFoliageGeometry" Margin="10,10,0,0" Content="Limit Foliage Geometry" IsChecked="{Binding LimitFoliageGeometry, Mode=TwoWay}" />
                             </WrapPanel>

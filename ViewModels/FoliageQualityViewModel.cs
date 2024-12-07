@@ -68,7 +68,7 @@ namespace S2SettingsGenerator.ViewModels
 
         public float GrassDensity
         {
-            get { return grassDistance; }
+            get { return grassDensity; }
             set
             {
                 grassDensity = value;
