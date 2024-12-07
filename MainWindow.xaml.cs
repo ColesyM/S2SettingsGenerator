@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -35,6 +36,70 @@ namespace S2SettingsGenerator
         {
             InitializeComponent();
             this.DataContext = this.viewModel = new MainWindowViewModel();
+            this.ViewModel.PresetSectionChanged += ViewModel_PresetSectionChanged; 
+        }
+
+        private void ViewModel_PresetSectionChanged(object? sender, PresetChangedEventArgs e)
+        {
+            switch (e.SectionName)
+            {
+                case "Texture":
+                    ApplyTextures(e.Preset);
+                    break;
+                case "Hair":
+                    ApplyHair(e.Preset);
+                    break;
+                case "ObjectDetail":
+                    ApplyObjectDetail(e.Preset);
+                    break;
+                case "Effects":
+                    ApplyEffects(e.Preset);
+                    break;
+                case "Materials":
+                    ApplyMaterials(e.Preset);
+                    break;
+                case "PostProcessing":
+                    ApplyPostProcessing(e.Preset);
+                    break;
+                case "Dof":
+                    ApplyDOF(e.Preset);
+                    break;
+                case "AA":
+                    ApplyAA(e.Preset);
+                    break;
+                case "MotionBlur":
+                    ApplyMotionBlur(e.Preset);
+                    break;
+                case "Shading":
+                    ApplyShading(e.Preset);
+                    break;
+                case "GlobalIllumination":
+                    ApplyGI(e.Preset);
+                    break;
+                case "Reflections":
+                    ApplyReflections(e.Preset);
+                    break;
+                case "Shadows":
+                    ApplyShadows(e.Preset);
+                    break;
+                case "Clouds":
+                    ApplyClouds(e.Preset);
+                    break;
+                case "Fog":
+                    ApplyFog(e.Preset);
+                    break;
+                case "Sky":
+                    ApplySky(e.Preset);
+                    break;
+                case "Foliage":
+                    ApplyFoliage(e.Preset);
+                    break;
+                case "ViewDistance":
+                    ApplyViewDistance(e.Preset);
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void TextureSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -115,14 +180,15 @@ namespace S2SettingsGenerator
             btnGenerate.IsEnabled = true;
         }
 
-        private void ApplyPreset()
+        private void ApplyTextures(Presets preset, bool apply = false)
         {
-            var preset = this.ViewModel.CurrentPreset;
-
-            //Textures
             if (this.viewModel.TextureQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.TextureQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.TextureQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -156,8 +222,24 @@ namespace S2SettingsGenerator
                         cmbTextureGenerationSpeed.SelectedIndex = 1;
                         break;
                     case Presets.MEDIUM:
+                        sldrTextures.Value = 1.0;
+                        cmbAnisotropic.SelectedIndex = 1;
+                        chkAmortizeCPUToGPUCopy.IsChecked = false;
+                        cmbStreamLimitPerFrame.SelectedIndex = 0;
+                        cmbMipPreference.SelectedIndex = 1;
+                        cmbStreamingPool.SelectedIndex = 2;
+                        cmbTextureCopySpeed.SelectedIndex = 2;
+                        cmbTextureGenerationSpeed.SelectedIndex = 1;
                         break;
                     case Presets.HIGH:
+                        sldrTextures.Value = 0.0;
+                        cmbAnisotropic.SelectedIndex = 2;
+                        chkAmortizeCPUToGPUCopy.IsChecked = false;
+                        cmbStreamLimitPerFrame.SelectedIndex = 0;
+                        cmbMipPreference.SelectedIndex = 1;
+                        cmbStreamingPool.SelectedIndex = 3;
+                        cmbTextureCopySpeed.SelectedIndex = 2;
+                        cmbTextureGenerationSpeed.SelectedIndex = 2;
                         break;
                     case Presets.EPIC:
                         sldrTextures.Value = 0;
@@ -195,11 +277,17 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
+        }
 
-            //Hair
+        private void ApplyHair(Presets preset, bool apply = false)
+        {
             if (this.viewModel.HairQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.HairQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.HairQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -224,8 +312,18 @@ namespace S2SettingsGenerator
                         sldrHairQuality.Value = 0;
                         break;
                     case Presets.MEDIUM:
+                        chkHairAO.IsChecked = false;
+                        sldrHairAOSamples.Value = 0;
+                        sldrHairStrandVisibility.Value = 2;
+                        chkHairLightingAndShadows.IsChecked = false;
+                        sldrHairQuality.Value = 1;
                         break;
                     case Presets.HIGH:
+                        chkHairAO.IsChecked = false;
+                        sldrHairAOSamples.Value = 0;
+                        sldrHairStrandVisibility.Value = 4;
+                        chkHairLightingAndShadows.IsChecked = true;
+                        sldrHairQuality.Value = 2;
                         break;
                     case Presets.EPIC:
                         chkHairAO.IsChecked = true;
@@ -254,11 +352,17 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
+        }
 
-            //object detail
+        private void ApplyObjectDetail(Presets preset, bool apply = false)
+        {
             if (this.viewModel.ObjectDetailQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.ObjectDetailQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.ObjectDetailQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -283,8 +387,18 @@ namespace S2SettingsGenerator
                         cmbMaxAttaches.SelectedIndex = 1;
                         break;
                     case Presets.MEDIUM:
+                        sldrPreferredObjectDetail.Value = 0.415;
+                        sldrRequiredObjectDetail.Value = -0.585;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 3;
+                        cmbOverallDetail.SelectedIndex = 1;
+                        cmbMaxAttaches.SelectedIndex = 2;
                         break;
                     case Presets.HIGH:
+                        sldrPreferredObjectDetail.Value = 0.2;
+                        sldrRequiredObjectDetail.Value = -0.8;
+                        cmbNanitePixelsPerEdge.SelectedIndex = 3;
+                        cmbOverallDetail.SelectedIndex = 2;
+                        cmbMaxAttaches.SelectedIndex = 3;
                         break;
                     case Presets.EPIC:
                         sldrPreferredObjectDetail.Value = 0;
@@ -313,11 +427,17 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
+        }
 
-            //effects
+        private void ApplyEffects(Presets preset, bool apply = false)
+        {
             if (this.viewModel.EffectsQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.EffectsQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.EffectsQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -345,8 +465,20 @@ namespace S2SettingsGenerator
                         chkParticleRefractionAA.IsChecked = true;
                         break;
                     case Presets.MEDIUM:
+                        cmbRefractionQuality.SelectedIndex = 1;
+                        sldrEmitterSpawnRate.Value = 0.25;
+                        cmbParticleLighting.SelectedIndex = 0;
+                        cmbParticleQuality.SelectedIndex = 1;
+                        sldrParticleSimulation.Value = 2;
+                        chkParticleRefractionAA.IsChecked = true;
                         break;
                     case Presets.HIGH:
+                        cmbRefractionQuality.SelectedIndex = 2;
+                        sldrEmitterSpawnRate.Value = 0.5;
+                        cmbParticleLighting.SelectedIndex = 1;
+                        cmbParticleQuality.SelectedIndex = 2;
+                        sldrParticleSimulation.Value = 10;
+                        chkParticleRefractionAA.IsChecked = true;
                         break;
                     case Presets.EPIC:
                         cmbRefractionQuality.SelectedIndex = 2;
@@ -378,11 +510,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //materials
+        }
+        private void ApplyMaterials(Presets preset, bool apply = false)
+        {
             if (this.viewModel.MaterialsQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.MaterialsQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.MaterialsQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -398,8 +535,12 @@ namespace S2SettingsGenerator
                         chkMaterialAniso.IsChecked = false;
                         break;
                     case Presets.MEDIUM:
+                        cmbMaterialQuality.SelectedIndex = 0;
+                        chkMaterialAniso.IsChecked = false;
                         break;
                     case Presets.HIGH:
+                        cmbMaterialQuality.SelectedIndex = 1;
+                        chkMaterialAniso.IsChecked = true;
                         break;
                     case Presets.EPIC:
                         cmbMaterialQuality.SelectedIndex = 3;
@@ -419,11 +560,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //post processing
+        }
+        private void ApplyPostProcessing(Presets preset, bool apply = false)
+        {
             if (this.viewModel.PostProcessingQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.PostProcessingQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.PostProcessingQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -472,8 +618,34 @@ namespace S2SettingsGenerator
                         cmbToneMapper.SelectedIndex = 0;
                         break;
                     case Presets.MEDIUM:
+                        sldrPPRenderTargetPool.Value = 350;
+                        cmbLensFlareQuality.SelectedIndex = 0;
+                        chkFringeQual.IsChecked = false;
+                        chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
+                        cmbBloomQuality.SelectedIndex = 4;
+                        cmbBlurOptmization.SelectedIndex = 2;
+                        cmbUpscaleQuality.SelectedIndex = 2;
+                        chkGrainQuant.IsChecked = false;
+                        chkLightShafts.IsChecked = true;
+                        cmbLightShaftQuality.SelectedIndex = 1;
+                        cmbPPFilteringQuality.SelectedIndex = 1;
+                        cmbToneMapper.SelectedIndex = 2;
                         break;
                     case Presets.HIGH:
+                        sldrPPRenderTargetPool.Value = 400;
+                        cmbLensFlareQuality.SelectedIndex = 2;
+                        chkFringeQual.IsChecked = true;
+                        chkEyeAdapatation.IsChecked = true;
+                        sldrEyeAdaptationLensAtt.Value = 0.78;
+                        cmbBloomQuality.SelectedIndex = 5;
+                        cmbBlurOptmization.SelectedIndex = 3;
+                        cmbUpscaleQuality.SelectedIndex = 2;
+                        chkGrainQuant.IsChecked = true;
+                        chkLightShafts.IsChecked = true;
+                        cmbLightShaftQuality.SelectedIndex = 2;
+                        cmbPPFilteringQuality.SelectedIndex = 2;
+                        cmbToneMapper.SelectedIndex = 3;
                         break;
                     case Presets.EPIC:
                         sldrPPRenderTargetPool.Value = 400;
@@ -526,11 +698,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //dof
+        }
+        private void ApplyDOF(Presets preset, bool apply = false)
+        {
             if (this.viewModel.DOFQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.DOFQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.DOFQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -576,8 +753,32 @@ namespace S2SettingsGenerator
                         sldrDOBackgroundBlurLimit.Value = 0.006;
                         break;
                     case Presets.MEDIUM:
+                        cmbDOFQuality.SelectedIndex = 1;
+                        cmbDOFFiltering.SelectedIndex = 2;
+                        chkDOFBokeh.IsChecked = false;
+                        cmbGatherRings.SelectedIndex = 0;
+                        chkForegroundComposoting.IsChecked = false;
+                        cmbBackgroundComposoting.SelectedIndex = 0;
+                        chkScatterBokeh.IsChecked = false;
+                        slderMaxSpriteRatio.Value = 0.04;
+                        cmbRecombineQuality.SelectedIndex = 0;
+                        chkFastDOFAA.IsChecked = true;
+                        sldrDOFForegroundBlurLimit.Value = 0.006;
+                        sldrDOBackgroundBlurLimit.Value = 0.006;
                         break;
                     case Presets.HIGH:
+                        cmbDOFQuality.SelectedIndex = 2;
+                        cmbDOFFiltering.SelectedIndex = 2;
+                        chkDOFBokeh.IsChecked = false;
+                        cmbGatherRings.SelectedIndex = 1;
+                        chkForegroundComposoting.IsChecked = true;
+                        cmbBackgroundComposoting.SelectedIndex = 1;
+                        chkScatterBokeh.IsChecked = false;
+                        slderMaxSpriteRatio.Value = 0.04;
+                        cmbRecombineQuality.SelectedIndex = 0;
+                        chkFastDOFAA.IsChecked = true;
+                        sldrDOFForegroundBlurLimit.Value = 0.012;
+                        sldrDOBackgroundBlurLimit.Value = 0.012;
                         break;
                     case Presets.EPIC:
                         cmbDOFQuality.SelectedIndex = 3;
@@ -627,11 +828,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //aa
+        }
+        private void ApplyAA(Presets preset, bool apply = false)
+        {
             if (this.viewModel.AAQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.AAQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.AAQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -650,8 +856,14 @@ namespace S2SettingsGenerator
                         cmbTSRAA.SelectedIndex = 0;
                         break;
                     case Presets.MEDIUM:
+                        cmbFXAA.SelectedIndex = 1;
+                        cmbTemporalAA.SelectedIndex = 1;
+                        cmbTSRAA.SelectedIndex = 0;
                         break;
                     case Presets.HIGH:
+                        cmbFXAA.SelectedIndex = 3;
+                        cmbTemporalAA.SelectedIndex = 1;
+                        cmbTSRAA.SelectedIndex = 0;
                         break;
                     case Presets.EPIC:
                         cmbFXAA.SelectedIndex = 4;
@@ -674,11 +886,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //motionblur
+        }
+        private void ApplyMotionBlur(Presets preset, bool apply = false)
+        {
             if (this.viewModel.MotionBlurQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.MotionBlurQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.MotionBlurQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -719,12 +936,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-
-            //shading
+        }
+        private void ApplyShading(Presets preset, bool apply = false)
+        {
             if (this.viewModel.ShadingQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.ShadingQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.ShadingQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -779,8 +1000,38 @@ namespace S2SettingsGenerator
                         chkTranslucentShadowFilter.IsChecked = false;
                         break;
                     case Presets.MEDIUM:
+                        cmbSceneFormat.SelectedIndex = 0;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 1;
+                        chkBlurTranslucent.IsChecked = false;
+                        chkSubsurfaceScattering.IsChecked = true;
+                        chkSSSubsurfaceScattering.IsChecked = true;
+                        cmbSSSSamples.SelectedIndex = 0;
+                        chkHQSSS.IsChecked = false;
+                        chkLQSSS.IsChecked = true;
+                        cmbAOFactor.SelectedIndex = 0;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 100;
+                        cmbAOQuality.SelectedIndex = 1;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = true;
                         break;
                     case Presets.HIGH:
+                        cmbSceneFormat.SelectedIndex = 0;
+                        chkTranslucentLighting.IsChecked = true;
+                        cmbTranslucentLightingDim.SelectedIndex = 1;
+                        chkBlurTranslucent.IsChecked = true;
+                        chkSubsurfaceScattering.IsChecked = true;
+                        chkSSSubsurfaceScattering.IsChecked = true;
+                        cmbSSSSamples.SelectedIndex = 0;
+                        chkHQSSS.IsChecked = true;
+                        chkLQSSS.IsChecked = true;
+                        cmbAOFactor.SelectedIndex = 1;
+                        chkAlwaysRequestMaxAOQ.IsChecked = false;
+                        sldrAOQuality.Value = 100;
+                        cmbAOQuality.SelectedIndex = 2;
+                        sldrAORadius.Value = 1;
+                        chkTranslucentShadowFilter.IsChecked = true;
                         break;
                     case Presets.EPIC:
                         cmbSceneFormat.SelectedIndex = 1;
@@ -839,11 +1090,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //global illum
+        }
+        private void ApplyGI(Presets preset, bool apply = false)
+        {
             if (this.viewModel.GlobalIlluminationQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.GlobalIlluminationQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.GlobalIlluminationQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -912,12 +1168,54 @@ namespace S2SettingsGenerator
                         cmbProbeCacheFrameKeep.SelectedIndex = 0;
                         chkLumenTranslucencyVolume.IsChecked = true;
                         chkLumenTranslucencyTrace.IsChecked = true;
-                        sldrLumenFarFieldDistance.Value = 20000;
+                        sldrLumenFarFieldDistance.Value = 10000;
                         chkTigherProbes.IsChecked = false;
                         break;
                     case Presets.MEDIUM:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = false;
+                        sldrDetailedMeshTracingDist.Value = 0;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = false;
+
+                        sldrLumenMeshCardSize.Value = 150;
+                        cmbLumenAtlasSize.SelectedIndex = 2;
+
+                        cmbProbeDownsample.SelectedIndex = 2;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 0;
+                        cmbProbeTraceBudget.SelectedIndex = 2;
+                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 1;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 15000;
+                        chkTigherProbes.IsChecked = false;
                         break;
                     case Presets.HIGH:
+                        chkIndirectDiffuse.IsChecked = true;
+                        chkDetailedMeshTracing.IsChecked = false;
+                        sldrDetailedMeshTracingDist.Value = 0;
+                        chkRadiosity.IsChecked = true;
+                        chkOffscreenTraceMeshes.IsChecked = false;
+
+                        sldrLumenMeshCardSize.Value = 100;
+                        cmbLumenAtlasSize.SelectedIndex = 2;
+
+                        cmbProbeDownsample.SelectedIndex = 2;
+                        cmbLumenTraceOctaRes.SelectedIndex = 1;
+                        chkStochasticInterpolation.IsChecked = true;
+                        chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
+                        cmbProbeRes.SelectedIndex = 1;
+                        cmbProbeTraceBudget.SelectedIndex = 3;
+                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeCacheFrameKeep.SelectedIndex = 1;
+                        chkLumenTranslucencyVolume.IsChecked = true;
+                        chkLumenTranslucencyTrace.IsChecked = true;
+                        sldrLumenFarFieldDistance.Value = 20000;
+                        chkTigherProbes.IsChecked = false;
                         break;
                     case Presets.EPIC:
                         chkIndirectDiffuse.IsChecked = true;
@@ -994,11 +1292,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //reflections
+        }
+        private void ApplyReflections(Presets preset, bool apply = false)
+        {
             if (this.viewModel.ReflectionsQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.ReflectionsQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.ReflectionsQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1032,7 +1335,7 @@ namespace S2SettingsGenerator
                         chkHalfResScene.IsChecked = false;
                         chkLumenReflections.IsChecked = true;
                         chkTraceMeshReflections.IsChecked = false;
-                        cmbReflectionDownSample.SelectedIndex = 3;
+                        cmbReflectionDownSample.SelectedIndex = 2;
                         sldrMaxRoughness.Value = 0.2;
                         cmbReflectionFilterSampleCount.SelectedIndex = 2;
                         chkReflectionSkipEmissiveOpaque.IsChecked = false;
@@ -1041,8 +1344,30 @@ namespace S2SettingsGenerator
                         chkReflectionSceneColor.IsChecked = false;
                         break;
                     case Presets.MEDIUM:
+                        cmbSSR.SelectedIndex = 3;
+                        chkHalfResScene.IsChecked = false;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = false;
+                        cmbReflectionDownSample.SelectedIndex = 3;
+                        sldrMaxRoughness.Value = 0.25;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 2;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = false;
+                        chkReflectionSkipEmissiveFront.IsChecked = false;
+                        chkReflectionLumenTransparency.IsChecked = false;
+                        chkReflectionSceneColor.IsChecked = true;
                         break;
                     case Presets.HIGH:
+                        cmbSSR.SelectedIndex = 3;
+                        chkHalfResScene.IsChecked = false;
+                        chkLumenReflections.IsChecked = true;
+                        chkTraceMeshReflections.IsChecked = false;
+                        cmbReflectionDownSample.SelectedIndex = 3;
+                        sldrMaxRoughness.Value = 0.27;
+                        cmbReflectionFilterSampleCount.SelectedIndex = 3;
+                        chkReflectionSkipEmissiveOpaque.IsChecked = true;
+                        chkReflectionSkipEmissiveFront.IsChecked = false;
+                        chkReflectionLumenTransparency.IsChecked = false;
+                        chkReflectionSceneColor.IsChecked = true;
                         break;
                     case Presets.EPIC:
                         cmbSSR.SelectedIndex = 3;
@@ -1089,11 +1414,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //shadows
+        }
+        private void ApplyShadows(Presets preset, bool apply = false)
+        {
             if (this.viewModel.ShadowsQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.ShadowsQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.ShadowsQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1157,8 +1487,43 @@ namespace S2SettingsGenerator
                         chkShadowStaticSeperate.IsChecked = true;
                         break;
                     case Presets.MEDIUM:
+                        cmbShadowQuality.SelectedIndex = 3;
+                        sldrShadowCascades.Value = 2;
+                        cmbShadowResolution.SelectedIndex = 3;
+                        sldrShadowRadiusThresh.Value = 0.05;
+                        sldrShadowDist.Value = 0.9;
+                        cmbShadowTransitionScale.SelectedIndex = 0;
+                        sldrPreshadowRes.Value = 0.5;
+                        chkDistanceFieldShadowing.IsChecked = false;
+                        sldrDistanceFieldShadowQuality.Value = 0;
+                        cmbShadowPageSize.SelectedIndex = 1;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 1;
+                        sldrViewBiasDirectional.Value = 2;
+                        cmbShadowRaytraceQuality.SelectedIndex = 2;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = false;
+                        chkShadowSkeletelProxy.IsChecked = true;
+                        chkShadowStaticSeperate.IsChecked = true;
                         break;
                     case Presets.HIGH:
+                        cmbShadowQuality.SelectedIndex = 5;
+                        sldrShadowCascades.Value = 4;
+                        cmbShadowResolution.SelectedIndex = 4;
+                        sldrShadowRadiusThresh.Value = 0.04;
+                        sldrShadowDist.Value = 0.95;
+                        sldrPreshadowRes.Value = 0.5;
+                        chkDistanceFieldShadowing.IsChecked = false;
+                        sldrDistanceFieldShadowQuality.Value = 0;
+                        cmbShadowPageSize.SelectedIndex = 2;
+                        sldrFirstClipmapLevel.Value = 6;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 2;
+                        sldrViewBiasDirectional.Value = 1;
+                        cmbShadowRaytraceQuality.SelectedIndex = 3;
+                        chkContactShadows.IsChecked = true;
+                        chkContactShadowsLocal.IsChecked = true;
+                        chkShadowSkeletelProxy.IsChecked = true;
+                        chkShadowStaticSeperate.IsChecked = true;
                         break;
                     case Presets.EPIC:
                         cmbShadowQuality.SelectedIndex = 5;
@@ -1172,7 +1537,7 @@ namespace S2SettingsGenerator
                         sldrDistanceFieldShadowQuality.Value = 1.0;
                         cmbShadowPageSize.SelectedIndex = 3;
                         sldrFirstClipmapLevel.Value = 6;
-                        cmbDirectionalLightQualityPreference.SelectedIndex = 2;
+                        cmbDirectionalLightQualityPreference.SelectedIndex = 3;
                         sldrViewBiasDirectional.Value = 0;
                         cmbShadowRaytraceQuality.SelectedIndex = 4;
                         chkContactShadows.IsChecked = true;
@@ -1226,11 +1591,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //clouds
-            if (this.viewModel.CloudsQualitySettings.PresetLocked == false)
+        }
+        private void ApplyClouds(Presets preset, bool apply = false)
+        {
+        if (this.viewModel.CloudsQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.CloudsQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.CloudsQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1255,8 +1625,18 @@ namespace S2SettingsGenerator
                         sldrCloudShadowRayCount.Value = 4;
                         break;
                     case Presets.MEDIUM:
+                        chkCloudAO.IsChecked = false;
+                        cmbCloudAORes.SelectedIndex = 2;
+                        sldrCloudViewRayCount.Value = 196;
+                        sldrCloudReflectionRayCount.Value = 30;
+                        sldrCloudShadowRayCount.Value = 4;
                         break;
                     case Presets.HIGH:
+                        chkCloudAO.IsChecked = false;
+                        cmbCloudAORes.SelectedIndex = 2;
+                        sldrCloudViewRayCount.Value = 196;
+                        sldrCloudReflectionRayCount.Value = 40;
+                        sldrCloudShadowRayCount.Value = 4;
                         break;
                     case Presets.EPIC:
                         chkCloudAO.IsChecked = true;
@@ -1285,11 +1665,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //fog
+        }
+        private void ApplyFog(Presets preset, bool apply = false)
+        {
             if (this.viewModel.FogQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.FogQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.FogQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1308,8 +1693,14 @@ namespace S2SettingsGenerator
                         sldrFogSampleCount.Value = 4;
                         break;
                     case Presets.MEDIUM:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 1;
+                        sldrFogSampleCount.Value = 4;
                         break;
                     case Presets.HIGH:
+                        chkVolumetricFog.IsChecked = true;
+                        cmbFogRes.SelectedIndex = 2;
+                        sldrFogSampleCount.Value = 4;
                         break;
                     case Presets.EPIC:
                         chkVolumetricFog.IsChecked = true;
@@ -1332,11 +1723,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //sky
+        }
+        private void ApplySky(Presets preset, bool apply = false)
+        {
             if (this.viewModel.SkyQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.SkyQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.SkyQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1373,8 +1769,26 @@ namespace S2SettingsGenerator
                         cmbSkyReflectionRes.SelectedIndex = 0;
                         break;
                     case Presets.MEDIUM:
+                        sldrSkySampleMax.Value = 1;
+                        cmbSkyDepthLevel.SelectedIndex = 3;
+                        sldrSkyColorSamples.Value = 32;
+                        sldrSkyAtmosphereSamples.Value = 32;
+                        chkHigherFormatLUT.IsChecked = true;
+                        sldrSkyTransmittanceSamples.Value = 10;
+                        sldrSkyScatteringSamples.Value = 15;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 1;
                         break;
                     case Presets.HIGH:
+                        sldrSkySampleMax.Value = 2;
+                        cmbSkyDepthLevel.SelectedIndex = 3;
+                        sldrSkyColorSamples.Value = 64;
+                        sldrSkyAtmosphereSamples.Value = 64;
+                        chkHigherFormatLUT.IsChecked = true;
+                        sldrSkyTransmittanceSamples.Value = 10;
+                        sldrSkyScatteringSamples.Value = 15;
+                        chkSkyReflection.IsChecked = true;
+                        cmbSkyReflectionRes.SelectedIndex = 2;
                         break;
                     case Presets.EPIC:
                         sldrSkySampleMax.Value = 8;
@@ -1415,11 +1829,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //foliage
+        }
+        private void ApplyFoliage(Presets preset, bool apply = false)
+        {
             if (this.viewModel.FoliageQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.FoliageQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.FoliageQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1447,8 +1866,20 @@ namespace S2SettingsGenerator
                         chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.MEDIUM:
+                        cmbFoliagePopin.SelectedIndex = 1;
+                        sldrFoliageLOD.Value = 0.9;
+                        sldrFoliageGrassDist.Value = 0.8;
+                        sldrFoliageTreeDist.Value = 0.7;
+                        sldrFoliageGrassDensity.Value = 0.6;
+                        chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.HIGH:
+                        cmbFoliagePopin.SelectedIndex = 2;
+                        sldrFoliageLOD.Value = 1.0;
+                        sldrFoliageGrassDist.Value = 1.0;
+                        sldrFoliageTreeDist.Value = 0.9;
+                        sldrFoliageGrassDensity.Value = 0.8;
+                        chkLimitFoliageGeometry.IsChecked = false;
                         break;
                     case Presets.EPIC:
                         cmbFoliagePopin.SelectedIndex = 2;
@@ -1480,11 +1911,16 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
-
-            //view distance
+        }
+        private void ApplyViewDistance(Presets preset, bool apply = false)
+        {
             if (this.viewModel.ViewDistanceQualitySettings.PresetLocked == false)
             {
-                this.ViewModel.ViewDistanceQualitySettings.Preset = preset;
+                if (apply)
+                {
+                    this.ViewModel.ViewDistanceQualitySettings.Preset = preset;
+                }
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -1500,8 +1936,12 @@ namespace S2SettingsGenerator
                         sldrLightViewDistance.Value = 0.5;
                         break;
                     case Presets.MEDIUM:
+                        sldrViewDistance.Value = 1;
+                        sldrLightViewDistance.Value = 0.75;
                         break;
                     case Presets.HIGH:
+                        sldrViewDistance.Value = 1;
+                        sldrLightViewDistance.Value = 1;
                         break;
                     case Presets.EPIC:
                         sldrViewDistance.Value = 1;
@@ -1521,6 +1961,30 @@ namespace S2SettingsGenerator
                         break;
                 }
             }
+        }
+        private void ApplyPreset()
+        {
+            var preset = this.ViewModel.CurrentPreset;
+
+            ApplyTextures(preset, true);
+            ApplyHair(preset, true);
+            ApplyObjectDetail(preset, true);
+            ApplyEffects(preset, true);
+            ApplyMaterials(preset, true);
+            ApplyPostProcessing(preset, true);
+            ApplyDOF(preset, true);
+            ApplyAA(preset, true);
+            ApplyMotionBlur(preset, true);
+            ApplyShading(preset, true);
+            ApplyGI(preset, true);
+            ApplyReflections(preset, true);
+            ApplyShadows(preset, true);
+            ApplyClouds(preset, true);
+            ApplyFog(preset, true);
+            ApplySky(preset, true);
+            ApplyFoliage(preset, true);
+            ApplyViewDistance(preset, true);
+
         }
 
         private void rdioPotatoPreset_Checked(object sender, RoutedEventArgs e)
@@ -1570,6 +2034,18 @@ namespace S2SettingsGenerator
         private void rdioInsanePreset_Checked(object sender, RoutedEventArgs e)
         {
             this.ViewModel.CurrentPreset = Presets.INSANE;
+            ApplyPreset();
+        }
+
+        private void btnMediumPreset_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.CurrentPreset = Presets.MEDIUM;
+            ApplyPreset();
+        }
+
+        private void btnHighPreset_Click(object sender, RoutedEventArgs e)
+        {
+            this.ViewModel.CurrentPreset = Presets.HIGH;
             ApplyPreset();
         }
     }

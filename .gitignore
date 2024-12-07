@@ -7,3 +7,4 @@ bin/x86/Debug/
 bin/x86/Release/
 .vs/S2SettingsGenerator/v17/DocumentLayout.json
 .vs/S2SettingsGenerator/v17/\DocumentLayout.backup.json
+bin/

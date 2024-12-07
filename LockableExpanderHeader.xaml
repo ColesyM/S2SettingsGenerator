@@ -44,7 +44,7 @@
             <CheckBox Grid.Column="0" IsChecked="{Binding PresetLocked, Mode=TwoWay}" VerticalAlignment="Center" Style="{StaticResource CheckBoxLock}" />
 
         </StackPanel>
-        <Slider Grid.Column="2" x:Name="sldrSectionPreset" Width="225" IsEnabled="{Binding PresetLocked, Converter={StaticResource InverseBooleanConverter}}" Minimum="0" Maximum="8" Value="{Binding PresetIndex, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="Both" ValueChanged="sldrSectionPreset_ValueChanged" />
+        <Slider Grid.Column="2" x:Name="sldrSectionPreset" Width="225" IsEnabled="{Binding PresetLocked, Converter={StaticResource InverseBooleanConverter}}" Minimum="0" Maximum="7" Value="{Binding PresetIndex, Mode=TwoWay}" TickFrequency="1" IsSnapToTickEnabled="True" TickPlacement="Both" ValueChanged="sldrSectionPreset_ValueChanged" />
         <Label Width="100" Grid.Column="3" x:Name="lblCurrentSectionPreset" Content="Epic" IsEnabled="{Binding PresetLocked, Converter={StaticResource InverseBooleanConverter}}" />
     </Grid>
 </UserControl>

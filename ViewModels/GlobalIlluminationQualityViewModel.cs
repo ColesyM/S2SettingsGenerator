@@ -311,7 +311,13 @@ namespace S2SettingsGenerator.ViewModels
                 r_Lumen_TranslucencyVolume_GridPixelSize = 64,
 
                 r_LumenScene_SurfaceCache_FarField_Distance = lumenFarfieldDist,
-                r_LumenScene_SurfaceCache_CardMinResolution = 4,
+                r_LumenScene_SurfaceCache_CardMinResolution = probeResIndex switch
+                {
+                    0 => 16,
+                    1 => 8,
+                    2 => 4,
+                    _ => 4
+                },
 
                 r_LumenScene_Radiosity_ProbeSpacing = tighterProbes ? 4 : 8
             };

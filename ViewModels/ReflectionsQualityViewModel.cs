@@ -169,7 +169,7 @@ namespace S2SettingsGenerator.ViewModels
                     0 => 0,
                     1 => 1,
                     2 => 2,
-                    3 => 3,
+                    3 => 4,
                     _ => 2
                 },
                 r_Lumen_Reflections_SkipEmissive_Opaque = skipEmissiveOpaque ? 1 : 0,

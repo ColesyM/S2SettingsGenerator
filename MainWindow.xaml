@@ -53,8 +53,8 @@
                     <Button x:Name="rdioPotatoPreset" Grid.Column="0" Grid.Row="0" Content="Potato" Padding="5" Click="rdioPotatoPreset_Checked"/>
                     <Button x:Name="rdioVeryLowPreset" Grid.Column="0" Grid.Row="1" Content="Very Low" Padding="5"  Click="rdioVeryLowPreset_Checked"/>
                     <Button x:Name="rdioLowPreset" Grid.Column="0" Grid.Row="2" Content="Low" Padding="5"  IsEnabled="True" Click="rdioLowPreset_Checked"/>
-                    <Button Grid.Column="1" Grid.Row="0" Content="Medium" Padding="5"  IsEnabled="False" Opacity="0.5"/>
-                    <Button Grid.Column="1" Grid.Row="1" Content="High" Padding="5"  IsEnabled="False" Opacity="0.5"/>
+                    <Button x:Name="btnMediumPreset" Grid.Column="1" Grid.Row="0" Content="Medium" Padding="5" Click="btnMediumPreset_Click"/>
+                    <Button x:Name="btnHighPreset" Grid.Column="1" Grid.Row="1" Content="High" Padding="5" Click="btnHighPreset_Click"/>
                     <Button Grid.Column="1" Grid.Row="2" Content="Very High" Padding="5"  IsEnabled="False" Opacity="0.5"/>
                     <Button x:Name="rdioEpicPreset" Grid.Column="2" Grid.Row="0" Content="Epic" Padding="5"  IsEnabled="True" Click="rdioEpicPreset_Checked"/>
                     <Button x:Name="rdioUltraPreset" Grid.Column="2" Grid.Row="1" Content="Ultra" Padding="5"  Click="rdioUltraPreset_Checked"/>
@@ -81,10 +81,10 @@
                             <WrapPanel Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,10,0,0">
                                 <Line Stretch="Fill" X2="1" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}"/>
                                 <Label Content="Textures" VerticalAlignment="Center" FontWeight="Bold"/>
-                                <Slider x:Name="sldrTextures" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.5" LargeChange="0.5" Maximum="2" TickFrequency="0.5" Minimum="0" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" Value="{Binding TextureMIP, Mode=TwoWay}" ValueChanged="TextureSlider_ValueChanged" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
+                                <Slider x:Name="sldrTextures" ToolTip="Texure MIP Quality, 0 is best quality, increase for lower MIPs. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.5" LargeChange="0.5" Maximum="2" TickFrequency="0.5" Minimum="0" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" Value="{Binding TextureMIP, Mode=TwoWay}" ValueChanged="TextureSlider_ValueChanged" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <Label Content="Anisotropic" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbAnisotropic" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding AnisotropicIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbAnisotropic" ToolTip="Texure sampling quality, better detail at tighter viewing angles. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low-Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding AnisotropicIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Disabled"/>
                                         <ComboBoxItem Content="2x"/>
                                         <ComboBoxItem Content="4x"/>
@@ -94,7 +94,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <Label Content="Streaming Pool" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbStreamingPool" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding StreamingPoolIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbStreamingPool" ToolTip="Texure pool size, for streaming tetures to display. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low-Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding StreamingPoolIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Tiny"/>
                                         <ComboBoxItem Content="Small"/>
                                         <ComboBoxItem Content="Medium"/>
@@ -103,10 +103,10 @@
                                         <CheckBox IsChecked="True" Content="Limit to VRAM"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkAmortizeCPUToGPUCopy" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding AmortizeCPUToGPUCopy, Mode=TwoWay}" Content="Throttle copy to VRAM"/>
+                                <CheckBox x:Name="chkAmortizeCPUToGPUCopy" ToolTip="Limit the number of textures copied from CPU to VRAM. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding AmortizeCPUToGPUCopy, Mode=TwoWay}" Content="Throttle copy to VRAM"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Mip Preference" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbMipPreference" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MipPreferenceIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbMipPreference" ToolTip="Texture MIP Quality bias preference. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Low" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MipPreferenceIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Prefer Lower"/>
                                         <ComboBoxItem Content="Normal" IsSelected="True"/>
                                         <ComboBoxItem Content="Prefer Higher"/>
@@ -114,7 +114,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Stream Limit Per Frame" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbStreamLimitPerFrame" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding StreamLimitPerFrameIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbStreamLimitPerFrame" ToolTip="Limit count for copy from CPU to VRAM if throttle is checked. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" IsEnabled="{Binding AmortizeCPUToGPUCopy}" SelectedIndex="{Binding StreamLimitPerFrameIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="No Limit" IsSelected="True"/>
                                         <ComboBoxItem Content="10" />
                                         <ComboBoxItem Content="5" />
@@ -124,7 +124,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Texture Copy Speed" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTextureCopySpeed" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding TextureCopySpeedIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbTextureCopySpeed" ToolTip="Max number of texture pages uploaded per frame. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Medium"  Width="100" VerticalAlignment="Center" SelectedIndex="{Binding TextureCopySpeedIndex, Mode=TwoWay}">
                                         <ComboBoxItem Content="Very Low"/>
                                         <ComboBoxItem Content="Low" />
                                         <ComboBoxItem Content="Medium" />
@@ -133,7 +133,7 @@
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                 <Label Content="Texture Generation Speed" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbTextureGenerationSpeed" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding TextureGenerationSpeedIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbTextureGenerationSpeed" ToolTip="Max number of texture pages built per frame. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding TextureGenerationSpeedIndex, Mode=TwoWay}">
                                     <ComboBoxItem Content="Very Low"/>
                                     <ComboBoxItem Content="Low" />
                                     <ComboBoxItem Content="Medium" />
