@@ -9,18 +9,13 @@ namespace S2SettingsGenerator
 {
     public struct MaterialQualitySettings : ISettingsModel
     {
+        [IniPropertyAttribute("r.MaterialQualityLevel")]
         public int r_MaterialQualityLevel=3; //; Epic quality.For more information about the values look "r.MaterialQualityLevel" definition
+        [IniPropertyAttribute("r.AnisotropicMaterials")]
         public int r_AnisotropicMaterials= 1;
 
         public MaterialQualitySettings()
         {
-
-        }
-
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.MaterialQualityLevel={r_MaterialQualityLevel}");
-            sb.AppendLine($"r.AnisotropicMaterials={r_AnisotropicMaterials}");
         }
     }
 }

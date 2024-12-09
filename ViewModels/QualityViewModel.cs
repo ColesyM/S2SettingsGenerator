@@ -2,7 +2,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -73,9 +75,56 @@ namespace S2SettingsGenerator.ViewModels
 
         public void AddSettingsStrings(StringBuilder sb)
         {
+            if (Settings == null)
+            {
+                sb.AppendLine($";--ERROR EXPORTING {SettingsName}--");
+                return;
+            }
+
             sb.AppendLine();
             sb.AppendLine($";--{SettingsName}--");
-            Settings.appendLines(sb);
+
+            foreach (FieldInfo prop in Settings.GetType().GetFields())
+            {
+                var iniAttribute = prop.GetCustomAttribute<IniPropertyAttribute>(false);
+
+                if (iniAttribute != null)
+                {
+                    var typeOfField = prop.FieldType.Name;
+                    string fieldValueStr;
+                    Debug.WriteLine(typeOfField);
+                    switch (typeOfField)
+                    {
+                        case "Single":
+                            var preciseFloatStr = $"{(float)prop.GetValue(Settings)!:F7}".TrimEnd(['0']);
+                            fieldValueStr = preciseFloatStr.EndsWith('.') ? $"{preciseFloatStr}0" : preciseFloatStr;
+                            break;
+                        case "Int32":
+                        default:
+                            fieldValueStr = $"{prop.GetValue(Settings)}";
+                            break;
+                    }
+
+                    if (iniAttribute.IniProperty.Contains('='))
+                    {
+                        throw new CustomAttributeFormatException($"ini property should not container = {iniAttribute.IniProperty}");
+                    }
+
+                    if (iniAttribute.IniProperty.Contains('_'))
+                    {
+                        throw new CustomAttributeFormatException($"ini property should not container _ {iniAttribute.IniProperty}");
+                    }
+
+                    var expectedIni = prop.Name.Replace('_', '.');
+
+                    if (expectedIni != iniAttribute.IniProperty)
+                    {
+                        throw new CustomAttributeFormatException($"{expectedIni} != {iniAttribute.IniProperty}");
+                    }
+
+                    sb.AppendLine($"{iniAttribute.IniProperty}={fieldValueStr}");
+                }
+            }
         }
     }
 }

@@ -8,27 +8,23 @@ namespace S2SettingsGenerator.Models
 {
     public struct VolumetricCloudsQualitySettings: ISettingsModel
     {
+        [IniPropertyAttribute("r.VolumetricCloud.SkyAO")]
         public int r_VolumetricCloud_SkyAO = 1;
+        [IniPropertyAttribute("r.VolumetricCloud.SkyAO.MaxResolution")]
         public int r_VolumetricCloud_SkyAO_MaxResolution = 128;
+        [IniPropertyAttribute("r.VolumetricCloud.ViewRaySampleMaxCount")]
         public int r_VolumetricCloud_ViewRaySampleMaxCount = 196;
+        [IniPropertyAttribute("r.VolumetricCloud.DistanceToSampleMaxCount")]
         public int r_VolumetricCloud_DistanceToSampleMaxCount = 80;
+        [IniPropertyAttribute("r.VolumetricCloud.ReflectionRaySampleMaxCount")]
         public int r_VolumetricCloud_ReflectionRaySampleMaxCount = 60;
+        [IniPropertyAttribute("r.VolumetricCloud.Shadow.ViewRaySampleMaxCount")]
         public int r_VolumetricCloud_Shadow_ViewRaySampleMaxCount = 4;
 
 
         public VolumetricCloudsQualitySettings()
         {
 
-        }
-
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.VolumetricCloud.SkyAO={r_VolumetricCloud_SkyAO}");
-            sb.AppendLine($"r.VolumetricCloud.SkyAO.MaxResolution={r_VolumetricCloud_SkyAO_MaxResolution}");
-            sb.AppendLine($"r.VolumetricCloud.ViewRaySampleMaxCount={r_VolumetricCloud_ViewRaySampleMaxCount}");
-            sb.AppendLine($"r.VolumetricCloud.DistanceToSampleMaxCount={r_VolumetricCloud_DistanceToSampleMaxCount}");
-            sb.AppendLine($"r.VolumetricCloud.ReflectionRaySampleMaxCount={r_VolumetricCloud_ReflectionRaySampleMaxCount}");
-            sb.AppendLine($"r.VolumetricCloud.Shadow.ViewRaySampleMaxCount={r_VolumetricCloud_Shadow_ViewRaySampleMaxCount}");
         }
     }
 }

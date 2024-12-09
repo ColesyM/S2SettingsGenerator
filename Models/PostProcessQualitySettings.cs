@@ -9,40 +9,35 @@ namespace S2SettingsGenerator
 {
     public struct PostProcessQualitySettings : ISettingsModel
     {
+        [IniPropertyAttribute("r.RenderTargetPoolMin")]
         public int r_RenderTargetPoolMin = 400;
+        [IniPropertyAttribute("r.LensFlareQuality")]
         public int r_LensFlareQuality = 2;
+        [IniPropertyAttribute("r.SceneColorFringeQuality")]
         public int r_SceneColorFringeQuality = 1;
+        [IniPropertyAttribute("r.EyeAdaptationQuality")]
         public int r_EyeAdaptationQuality = 2;
+        [IniPropertyAttribute("r.EyeAdaptation.LensAttenuation")]
         public float r_EyeAdaptation_LensAttenuation = 0.78f;
+        [IniPropertyAttribute("r.BloomQuality")]
         public int r_BloomQuality = 5;
+        [IniPropertyAttribute("r.FastBlurThreshold")]
         public int r_FastBlurThreshold = 100;
+        [IniPropertyAttribute("r.Upscale.Quality")]
         public int r_Upscale_Quality = 3;
+        [IniPropertyAttribute("r.Tonemapper.GrainQuantization")]
         public int r_Tonemapper_GrainQuantization = 1;
+        [IniPropertyAttribute("r.LightShaftQuality")]
         public int r_LightShaftQuality = 1;
+        [IniPropertyAttribute("r.LightShaftDownSampleFactor")]
         public int r_LightShaftDownSampleFactor = 2;
+        [IniPropertyAttribute("r.Filter.SizeScale")]
         public float r_Filter_SizeScale = 1f;
+        [IniPropertyAttribute("r.Tonemapper.Quality")]
         public int r_Tonemapper_Quality = 5;
 
         public PostProcessQualitySettings()
         {
-
         }
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.RenderTargetPoolMin={r_RenderTargetPoolMin}");
-            sb.AppendLine($"r.LensFlareQuality={r_LensFlareQuality}");
-            sb.AppendLine($"r.SceneColorFringeQuality={r_SceneColorFringeQuality}");
-            sb.AppendLine($"r.EyeAdaptationQuality={r_EyeAdaptationQuality}");
-            sb.AppendLine($"r.EyeAdaptation.LensAttenuation={r_EyeAdaptation_LensAttenuation}");
-            sb.AppendLine($"r.BloomQuality={r_BloomQuality}");
-            sb.AppendLine($"r.FastBlurThreshold={r_FastBlurThreshold}");
-            sb.AppendLine($"r.Upscale.Quality={r_Upscale_Quality}");
-            sb.AppendLine($"r.Tonemapper.GrainQuantization={r_Tonemapper_GrainQuantization}");
-            sb.AppendLine($"r.LightShaftQuality={r_LightShaftQuality}");
-            sb.AppendLine($"r.LightShaftDownSampleFactor={r_LightShaftDownSampleFactor}");
-            sb.AppendLine($"r.Filter.SizeScale={r_Filter_SizeScale}");
-            sb.AppendLine($"r.Tonemapper.Quality={r_Tonemapper_Quality}");
-        }
-
     }
 }

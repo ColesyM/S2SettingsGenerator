@@ -9,28 +9,21 @@ namespace S2SettingsGenerator
 {
     public struct EffectsQualitySettings : ISettingsModel
     {
+        [IniPropertyAttribute("r.RefractionQuality")]
         public int r_RefractionQuality = 2;
+        [IniPropertyAttribute("r.EmitterSpawnRateScale")]
         public float r_EmitterSpawnRateScale = 1.0f;
+        [IniPropertyAttribute("r.ParticleLightQuality")]
         public int r_ParticleLightQuality = 2;
+        [IniPropertyAttribute("fx.Niagara.QualityLevel")]
         public int fx_Niagara_QualityLevel = 3;
+        [IniPropertyAttribute("fx.Niagara.MaxAdvanceTicks")]
         public int fx_Niagara_MaxAdvanceTicks = 20;
+        [IniPropertyAttribute("r.Refraction.Blur.TemporalAA")]
         public int r_Refraction_Blur_TemporalAA = 1;
 
         public EffectsQualitySettings()
         {
-
-        }
-
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.RefractionQuality={r_RefractionQuality}");
-            sb.AppendLine($"r.EmitterSpawnRateScale={r_EmitterSpawnRateScale}");
-
-            sb.AppendLine($"r.ParticleLightQuality={r_ParticleLightQuality}");
-            sb.AppendLine($"r.Niagara.QualityLevel={fx_Niagara_QualityLevel}");
-
-            sb.AppendLine($"r.Niagara.MaxAdvanceTicks={fx_Niagara_MaxAdvanceTicks}");
-            sb.AppendLine($"r.Refraction.Blur.TemporalAA={r_Refraction_Blur_TemporalAA}");
         }
     }
 }

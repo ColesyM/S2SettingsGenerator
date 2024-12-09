@@ -9,28 +9,21 @@ namespace S2SettingsGenerator
 {
     public struct HairQualitySettings : ISettingsModel
     {
+        [IniPropertyAttribute("r.HairStrands.SkyAO")]
         public int r_HairStrands_SkyAO=1;
+        [IniPropertyAttribute("r.HairStrands.SkyAO.SampleCount")]
         public int r_HairStrands_SkyAO_SampleCount = 4;
+        [IniPropertyAttribute("r.HairStrands.Visibility.MSAA.SamplePerPixel")]
         public int r_HairStrands_Visibility_MSAA_SamplePerPixel = 4;
+        [IniPropertyAttribute("r.HairStrands.Interpolation.UseSingleGuide")]
         public int r_HairStrands_Interpolation_UseSingleGuide = 0;
+        [IniPropertyAttribute("r.HairStrands.Voxelization")]
         public int r_HairStrands_Voxelization = 1;
+        [IniPropertyAttribute("mg.HairQuality")]
         public int mg_HairQuality=3;
 
         public HairQualitySettings()
         {
-
-        }
-
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.HairStrands.SkyAO={r_HairStrands_SkyAO}");
-            sb.AppendLine($"r.HairStrands.SkyAO.SampleCount={r_HairStrands_SkyAO_SampleCount}");
-
-            sb.AppendLine($"r.HairStrands.Visibility.MSAA.SamplePerPixel={r_HairStrands_Visibility_MSAA_SamplePerPixel}");
-            sb.AppendLine($"r.HairStrands.Interpolation.UseSingleGuide={r_HairStrands_Interpolation_UseSingleGuide}");
-
-            sb.AppendLine($"r.HairStrands.Voxelization={r_HairStrands_Voxelization}");
-            sb.AppendLine($"mg.HairQuality={mg_HairQuality}");
         }
     }
 }

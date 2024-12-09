@@ -206,6 +206,7 @@ namespace S2SettingsGenerator.ViewModels
                 },
                 r_TranslucencyVolumeBlur = blurTranslucent ? 1 : 0,
                 r_SubsurfaceScatteringPass = subsurfaceScattering ? 1 : 0,
+                r_SubsurfaceScattering = subsurfaceScattering ? 1 : 0,
                 r_SSS_Scale = screenSpaceSubsurfaceScattering ? 1.0f : 0f,
                 r_SSS_SampleSet = subsurfaceScatteringSamplesIndex switch
                 {

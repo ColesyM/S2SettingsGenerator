@@ -9,48 +9,39 @@ namespace S2SettingsGenerator
 {
     public struct ReflectionQualitySettings : ISettingsModel
     {
+        [IniPropertyAttribute("r.ReflectionMethod.Override")]
         public int r_ReflectionMethod_Override = 1;
-
+        [IniPropertyAttribute("r.SSR.Quality")]
         public int r_SSR_Quality=3;
+        [IniPropertyAttribute("r.SSR.HalfResSceneColor")]
         public int r_SSR_HalfResSceneColor = 0;
-
+        [IniPropertyAttribute("r.Lumen.Reflections.Allow")]
         public int r_Lumen_Reflections_Allow=1;
+        [IniPropertyAttribute("r.Lumen.Reflections.TraceMeshSDFs")]
         public int r_Lumen_Reflections_TraceMeshSDFs=0;
+        [IniPropertyAttribute("r.Lumen.Reflections.DownsampleFactor")]
         public int r_Lumen_Reflections_DownsampleFactor=2;
+        [IniPropertyAttribute("r.Lumen.Reflections.MaxRoughnessToTrace")]
         public float r_Lumen_Reflections_MaxRoughnessToTrace = 0.3f;
+        [IniPropertyAttribute("r.Lumen.Reflections.BilateralFilter.SpatialKernelRadius")]
         public float r_Lumen_Reflections_BilateralFilter_SpatialKernelRadius=0.001f;
+        [IniPropertyAttribute("r.Lumen.Reflections.BilateralFilter.NumSamples")]
         public int r_Lumen_Reflections_BilateralFilter_NumSamples = 4;
-
+        [IniPropertyAttribute("r.Lumen.Reflections.SkipEmissive.Opaque")]
         public int r_Lumen_Reflections_SkipEmissive_Opaque=1;
+        [IniPropertyAttribute("r.Lumen.Reflections.SkipEmissive.SLW")]
         public int r_Lumen_Reflections_SkipEmissive_SLW = 1;
+        [IniPropertyAttribute("r.Lumen.Reflections.SkipEmissive.FrontLayer")]
         public int r_Lumen_Reflections_SkipEmissive_FrontLayer = 1;
-
+        [IniPropertyAttribute("r.Lumen.TranslucencyReflections.FrontLayer.Allow")]
         public int r_Lumen_TranslucencyReflections_FrontLayer_Allow=1;
+        [IniPropertyAttribute("r.Lumen.TranslucencyReflections.FrontLayer.Enable")]
         public int r_Lumen_TranslucencyReflections_FrontLayer_Enable = 1;
+        [IniPropertyAttribute("r.Lumen.Reflections.SampleSceneColorAtHit")]
         public int r_Lumen_Reflections_SampleSceneColorAtHit = 1;
 
         public ReflectionQualitySettings()
         {
-
         }
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.ReflectionMethod.Override={r_ReflectionMethod_Override}");
-            sb.AppendLine($"r.SSR.Quality={r_SSR_Quality}");
-            sb.AppendLine($"r.SSR.HalfResSceneColor={r_SSR_HalfResSceneColor}");
-            sb.AppendLine($"r.Lumen.Reflections.Allow={r_Lumen_Reflections_Allow}");
-            sb.AppendLine($"r.Lumen.Reflections.TraceMeshSDFs={r_Lumen_Reflections_TraceMeshSDFs}");
-            sb.AppendLine($"r.Lumen.Reflections.DownsampleFactor={r_Lumen_Reflections_DownsampleFactor}");
-            sb.AppendLine($"r.Lumen.Reflections.MaxRoughnessToTrace={r_Lumen_Reflections_MaxRoughnessToTrace}");
-            sb.AppendLine($"r.Lumen.Reflections.BilateralFilter.SpatialKernelRadius={r_Lumen_Reflections_BilateralFilter_SpatialKernelRadius}");
-            sb.AppendLine($"r.Lumen.Reflections.BilateralFilter.NumSamples={r_Lumen_Reflections_BilateralFilter_NumSamples}");
-            sb.AppendLine($"r.Lumen.Reflections.SkipEmissive.Opaque={r_Lumen_Reflections_SkipEmissive_Opaque}");
-            sb.AppendLine($"r.Lumen.Reflections.SkipEmissive.SLW={r_Lumen_Reflections_SkipEmissive_SLW}");
-            sb.AppendLine($"r.Lumen.Reflections.SkipEmissive.FrontLayer={r_Lumen_Reflections_SkipEmissive_FrontLayer}");
-            sb.AppendLine($"r.Lumen.TranslucencyReflections.FrontLayer.Allow={r_Lumen_TranslucencyReflections_FrontLayer_Allow}");
-            sb.AppendLine($"r.Lumen.TranslucencyReflections.FrontLayer.Enable={r_Lumen_TranslucencyReflections_FrontLayer_Enable}");
-            sb.AppendLine($"r.Lumen.Reflections.SampleSceneColorAtHit={r_Lumen_Reflections_SampleSceneColorAtHit}");
-        }
-
     }
 }

@@ -9,18 +9,13 @@ namespace S2SettingsGenerator
 {
     public struct MotionBlurQualitySettings : ISettingsModel
     {
+        [IniPropertyAttribute("r.MotionBlurQuality")]
         public int r_MotionBlurQuality=4;
+        [IniPropertyAttribute("r.MotionBlur.HalfResGather")]
         public int r_MotionBlur_HalfResGather=0;
 
         public MotionBlurQualitySettings()
         {
-
-        }
-
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.MotionBlurQuality={r_MotionBlurQuality}");
-            sb.AppendLine($"r.MotionBlur.HalfResGather={r_MotionBlur_HalfResGather}");
         }
     }
 }

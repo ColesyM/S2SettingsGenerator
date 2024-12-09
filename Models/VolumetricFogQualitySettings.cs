@@ -8,26 +8,21 @@ namespace S2SettingsGenerator.Models
 {
     public struct VolumetricFogQualitySettings: ISettingsModel
     {
+        [IniPropertyAttribute("r.VolumetricFog")]
         public int r_VolumetricFog = 1;
+        [IniPropertyAttribute("r.VolumetricFog.GridPixelSize")]
         public int r_VolumetricFog_GridPixelSize = 8;
+        [IniPropertyAttribute("r.VolumetricFog.GridSizeZ")]
         public int r_VolumetricFog_GridSizeZ = 128;
+        [IniPropertyAttribute("r.VolumetricFog.HistoryMissSupersampleCount")]
         public int r_VolumetricFog_HistoryMissSupersampleCount = 4;
+        [IniPropertyAttribute("r.VolumetricFog.ShadowWorldBias")]
         public int r_VolumetricFog_ShadowWorldBias = 75;
+        [IniPropertyAttribute("r.VolumetricFog.ShadowViewBias")]
         public float r_VolumetricFog_ShadowViewBias = 0.35f;
 
         public VolumetricFogQualitySettings()
         {
-
-        }
-
-        public void appendLines(StringBuilder sb)
-        {
-            sb.AppendLine($"r.VolumetricFog={r_VolumetricFog}");
-            sb.AppendLine($"r.VolumetricFog.GridPixelSize={r_VolumetricFog_GridPixelSize}");
-            sb.AppendLine($"r.VolumetricFog.GridSizeZ={r_VolumetricFog_GridSizeZ}");
-            sb.AppendLine($"r.VolumetricFog.HistoryMissSupersampleCount={r_VolumetricFog_HistoryMissSupersampleCount}");
-            sb.AppendLine($"r.VolumetricFog.ShadowWorldBias={r_VolumetricFog_ShadowWorldBias}");
-            sb.AppendLine($"r.VolumetricFog.ShadowViewBias={r_VolumetricFog_ShadowViewBias}");
         }
     }
 }

@@ -8,6 +8,5 @@ namespace S2SettingsGenerator.Models
 {
     public interface ISettingsModel
     {
-        public void appendLines(StringBuilder sb);
     }
 }
