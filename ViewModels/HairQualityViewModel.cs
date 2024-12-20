@@ -66,6 +66,55 @@ namespace S2SettingsGenerator.ViewModels
             }
         }
 
+        private int voxelPageCountPerDim;
+
+        public int VoxelPageCountPerDim
+        {
+            get { return voxelPageCountPerDim; }
+            set
+            {
+                voxelPageCountPerDim = value;
+                this.OnPropertyChanged("VoxelPageCountPerDim");
+            }
+        }
+
+        private int voxelPageResolution;
+
+        public int VoxelPageResolution
+        {
+            get { return voxelPageResolution; }
+            set
+            {
+                voxelPageResolution = value;
+                this.OnPropertyChanged("VoxelPageResolution");
+            }
+        }
+
+        public void ApplyPreset(Presets preset)
+        {
+            switch (preset)
+            {
+                case Presets.POTATO:
+                case Presets.VERY_LOW:
+                case Presets.LOW:
+                case Presets.MEDIUM:
+                case Presets.HIGH:
+                    VoxelPageCountPerDim = 7;
+                    voxelPageResolution = 16;
+                    break;
+                case Presets.ULTRA:
+                case Presets.INSANE:
+                case Presets.EPIC:
+                    VoxelPageCountPerDim = 14;
+                    voxelPageResolution = 32;
+                    break;
+                case Presets.CUSTOM:
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public override void PopulateSettingsModel()
         {
             Settings = new HairQualitySettings()
@@ -75,8 +124,10 @@ namespace S2SettingsGenerator.ViewModels
                 r_HairStrands_Visibility_MSAA_SamplePerPixel = hairStrandVisibility,
                 r_HairStrands_Interpolation_UseSingleGuide = 0,
                 r_HairStrands_Voxelization = hairLightingAndShadows ? 0 : 1,
-                mg_HairQuality = hairQuality
-            };
+                mg_HairQuality = hairQuality,
+                r_HairStrands_Voxelization_Virtual_VoxelPageCountPerDim = 7,
+                r_HairStrands_Voxelization_Virtual_VoxelPageResolution = 16
+    };
         }
 
         [System.Diagnostics.CodeAnalysis.SetsRequiredMembersAttribute]

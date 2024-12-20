@@ -34,7 +34,7 @@ namespace S2SettingsGenerator
         [IniPropertyAttribute("r.Streaming.PoolSize")]
         public int r_Streaming_PoolSize = 3072;
         [IniPropertyAttribute("r.VT.PoolSizeScale.Group0")]
-        public int r_VT_PoolSizeScale_Group0=2; //; vk: 384MB(64 * 2 * 3) in total(on DXT1, BC5, BC7)
+        public float r_VT_PoolSizeScale_Group0=2; //; vk: 384MB(64 * 2 * 3) in total(on DXT1, BC5, BC7)
         [IniPropertyAttribute("r.VT.PoolSizeScale.Group1")]
         public float r_VT_PoolSizeScale_Group1=0.2f; //; 51MB(64 * 0.2 * 4) in total(BC4, B8G8R8A8, FloatRGBA, G8)
         [IniPropertyAttribute("r.VT.PoolSizeScale.Group2")]

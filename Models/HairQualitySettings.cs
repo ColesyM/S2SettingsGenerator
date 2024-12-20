@@ -21,6 +21,10 @@ namespace S2SettingsGenerator
         public int r_HairStrands_Voxelization = 1;
         [IniPropertyAttribute("mg.HairQuality")]
         public int mg_HairQuality=3;
+        [IniPropertyAttribute("r.HairStrands.Voxelization.Virtual.VoxelPageCountPerDim")]
+        public int r_HairStrands_Voxelization_Virtual_VoxelPageCountPerDim = 7;
+        [IniPropertyAttribute("r.HairStrands.Voxelization.Virtual.VoxelPageResolution")]
+        public int r_HairStrands_Voxelization_Virtual_VoxelPageResolution = 16;
 
         public HairQualitySettings()
         {

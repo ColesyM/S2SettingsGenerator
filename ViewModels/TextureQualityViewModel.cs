@@ -102,6 +102,43 @@ namespace S2SettingsGenerator.ViewModels
             }
         }
 
+        private float vtPoolSizeScaleGroup0;
+
+        public float VTPoolSizeScaleGroup0
+        {
+            get { return vtPoolSizeScaleGroup0; }
+            set
+            {
+                vtPoolSizeScaleGroup0 = value;
+                this.OnPropertyChanged("VTPoolSizeScaleGroup0");
+            }
+        }
+
+        public void ApplyPreset(Presets preset)
+        {
+            switch (preset)
+            {
+                case Presets.POTATO:
+                case Presets.VERY_LOW:
+                case Presets.LOW:
+                case Presets.MEDIUM:
+                    VTPoolSizeScaleGroup0 = 1f;
+                    break;
+                case Presets.HIGH:
+                    VTPoolSizeScaleGroup0 = 1.5f;
+                    break;
+                case Presets.ULTRA:
+                case Presets.INSANE:
+                case Presets.EPIC:
+                    VTPoolSizeScaleGroup0 = 2;
+                    break;
+                case Presets.CUSTOM:
+                    break;
+                default:
+                    break;
+            }
+        }
+
         public override void PopulateSettingsModel()
         {
             Settings = new TextureQualitySettings()
@@ -159,7 +196,7 @@ namespace S2SettingsGenerator.ViewModels
                     4 => 3072,
                     _ => 3072
                 },
-                r_VT_PoolSizeScale_Group0 = 2,
+                r_VT_PoolSizeScale_Group0 = vtPoolSizeScaleGroup0,
                 r_VT_PoolSizeScale_Group1 = 0.2f,
                 r_VT_PoolSizeScale_Group2 = 0.05f,
 

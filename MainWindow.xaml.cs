@@ -189,6 +189,8 @@ namespace S2SettingsGenerator
                     this.ViewModel.TextureQualitySettings.Preset = preset;
                 }
 
+                this.ViewModel.TextureQualitySettings.ApplyPreset(preset);
+
                 switch (preset)
                 {
                     case Presets.POTATO:
@@ -287,6 +289,8 @@ namespace S2SettingsGenerator
                 {
                     this.ViewModel.HairQualitySettings.Preset = preset;
                 }
+
+                this.ViewModel.HairQualitySettings.ApplyPreset(preset);
 
                 switch (preset)
                 {
@@ -1187,7 +1191,7 @@ namespace S2SettingsGenerator
                         chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
                         cmbProbeRes.SelectedIndex = 0;
                         cmbProbeTraceBudget.SelectedIndex = 2;
-                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeAtlasResolution.SelectedIndex = 1;
                         cmbProbeCacheFrameKeep.SelectedIndex = 1;
                         chkLumenTranslucencyVolume.IsChecked = true;
                         chkLumenTranslucencyTrace.IsChecked = true;
@@ -1210,7 +1214,7 @@ namespace S2SettingsGenerator
                         chkTwoSidedFoliageBackfaceDiffuse.IsChecked = true;
                         cmbProbeRes.SelectedIndex = 1;
                         cmbProbeTraceBudget.SelectedIndex = 3;
-                        cmbProbeAtlasResolution.SelectedIndex = 2;
+                        cmbProbeAtlasResolution.SelectedIndex = 1;
                         cmbProbeCacheFrameKeep.SelectedIndex = 1;
                         chkLumenTranslucencyVolume.IsChecked = true;
                         chkLumenTranslucencyTrace.IsChecked = true;
