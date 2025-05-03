@@ -39,7 +39,7 @@ namespace S2SettingsGenerator.ViewModels
                 r_SkeletalMeshLODBias = 0,
                 r_ViewDistanceScale = viewDistance,
                 gsc_ForceCompositionStreamingDistance = -1,
-                wp_Runtime_HLOD = 1,
+                //wp_Runtime_HLOD = 1,
                 r_LightMaxDrawDistanceScale = lightViewDistance
             };
         }

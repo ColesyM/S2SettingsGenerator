@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using S2SettingsGenerator.Models;
 using S2SettingsGenerator.ViewModels;
 
 namespace S2SettingsGenerator
@@ -21,6 +24,7 @@ namespace S2SettingsGenerator
     public partial class MainWindow : Window
     {
         const string RENDER_SETTINGS_HEADER = "[/Script/Engine.RendererSettings]";
+        const string FSR_SETTINGS_HEADER = "[/Script/FFXFSR3Settings.FFXFSR3Settings]";
 
 
         private MainWindowViewModel viewModel;
@@ -36,7 +40,7 @@ namespace S2SettingsGenerator
         {
             InitializeComponent();
             this.DataContext = this.viewModel = new MainWindowViewModel();
-            this.ViewModel.PresetSectionChanged += ViewModel_PresetSectionChanged; 
+            this.ViewModel.PresetSectionChanged += ViewModel_PresetSectionChanged;
         }
 
         private void ViewModel_PresetSectionChanged(object? sender, PresetChangedEventArgs e)
@@ -153,6 +157,66 @@ namespace S2SettingsGenerator
             this.viewModel.SkyQualitySettings.AddSettingsStrings(sb);
             this.viewModel.FoliageQualitySettings.AddSettingsStrings(sb);
             this.viewModel.ViewDistanceQualitySettings.AddSettingsStrings(sb);
+
+            if (this.viewModel.ImproveFSRQuality == true)
+            {
+                sb.AppendLine();
+                sb.AppendLine($";--FSR--");
+
+                int settingsIndex = 0;
+
+                foreach (FieldInfo prop in this.viewModel.FSRSettings.GetType().GetFields())
+                {
+                    if (settingsIndex == 2)
+                    {
+                        sb.AppendLine();
+                        sb.AppendLine(FSR_SETTINGS_HEADER);
+                    }
+
+                    var iniAttribute = prop.GetCustomAttribute<IniPropertyAttribute>(false);
+
+                    if (iniAttribute != null)
+                    {
+                        var typeOfField = prop.FieldType.Name;
+                        string fieldValueStr;
+                        Debug.WriteLine(typeOfField);
+                        switch (typeOfField)
+                        {
+                            case "Single":
+                                var preciseFloatStr = $"{(float)prop.GetValue(this.viewModel.FSRSettings)!:F7}".TrimEnd(['0']);
+                                fieldValueStr = preciseFloatStr.EndsWith('.') ? $"{preciseFloatStr}0" : preciseFloatStr;
+                                break;
+                            case "Int32":
+                            default:
+                                fieldValueStr = $"{prop.GetValue(this.viewModel.FSRSettings)}";
+                                break;
+                        }
+
+                        if (iniAttribute.IniProperty.Contains('='))
+                        {
+                            throw new CustomAttributeFormatException($"ini property should not container = {iniAttribute.IniProperty}");
+                        }
+
+                        if (iniAttribute.IniProperty.Contains('_'))
+                        {
+                            throw new CustomAttributeFormatException($"ini property should not container _ {iniAttribute.IniProperty}");
+                        }
+
+                        var expectedIni = prop.Name.Replace('_', '.');
+
+                        if (expectedIni != iniAttribute.IniProperty)
+                        {
+                            throw new CustomAttributeFormatException($"{expectedIni} != {iniAttribute.IniProperty}");
+                        }
+
+                        sb.AppendLine($"{iniAttribute.IniProperty}={fieldValueStr}");
+                    }
+
+                    ++settingsIndex;
+                }
+
+                sb.AppendLine();
+            }
 
             string iniLines = sb.ToString();
             Debug.Write(iniLines);
@@ -1598,7 +1662,7 @@ namespace S2SettingsGenerator
         }
         private void ApplyClouds(Presets preset, bool apply = false)
         {
-        if (this.viewModel.CloudsQualitySettings.PresetLocked == false)
+            if (this.viewModel.CloudsQualitySettings.PresetLocked == false)
             {
                 if (apply)
                 {
@@ -1966,8 +2030,12 @@ namespace S2SettingsGenerator
                 }
             }
         }
+
+        private bool applyingPreset = false;
         private void ApplyPreset()
         {
+            applyingPreset = true;
+
             var preset = this.ViewModel.CurrentPreset;
 
             ApplyTextures(preset, true);
@@ -1989,6 +2057,7 @@ namespace S2SettingsGenerator
             ApplyFoliage(preset, true);
             ApplyViewDistance(preset, true);
 
+            applyingPreset = false;
         }
 
         private void rdioPotatoPreset_Checked(object sender, RoutedEventArgs e)
@@ -2011,7 +2080,7 @@ namespace S2SettingsGenerator
 
         private void rdioEpicPreset_Checked(object sender, RoutedEventArgs e)
         {
-            if(sldrTextures == null)
+            if (sldrTextures == null)
             {
                 // not ready yet
                 return;
@@ -2051,6 +2120,28 @@ namespace S2SettingsGenerator
         {
             this.ViewModel.CurrentPreset = Presets.HIGH;
             ApplyPreset();
+        }
+
+        private void cmbAnisotropic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (this.viewModel == null || applyingPreset == true) return;
+
+            this.viewModel.TextureQualitySettings.Preset = Presets.CUSTOM;
+        }
+
+        private void cmbStreamingPool_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void chkAmortizeCPUToGPUCopy_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void chkAmortizeCPUToGPUCopy_Unchecked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -73,6 +73,8 @@
                     </StackPanel.Resources>
 
                     <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
+                    <CheckBox x:Name="chkImproveFSRQuality" ToolTip="Tweak the FSR Upscaler settings" Margin="10,10,0,10" VerticalAlignment="Center" IsChecked="{Binding ImproveFSRQuality, Mode=TwoWay}" Content="Improve FSR Quality"/>
+                    <Line Stretch="Fill" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" X2="1"/>
                     <Grid DataContext="{Binding TextureQualitySettings}">
                         <Expander>
                             <Expander.Header>
@@ -84,7 +86,7 @@
                                 <Slider x:Name="sldrTextures" ToolTip="Texure MIP Quality, 0 is best quality, increase for lower MIPs. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low" Margin="0,10,0,0" Width="120" VerticalAlignment="Center" SmallChange="0.5" LargeChange="0.5" Maximum="2" TickFrequency="0.5" Minimum="0" TickPlacement="BottomRight" IsDirectionReversed="True" IsSnapToTickEnabled="True" Value="{Binding TextureMIP, Mode=TwoWay}" ValueChanged="TextureSlider_ValueChanged" AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
                                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <Label Content="Anisotropic" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbAnisotropic" ToolTip="Texure sampling quality, better detail at tighter viewing angles. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low-Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding AnisotropicIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbAnisotropic" ToolTip="Texure sampling quality, better detail at tighter viewing angles. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low-Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding AnisotropicIndex, Mode=TwoWay}" SelectionChanged="cmbAnisotropic_SelectionChanged"   >
                                         <ComboBoxItem Content="Disabled"/>
                                         <ComboBoxItem Content="2x"/>
                                         <ComboBoxItem Content="4x"/>
@@ -94,7 +96,7 @@
                                 </StackPanel>
                                 <StackPanel Margin="10,0,0,0" Orientation="Horizontal">
                                     <Label Content="Streaming Pool" VerticalAlignment="Center"/>
-                                    <ComboBox x:Name="cmbStreamingPool" ToolTip="Texure pool size, for streaming tetures to display. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low-Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding StreamingPoolIndex, Mode=TwoWay}">
+                                    <ComboBox x:Name="cmbStreamingPool" ToolTip="Texure pool size, for streaming tetures to display. &#x0a;Impact:&#x0a;VRAM: High&#x0a;Performance: Low-Medium" Width="100" VerticalAlignment="Center" SelectedIndex="{Binding StreamingPoolIndex, Mode=TwoWay}" SelectionChanged="cmbStreamingPool_SelectionChanged">
                                         <ComboBoxItem Content="Tiny"/>
                                         <ComboBoxItem Content="Small"/>
                                         <ComboBoxItem Content="Medium"/>
@@ -103,7 +105,7 @@
                                         <CheckBox IsChecked="True" Content="Limit to VRAM"/>
                                     </ComboBox>
                                 </StackPanel>
-                                <CheckBox x:Name="chkAmortizeCPUToGPUCopy" ToolTip="Limit the number of textures copied from CPU to VRAM. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding AmortizeCPUToGPUCopy, Mode=TwoWay}" Content="Throttle copy to VRAM"/>
+                                <CheckBox x:Name="chkAmortizeCPUToGPUCopy" ToolTip="Limit the number of textures copied from CPU to VRAM. &#x0a;Impact:&#x0a;VRAM: Low&#x0a;Performance: Low" Margin="10,0,0,0" VerticalAlignment="Center" IsChecked="{Binding AmortizeCPUToGPUCopy, Mode=TwoWay}" Content="Throttle copy to VRAM" Checked="chkAmortizeCPUToGPUCopy_Checked" Unchecked="chkAmortizeCPUToGPUCopy_Unchecked"/>
                                 <StackPanel Orientation="Horizontal" Margin="0">
                                     <Label Content="Mip Preference" VerticalAlignment="Center"/>
                                     <ComboBox x:Name="cmbMipPreference" ToolTip="Texture MIP Quality bias preference. &#x0a;Impact:&#x0a;VRAM: Medium&#x0a;Performance: Low" Width="120" VerticalAlignment="Center" SelectedIndex="{Binding MipPreferenceIndex, Mode=TwoWay}">

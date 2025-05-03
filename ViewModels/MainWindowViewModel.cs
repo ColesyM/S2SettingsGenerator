@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using S2SettingsGenerator.Models;
 using S2SettingsGenerator.ViewModels;
 
 namespace S2SettingsGenerator
@@ -238,6 +239,29 @@ namespace S2SettingsGenerator
         private SkyQualityViewModel skyQualitySettings;
         private FoliageQualityViewModel foliageQualitySettings;
         private ViewDistanceQualityViewModel viewDistanceQualitySettings;
+        private FSRSettings fsrSettings = new FSRSettings();
+
+        public FSRSettings FSRSettings
+        {
+            get { return fsrSettings; }
+            set
+            {
+                fsrSettings = value;
+                OnPropertyChanged("FSRSettings");
+            }
+        }
+
+        private bool improveFSRQuality;
+
+        public bool ImproveFSRQuality
+        {
+            get { return improveFSRQuality; }
+            set
+            {
+                improveFSRQuality = value;
+                this.OnPropertyChanged("ImproveFSRQuality");
+            }
+        }
 
         public TextureQualityViewModel TextureQualitySettings
         {

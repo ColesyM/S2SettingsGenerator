@@ -15,8 +15,8 @@ namespace S2SettingsGenerator
         public float r_ViewDistanceScale = 1.0f;
         [IniPropertyAttribute("gsc.ForceCompositionStreamingDistance")]
         public int gsc_ForceCompositionStreamingDistance = -1;
-        [IniPropertyAttribute("wp.Runtime.HLOD")]
-        public int wp_Runtime_HLOD = 1;
+        //[IniPropertyAttribute("wp.Runtime.HLOD")]
+        //public int wp_Runtime_HLOD = 1;
         [IniPropertyAttribute("r.LightMaxDrawDistanceScale")]
         public float r_LightMaxDrawDistanceScale = 1;
 

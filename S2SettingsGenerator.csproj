@@ -7,9 +7,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <Platforms>AnyCPU;x64;x86</Platforms>
-    <AssemblyVersion>1.1.3</AssemblyVersion>
-    <FileVersion>1.1.3</FileVersion>
-    <Version>1.1.3</Version>
+    <AssemblyVersion>1.2.1</AssemblyVersion>
+    <FileVersion>1.2.1</FileVersion>
+    <Version>1.2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
