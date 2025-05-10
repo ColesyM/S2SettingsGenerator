@@ -14,8 +14,6 @@ namespace S2SettingsGenerator.Models
         public int r_VolumetricCloud_SkyAO_MaxResolution = 128;
         [IniPropertyAttribute("r.VolumetricCloud.ViewRaySampleMaxCount")]
         public int r_VolumetricCloud_ViewRaySampleMaxCount = 196;
-        [IniPropertyAttribute("r.VolumetricCloud.DistanceToSampleMaxCount")]
-        public int r_VolumetricCloud_DistanceToSampleMaxCount = 80;
         [IniPropertyAttribute("r.VolumetricCloud.ReflectionRaySampleMaxCount")]
         public int r_VolumetricCloud_ReflectionRaySampleMaxCount = 60;
         [IniPropertyAttribute("r.VolumetricCloud.Shadow.ViewRaySampleMaxCount")]

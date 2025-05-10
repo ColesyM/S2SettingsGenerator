@@ -79,7 +79,6 @@ namespace S2SettingsGenerator.ViewModels
                     _ => 128
                 },
                 r_VolumetricCloud_ViewRaySampleMaxCount = cloudViewRayCount,
-                r_VolumetricCloud_DistanceToSampleMaxCount = 80,
                 r_VolumetricCloud_ReflectionRaySampleMaxCount = cloudReflectionRayCount,
                 r_VolumetricCloud_Shadow_ViewRaySampleMaxCount = cloudShadowRayCount
             };
